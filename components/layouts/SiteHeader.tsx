@@ -11,6 +11,7 @@ interface SiteHeaderProps {}
 
 const SiteHeader: React.FC<SiteHeaderProps> = ({}) => {
   const title = 'Spot-Sync';
+  const { user, isSignedIn } = useUser();
 
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-background h-16'>
@@ -25,7 +26,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({}) => {
           className={cn('font-bold', buttonVariants({ variant: 'ghost' }))}
           href='/onboarding'
         >
-          My Site
+          {isSignedIn ? 'My Site' : 'Login'}
           <Icons.arrowRight className='w-4 h-4 ml-2 ' />
         </Link>
       </div>
