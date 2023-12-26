@@ -1,11 +1,11 @@
-'use client';
-import * as React from 'react';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
-import { useForm } from 'react-hook-form';
-import { UserQuery, userQuery } from '@/lib/validation';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { getArtistInfo } from '@/lib/spotify';
+"use client";
+import * as React from "react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { useForm } from "react-hook-form";
+import { UserQuery, userQuery } from "@/lib/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { getArtistInfo } from "@/lib/spotify";
 import {
   Form,
   FormControl,
@@ -14,13 +14,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
-import { Item, useUserInfoStore } from '@/hooks/user-info';
-import { Icons } from './icons';
-import { useRouter } from 'next/navigation';
-import { createProfileAction } from '@/app/_actions/userProfile';
-import { useToast } from './ui/use-toast';
-import { stringToSlug } from '@/lib/utils';
+} from "./ui/form";
+import { Item, useUserInfoStore } from "@/hooks/user-info";
+import { Icons } from "./icons";
+import { useRouter } from "next/navigation";
+import { createProfileAction } from "@/app/_actions/userProfile";
+import { useToast } from "./ui/use-toast";
+import { stringToSlug } from "@/lib/utils";
 
 interface UserFormProps {
   token: string;
@@ -35,8 +35,8 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
   const form = useForm<UserQuery>({
     resolver: zodResolver(userQuery),
     defaultValues: {
-      artistName: '',
-      createProfile: '',
+      artistName: "",
+      createProfile: "",
     },
   });
 
@@ -46,7 +46,7 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
     /* set artistId and token in local storage */
 
     setArtist(artistInfo.artists);
-    setStep('selectArtist');
+    setStep("selectArtist");
   }
 
   async function handleCreateProfileCase(
@@ -71,14 +71,14 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
   async function onSubmit(values: UserQuery) {
     try {
       switch (step) {
-        case 'default':
+        case "default":
           await handleDefaultCase(values.artistName, token);
           break;
-        case 'selectArtist':
-          setStep('createProfile');
+        case "selectArtist":
+          setStep("createProfile");
 
           break;
-        case 'createProfile':
+        case "createProfile":
           await handleCreateProfileCase(values, selectedArtist, token);
           break;
         default:
@@ -86,7 +86,7 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
       }
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: "Error",
         description: error.message,
       });
       console.error(error);
@@ -97,20 +97,20 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-8 relative'
+        className="space-y-8 relative"
       >
-        {step === 'default' && (
+        {step === "default" && (
           <FormField
             control={form.control}
-            name='artistName'
+            name="artistName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>What&apos;s your artist name?</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder='e.g Kayakata'
+                    placeholder="e.g Kayakata"
                     {...field}
-                    className=''
+                    className=""
                     autoFocus
                   />
                 </FormControl>
@@ -121,22 +121,22 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
           />
         )}
 
-        {step === 'createProfile' && (
+        {step === "createProfile" && (
           <FormField
             control={form.control}
-            name='createProfile'
+            name="createProfile"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className='flex items-center '>
-                    <span className='absolute z-10 left-6'>noise.site/</span>
+                  <div className="flex items-center ">
+                    <span className="absolute z-10 left-6">noise.site/</span>
                     <Input
                       autoFocus
                       {...field}
-                      className='absolute left-0 pl-24 w-full '
+                      className="absolute left-0 pl-24 w-full "
                       placeholder={selectedArtist?.name
                         .toLowerCase()
-                        .replace(/\s/g, '')}
+                        .replace(/\s/g, "")}
                     />
                   </div>
                 </FormControl>
@@ -148,15 +148,15 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
         )}
 
         <Button
-          type='submit'
+          type="submit"
           disabled={form.formState.isSubmitting}
-          className='w-full'
+          className="w-full"
         >
           {form.formState.isSubmitting && (
-            <Icons.loader className='w-4 h-4 mr-2 animate-spin' />
+            <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
           )}
 
-          {step !== 'createProfile' ? 'Next' : 'Create Profile'}
+          {step !== "createProfile" ? "Next" : "Create Profile"}
         </Button>
       </form>
     </Form>

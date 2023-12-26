@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
 export async function getToken() {
   const response = await axios.post(
-    'https://accounts.spotify.com/api/token',
+    "https://accounts.spotify.com/api/token",
     new URLSearchParams({
-      grant_type: 'client_credentials',
+      grant_type: "client_credentials",
     }),
     {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
         Authorization:
-          'Basic ' +
-          Buffer.from(client_id + ':' + client_secret).toString('base64'),
+          "Basic " +
+          Buffer.from(client_id + ":" + client_secret).toString("base64"),
       },
     }
   );
@@ -22,11 +22,13 @@ export async function getToken() {
 }
 
 export async function getArtistInfo(artistName: string, access_token: string) {
+  /* zaza no */
+
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/search?q=${artistName}&type=artist`,
       {
-        headers: { Authorization: 'Bearer ' + access_token },
+        headers: { Authorization: "Bearer " + access_token },
       }
     );
 
@@ -50,7 +52,7 @@ export async function getArtistAlbums(artistId: string, access_token: string) {
     const response = await axios.get(
       `https://api.spotify.com/v1/artists/${artistId}/albums`,
       {
-        headers: { Authorization: 'Bearer ' + access_token },
+        headers: { Authorization: "Bearer " + access_token },
       }
     );
 

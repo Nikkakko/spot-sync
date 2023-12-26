@@ -1,13 +1,13 @@
-import * as React from 'react';
-import ArtistProfileCard from '@/components/ArtistProfileCard';
-import UserForm from '@/components/UserForm';
-import { getToken } from '@/lib/spotify';
-import OnboardHeader from '@/components/OnboardHeader';
-import db from '@/lib/db';
-import { currentUser } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
-import { createCookie } from '@/app/_actions/userProfile';
+import * as React from "react";
+import ArtistProfileCard from "@/components/ArtistProfileCard";
+import UserForm from "@/components/UserForm";
+import { getToken } from "@/lib/spotify";
+import OnboardHeader from "@/components/OnboardHeader";
+import db from "@/lib/db";
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import { createCookie } from "@/app/_actions/userProfile";
 
 interface OnBoardingProps {}
 
@@ -26,7 +26,7 @@ const OnboardingPage: React.FC<OnBoardingProps> = async () => {
   }
 
   return (
-    <div className=' max-w-2xl py-10 h-screen flex flex-col justify-between'>
+    <div className="max-w-2xl py-10 h-screen flex flex-col justify-between">
       <OnboardHeader />
       <ArtistProfileCard />
       <UserForm token={token.access_token} />

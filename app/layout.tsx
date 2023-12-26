@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import './globals.css';
-import { cn } from '@/lib/utils';
-import { Providers } from '@/components/Providers';
-import { fontMono, fontSans } from '@/lib/fonts';
-import { ClerkProvider } from '@clerk/nextjs';
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import { Providers } from "@/components/Providers";
+import { fontMono, fontSans } from "@/lib/fonts";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: 'SpotSync - Create a free unique Spotify profile',
-  description: 'Create a free unique Spotify profile',
+  title: "SpotSync - Create a free unique Spotify profile",
+  description: "Create a free unique Spotify profile",
 };
 
 export default function RootLayout({
@@ -18,15 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            'min-h-screen bg-[#dddddd] font-sans antialiased',
+            "min-h-screen bg-[#dddddd] font-sans antialiased",
             fontSans.variable,
             fontMono.variable
           )}
         >
-          <Providers attribute='class' enableSystem defaultTheme='light'>
+          <Providers attribute="class" enableSystem defaultTheme="light">
             {children}
           </Providers>
         </body>
