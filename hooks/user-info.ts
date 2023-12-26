@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type Item = {
+export type Item = {
   external_urls: {
     spotify: string;
   };
@@ -32,12 +32,27 @@ export type UserInfo = {
   total: number;
 };
 
+type stepType = 'default' | 'selectArtist' | 'createProfile';
+
 type UserInfoStore = {
   artists: UserInfo[];
-  setUser: (user: UserInfo) => void;
+  step: stepType | null;
+
+  setArtist: (user: UserInfo) => void;
+  setStep: (step: stepType) => void;
+
+  nullArtist: () => void;
+
+  selectedArtist: Item | null;
+  setSelectedArtist: (selectedArtist: Item) => void;
 };
 
 export const useUserInfoStore = create<UserInfoStore>(set => ({
   artists: [],
-  setUser: artists => set(state => ({ artists: [artists] })),
+  step: 'default',
+  setArtist: artists => set(state => ({ artists: [artists] })),
+  nullArtist: () => set(state => ({ artists: [] })),
+  setStep: (step: stepType) => set(state => ({ step })),
+  selectedArtist: null,
+  setSelectedArtist: selectedArtist => set(state => ({ selectedArtist })),
 }));
