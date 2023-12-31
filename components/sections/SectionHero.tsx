@@ -2,12 +2,13 @@ import * as React from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { stickers } from "@/app/helpers/siteData";
+import { Shell } from "../layouts/Shell";
 
 interface SectionHeroProps {}
 
 const SectionHero: React.FC<SectionHeroProps> = ({}) => {
   return (
-    <section className="container flex flex-col relative">
+    <Shell>
       <div className="flex flex-col items-center py-[120px] text-center">
         <h1 className="text-5xl font-bold text-center whitespace-pre-line letter-spacing-tight mb-10">
           Turn your <span className="text-green-500">Spotify</span>
@@ -70,7 +71,7 @@ const SectionHero: React.FC<SectionHeroProps> = ({}) => {
           </span>
         ))}
       </div>
-    </section>
+    </Shell>
   );
 };
 

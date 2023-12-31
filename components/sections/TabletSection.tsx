@@ -12,23 +12,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { slides } from "@/app/helpers/siteData";
 import Image from "next/image";
+import { Shell } from "../layouts/Shell";
 
 interface TabletSectionProps {}
 
 const TabletSection: React.FC<TabletSectionProps> = ({}) => {
   return (
-    <section className="container flex justify-center items-center flex-col relative pb-20">
+    <Shell className=" justify-center items-center pb-20">
       <Carousel
         opts={{
           align: "start",
-          loop: true,
         }}
         className="w-full h-full  "
-        plugins={[
-          Autoplay({
-            delay: 2000,
-          }),
-        ]}
       >
         <CarouselContent>
           {slides.map((item, index) => (
@@ -48,8 +43,10 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselNext />
+        <CarouselPrevious />
       </Carousel>
-    </section>
+    </Shell>
   );
 };
 

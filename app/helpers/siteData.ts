@@ -106,3 +106,60 @@ export const slides = [
     description: "Slide 6 Description",
   },
 ];
+
+export const featuresCard = [
+  {
+    id: 1,
+    title: "Choose from a unique collection of themes and layouts",
+    description:
+      "We got you covered with beautiful designs to match the vibe of your music and band",
+  },
+  {
+    id: 2,
+    title: "Promote and show off your music the way you want",
+    description:
+      "Show your full catalogue, top tracks or customize which music you actually want to show.",
+  },
+  {
+    id: 3,
+    title: "Look good on all devices, from desktop to mobile",
+    description:
+      "All Noise themes are fully responsive to ensure that your site looks good everywhere.",
+  },
+  {
+    id: 4,
+    title: "Leave the boring stuff like SEO, optimization and speed for us!",
+    description:
+      "Without any effort, your site is SEO-ready, well-maintained and optimized to be blazing fast.",
+  },
+  {
+    id: 5,
+    title: "Promote your socials just like your usual link-in-bio service",
+    description:
+      "Noise detects your social links and adds them automatically but you can update them as you want.",
+  },
+  {
+    id: 6,
+    title: "Never worry about updating your website again",
+    description:
+      "Whether you release a new track, plan a new tour, update your bio, your site is always in sync.",
+  },
+  {
+    id: 7,
+    title: "Promote your tour and events and keep it in sync, forever",
+    description:
+      "Show off your events and tour dates by connecting your Bandsintown account.",
+  },
+  {
+    id: 8,
+    title: "Create for free and share your unique website everywhere",
+    description:
+      "Make your Noise site, personalize it, share it and keep it as much as you want, for free.",
+  },
+  {
+    id: 9,
+    title: "Simple tools making it easy to personalize your site!",
+    description:
+      "The editor is minimal by default to help you create the site you want without all the *noise*!",
+  },
+];
