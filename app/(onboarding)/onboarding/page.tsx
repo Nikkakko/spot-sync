@@ -6,8 +6,6 @@ import OnboardHeader from "@/components/OnboardHeader";
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
-import { createCookie } from "@/app/_actions/userProfile";
 
 interface OnBoardingProps {}
 
