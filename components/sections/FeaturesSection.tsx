@@ -30,6 +30,11 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({}) => {
               width="48"
               height="48"
             /> */}
+            <div className="h-[164px] w-full overflow-hidden rounded-lg">
+              <div className="relative  w-full h-full bg-[#8c5aff]">
+                comming soon
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="p-0 mb-4">
             <CardTitle className="p-0 text-2xl font-semibold leading-7 ">

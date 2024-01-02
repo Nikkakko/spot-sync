@@ -1,5 +1,6 @@
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import SectionHero from "@/components/sections/SectionHero";
+import ShowCaseSection from "@/components/sections/ShowCaseSection";
 import TabletSection from "@/components/sections/TabletSection";
 
 import Image from "next/image";
@@ -12,6 +13,7 @@ export default function Home() {
         <TabletSection />
         <FeaturesSection />
       </div>
+      <ShowCaseSection />
     </main>
   );
 }

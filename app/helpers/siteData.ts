@@ -163,3 +163,16 @@ export const featuresCard = [
       "The editor is minimal by default to help you create the site you want without all the *noise*!",
   },
 ];
+
+export const showCaseText = [
+  `You're an artist.`,
+  "A good one.",
+  "But you need a website.",
+  "A good one.",
+  "You call the the guy who knows the guy.",
+  "He says he knows a guy.",
+  "he sucks.",
+  "*How come we walked on",
+  `the moon you can't`,
+  "have a decent website?*",
+];
