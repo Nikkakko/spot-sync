@@ -1,6 +1,6 @@
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import SectionHero from "@/components/sections/SectionHero";
-import ShowCaseSection from "@/components/sections/ShowCaseSection";
+import ShowCaseSection from "@/components/SiteCTA";
 import TabletSection from "@/components/sections/TabletSection";
 
 import Image from "next/image";

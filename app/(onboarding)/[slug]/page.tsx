@@ -37,14 +37,14 @@ async function ProfilePage({ params: { slug } }: PageProps) {
     <div className="relative flex flex-col justify-center items-center w-full">
       <div className="mt-32 p-8 shadow-md rounded-xl items-start w-full bg-white">
         <div className="flex items-start space-x-4">
-          <div className="relative w-20 h-20">
+          <div className="relative w-20 h-20 rounded-full overflow-hidden">
             <Image
               src={profile?.image as string}
               alt={profile?.name as string}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               quality={100}
-              className="rounded-full  "
+              className=" "
             />
           </div>
           <div className="flex flex-col">

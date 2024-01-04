@@ -1,31 +1,9 @@
 import * as React from "react";
 import { Shell } from "./Shell";
 import Link from "next/link";
+import { footerLinks } from "@/app/helpers/siteData";
 
 interface SiteFooterProps {}
-
-const footerLinks = [
-  {
-    title: "changelog",
-    href: "/changelog",
-  },
-  {
-    title: "faq",
-    href: "/faq",
-  },
-  {
-    title: "Privacy",
-    href: "#",
-  },
-  {
-    title: "Terms",
-    href: "#",
-  },
-  {
-    title: "Contact",
-    href: "#",
-  },
-];
 
 const SiteFooter: React.FC<SiteFooterProps> = ({}) => {
   return (

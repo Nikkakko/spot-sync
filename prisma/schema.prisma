@@ -17,6 +17,7 @@ model UserProfile {
     name       String?
     profileUrl String
     image     String?
+    coverImage String?
     bio       String? 
     spotifyUrl String?
     albums    Album[]

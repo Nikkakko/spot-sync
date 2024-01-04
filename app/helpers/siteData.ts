@@ -176,3 +176,26 @@ export const showCaseText = [
   `the moon you can't`,
   "have a decent website?*",
 ];
+
+export const footerLinks = [
+  {
+    title: "changelog",
+    href: "/changelog",
+  },
+  {
+    title: "faq",
+    href: "/faq",
+  },
+  {
+    title: "Privacy",
+    href: "#",
+  },
+  {
+    title: "Terms",
+    href: "#",
+  },
+  {
+    title: "Contact",
+    href: "#",
+  },
+];

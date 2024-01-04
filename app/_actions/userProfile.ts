@@ -2,12 +2,13 @@
 import db from "@/lib/db";
 import {
   CreateProfile as CreateProfileSchema,
+  UpdateFormSchema,
   createProfile as createProfileTypes,
+  updateFormSchema,
 } from "@/lib/validation";
 import { currentUser } from "@clerk/nextjs";
 import { getArtistAlbums, getArtistBio } from "@/lib/spotify";
 import { cleanText, stringToSlug } from "@/lib/utils";
-import { cookies } from "next/headers";
 
 type artisAlbumType = {
   name: string;
@@ -92,9 +93,40 @@ export async function createProfileAction(values: CreateProfileSchema) {
   }
 }
 
-export async function createCookie(token: string) {
-  const oneDay = 24 * 60 * 60 * 1000;
-  cookies().set("token", token, {
-    expires: Date.now() - oneDay,
-  });
+export async function updateProfileAction(
+  values: UpdateFormSchema,
+  imageUrl: string | null,
+  coverUrl: string | null
+) {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const parsedValues = updateFormSchema.safeParse(values);
+
+  if (parsedValues.success) {
+    await db.userProfile.update({
+      where: {
+        userId: user.id,
+      },
+      data: {
+        name: parsedValues.data.name,
+        bio: parsedValues.data.bio,
+        image: imageUrl,
+        coverImage: coverUrl,
+      },
+    });
+
+    return {
+      success: true,
+      message: "Profile updated successfully",
+    };
+  }
+
+  return {
+    success: false,
+    message: "Failed to update profile",
+  };
 }

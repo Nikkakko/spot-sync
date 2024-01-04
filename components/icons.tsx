@@ -5,6 +5,7 @@ import {
   Share,
   Pencil,
   User,
+  Trash,
 } from "lucide-react";
 
 export const Icons = {
@@ -14,4 +15,5 @@ export const Icons = {
   share: Share,
   edit: Pencil,
   user: User,
+  trash: Trash,
 };
