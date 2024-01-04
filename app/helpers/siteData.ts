@@ -199,3 +199,38 @@ export const footerLinks = [
     href: "#",
   },
 ];
+
+export const selectGroups = ["General", "Socials", "Streaming"];
+export const selectValues = [
+  {
+    id: 1,
+    group: "General",
+    values: ["Website"],
+  },
+  {
+    id: 2,
+    group: "Socials",
+    values: [
+      "Facebook",
+      "X",
+      "Instagram",
+      "TikTok",
+      "YouTube",
+      "Snap",
+      "Twitch",
+      "Wikipedia",
+    ],
+  },
+  {
+    id: 3,
+    group: "Streaming",
+    values: [
+      "YouTube Music",
+      "Spotify",
+      "Apple Music",
+      "SoundCloud",
+      "Deezer",
+      "Vimeo",
+    ],
+  },
+];

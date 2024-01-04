@@ -1,6 +1,11 @@
-import CustomizeHeader from "@/components/layouts/CustomizeHeader";
-
 import * as React from "react";
+import CustomizeHeader from "@/components/layouts/CustomizeHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Customize your site - Spot-Sync",
+  description: "Create a free unique Spotify profile",
+};
 
 export default async function RootLayout({
   children,

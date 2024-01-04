@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import AlbumCard from "@/components/AlbumCard";
 import { Icons } from "@/components/icons";
 import CommandBar from "@/components/CommandBar";
+import SocialCard from "@/components/SocialCard";
 
 interface PageProps {
   params: {
@@ -21,10 +22,12 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   const profile = await db.userProfile.findFirst({
     where: {
       profileUrl: slug,
+      userId: user?.id,
     },
 
     include: {
       albums: true,
+      socials: true,
     },
   });
 
@@ -34,7 +37,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20">
       <div className="mt-32 p-8 shadow-md rounded-xl items-start w-full bg-white">
         <div className="flex items-start space-x-4">
           <div className="relative w-20 h-20 rounded-full overflow-hidden">
@@ -80,6 +83,15 @@ async function ProfilePage({ params: { slug } }: PageProps) {
           </React.Suspense>
         ))}
       </div>
+
+      {/* {profile?.socials?.length! > 0 &&
+        profile?.socials.map(social => (
+          <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
+            <div className="mt-6 w-full">
+              <SocialCard social={social} />
+            </div>
+          </React.Suspense>
+        ))} */}
 
       {user?.id === profile?.userId && <CommandBar />}
     </div>

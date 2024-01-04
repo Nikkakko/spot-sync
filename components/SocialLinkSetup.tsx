@@ -29,78 +29,50 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRef } from "@/utils/store";
+import { linksFormSchema } from "@/lib/validation";
+import { addLinksAction } from "@/app/_actions/links";
+import { selectGroups, selectValues } from "@/app/helpers/siteData";
 
 interface SocialLinkSetupProps {}
 
-const selectGroups = ["General", "Socials", "Streaming"];
-const selectValues = [
-  {
-    id: 1,
-    group: "General",
-    values: ["Website", "Email", "Phone", "Address", "Location"],
-  },
-  {
-    id: 2,
-    group: "Socials",
-    values: [
-      "Facebook",
-      "X",
-      "Instagram",
-      "TikTok",
-      "YouTube",
-      "Snap",
-      "Twitch",
-      "Wikipedia",
-    ],
-  },
-  {
-    id: 3,
-    group: "Streaming",
-    values: [
-      "YouTube Music",
-      "Spotify",
-      "Apple Music",
-      "SoundCloud",
-      "Deezer",
-      "Vimeo",
-    ],
-  },
-];
-
-const formSchema = z.object({
-  category: z.string().min(1),
-  title: z.string().min(1),
-  url: z.string().url(),
-});
-
 const SocialLinkSetup: React.FC<SocialLinkSetupProps> = ({}) => {
-  const { ref } = useRef();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isPending, startTransition] = React.useTransition();
+
+  const form = useForm<z.infer<typeof linksFormSchema>>({
+    resolver: zodResolver(linksFormSchema),
     defaultValues: {
-      category: "",
+      name: "",
       title: "",
       url: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof linksFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+
+    startTransition(async () => {
+      try {
+        await addLinksAction(values);
+        form.reset();
+      } catch (error) {
+        console.log(error);
+      }
+    });
   }
+
+  const isSubmitting = form.formState.isSubmitting || isPending;
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        ref={ref}
         className="flex flex-col space-y-4 border border-neutral-800/20 rounded-lg p-4"
       >
         <div className="flex items-center space-x-4">
           <FormField
             control={form.control}
-            name="category"
+            name="name"
             render={({ field }) => (
               <FormItem className="w-[130px]">
                 <FormLabel>Category</FormLabel>
@@ -166,7 +138,9 @@ const SocialLinkSetup: React.FC<SocialLinkSetupProps> = ({}) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Add</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Add Link"}
+        </Button>
       </form>
     </Form>
   );

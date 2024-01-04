@@ -1,4 +1,5 @@
 import {
+  LucideIcon,
   ArrowRight,
   ArrowLeft,
   Loader2,
@@ -6,9 +7,19 @@ import {
   Pencil,
   User,
   Trash,
+  Globe,
+  MailCheck,
+  Phone,
+  MapPin,
+  Facebook,
+  X,
+  Instagram,
+  Youtube,
+  Twitch,
+  Music,
 } from "lucide-react";
 
-export const Icons = {
+export const Icons: { [key: string]: LucideIcon } = {
   arrowRight: ArrowRight,
   arrowLeft: ArrowLeft,
   loader: Loader2,
@@ -16,4 +27,19 @@ export const Icons = {
   edit: Pencil,
   user: User,
   trash: Trash,
+  website: Globe,
+  email: MailCheck,
+  phone: Phone,
+  location: MapPin,
+  facebook: Facebook,
+  x: X,
+  instagram: Instagram,
+  youtube: Youtube,
+  twitch: Twitch,
+  youtubeMusic: Music,
+  spotify: Music,
+  appleMusic: Music,
+  soundcloud: Music,
+  deezer: Music,
+  vimeo: Music,
 };

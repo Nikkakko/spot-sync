@@ -123,6 +123,7 @@ const General: React.FC<GeneralProps> = ({
                   alt="profile image"
                   fill
                   className="object-cover"
+                  quality={100}
                   sizes="120px"
                 />
               ) : (

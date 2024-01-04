@@ -41,6 +41,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
       releaseDate: album.release_date,
       spotifyUrl: album.external_urls.spotify,
       albumType: album.album_type,
+      userId: user.id,
     };
   });
 
@@ -65,6 +66,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
       await db.userProfile.create({
         data: {
           userId: user.id,
+          coverImage: null,
           profileUrl: stringToSlug(parsedValues.data.profileUrl),
           name: parsedValues.data.name,
           image: parsedValues.data.image,
@@ -85,7 +87,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
       };
     }
   } catch (error) {
-    console.log(error);
+    console.log(error, ["createProfileAction error"]);
     return {
       success: false,
       message: "Failed to create profile",
@@ -104,12 +106,23 @@ export async function updateProfileAction(
     throw new Error("User not found");
   }
 
+  const userExists = await db.userProfile.findFirst({
+    where: {
+      userId: user.id,
+    },
+  });
+
+  if (!userExists) {
+    throw new Error("User not found");
+  }
+
   const parsedValues = updateFormSchema.safeParse(values);
 
   if (parsedValues.success) {
     await db.userProfile.update({
       where: {
         userId: user.id,
+        id: userExists.id,
       },
       data: {
         name: parsedValues.data.name,

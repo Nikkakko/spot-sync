@@ -13,7 +13,7 @@ datasource db {
 
 model UserProfile {
    id          String  @id @default(auto()) @map("_id") @db.ObjectId
-   userId     String  @unique
+   userId     String 
     name       String?
     profileUrl String
     image     String?
@@ -34,16 +34,22 @@ model Album {
   releaseDate String
   albumType   String
   spotifyUrl  String
-  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String @db.ObjectId
+  userId     String 
+
+  
+  profile     UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId   String @db.ObjectId
 }
 
 model Social {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  
   url         String
   icon        String
-  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String @db.ObjectId
+  userId     String 
+
+  profile     UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId   String @db.ObjectId
 }
 

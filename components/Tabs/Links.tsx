@@ -8,6 +8,7 @@ interface LinksProps {}
 
 const Links: React.FC<LinksProps> = async ({}) => {
   const user = await currentUser();
+
   const profile = await db.userProfile.findFirst({
     where: {
       userId: user?.id as string,
@@ -16,10 +17,14 @@ const Links: React.FC<LinksProps> = async ({}) => {
     include: {
       socials: true,
     },
+
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col space-y-4">
       {profile?.socials?.map(social => (
         <SocialCard key={social.id} social={social} />
       ))}

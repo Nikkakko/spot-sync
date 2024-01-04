@@ -25,3 +25,11 @@ export const updateFormSchema = z.object({
 });
 
 export type UpdateFormSchema = z.infer<typeof updateFormSchema>;
+
+export const linksFormSchema = z.object({
+  name: z.string().min(1),
+  title: z.string().min(1),
+  url: z.string().url(),
+});
+
+export type LinksFormSchema = z.infer<typeof linksFormSchema>;
