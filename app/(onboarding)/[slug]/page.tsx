@@ -1,4 +1,9 @@
-import { getArtistAlbums, getArtistBio } from "@/lib/spotify";
+import {
+  getArtistAlbums,
+  getArtistBio,
+  getArtistTopTracks,
+  getToken,
+} from "@/lib/spotify";
 import * as React from "react";
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
@@ -10,6 +15,7 @@ import { Icons } from "@/components/icons";
 import CommandBar from "@/components/CommandBar";
 import SocialCard from "@/components/SocialCard";
 import { truncate } from "@/utils";
+import GeneralTabs from "@/components/Tabs/GeneralTabs";
 
 interface PageProps {
   params: {
@@ -19,6 +25,7 @@ interface PageProps {
 
 async function ProfilePage({ params: { slug } }: PageProps) {
   const user = await currentUser();
+  const token = await getToken();
 
   const profile = await db.userProfile.findFirst({
     where: {
@@ -31,6 +38,11 @@ async function ProfilePage({ params: { slug } }: PageProps) {
       socials: true,
     },
   });
+
+  const topTracks = await getArtistTopTracks(
+    profile?.artistId as string,
+    token.access_token as string
+  );
 
   /* testing */
   if (!profile) {
@@ -73,13 +85,9 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-16">
-        {profile?.albums.map(album => (
-          <React.Suspense fallback={<div>Loading...</div>} key={album.id}>
-            <AlbumCard album={album} />
-          </React.Suspense>
-        ))}
-      </div>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <GeneralTabs album={profile?.albums} topTracks={topTracks} />
+      </React.Suspense>
 
       {/* {profile?.socials?.length! > 0 &&
         profile?.socials.map(social => (

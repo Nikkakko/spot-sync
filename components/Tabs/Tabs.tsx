@@ -2,7 +2,6 @@ import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import General from "./General";
 import Theme from "./Theme";
-import Music from "./Music";
 import Links from "./Links";
 import { Shell } from "../layouts/Shell";
 import { currentUser } from "@clerk/nextjs";
@@ -84,7 +83,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                   name={profile?.name as string}
                 />
               )}
-              {tab.value === "Music" && <Music topTracks={topTracks.tracks} />}
+
               {tab.value === "Links" && <Links />}
             </TabsContent>
           );
