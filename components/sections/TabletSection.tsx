@@ -38,6 +38,7 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
                   fill
                   priority
                   quality={100}
+                  sizes="(min-width: 1280px) 1146px, calc(94.79vw - 48px)"
                 />
               </div>
             </CarouselItem>

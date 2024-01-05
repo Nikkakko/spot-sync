@@ -31,8 +31,10 @@ export async function createProfileAction(values: CreateProfileSchema) {
     throw new Error("User not found");
   }
 
-  const artistBio = await getArtistBio(values.name);
-  const artistAlbums = await getArtistAlbums(values.artistId, values.token);
+  const [artistBio, artistAlbums] = await Promise.all([
+    getArtistBio(values.name),
+    getArtistAlbums(values.artistId, values.token),
+  ]);
 
   const profileAlbums = artistAlbums?.items?.map((album: artisAlbumType) => {
     return {
@@ -68,6 +70,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
           userId: user.id,
           coverImage: null,
           profileUrl: stringToSlug(parsedValues.data.profileUrl),
+          artistId: parsedValues.data.artistId,
           name: parsedValues.data.name,
           image: parsedValues.data.image,
           spotifyUrl: parsedValues.data.spotifyUrl,

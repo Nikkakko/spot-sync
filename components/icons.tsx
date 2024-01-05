@@ -17,6 +17,8 @@ import {
   Youtube,
   Twitch,
   Music,
+  Play,
+  Pause,
 } from "lucide-react";
 
 export const Icons: { [key: string]: LucideIcon } = {
@@ -42,4 +44,6 @@ export const Icons: { [key: string]: LucideIcon } = {
   soundcloud: Music,
   deezer: Music,
   vimeo: Music,
+  playButton: Play,
+  pauseButton: Pause,
 };

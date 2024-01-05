@@ -7,6 +7,7 @@ import Links from "./Links";
 import { Shell } from "../layouts/Shell";
 import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
+import { getArtistTopTracks, getToken } from "@/lib/spotify";
 
 interface TabValue {
   id: number;
@@ -36,11 +37,17 @@ interface TabsSectionProps {}
 
 const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
   const user = await currentUser();
+  const token = await getToken();
   const profile = await db.userProfile.findFirst({
     where: {
       userId: user?.id as string,
     },
   });
+
+  const topTracks = await getArtistTopTracks(
+    profile?.artistId as string,
+    token.access_token as string
+  );
 
   return (
     <Shell className="flex">
@@ -77,7 +84,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                   name={profile?.name as string}
                 />
               )}
-              {tab.value === "Music" && <Music />}
+              {tab.value === "Music" && <Music topTracks={topTracks.tracks} />}
               {tab.value === "Links" && <Links />}
             </TabsContent>
           );

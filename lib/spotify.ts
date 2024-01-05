@@ -41,10 +41,15 @@ export async function getArtistInfo(artistName: string, access_token: string) {
 export async function getArtistBio(artistName: string) {
   /* fetch using last.fm api */
   /* https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=YOUR_API_KEY&format=json */
-  const response = await axios.get(
-    `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artistName}&api_key=${process.env.LASTFM_API_KEY}&format=json`
-  );
-  return await response.data;
+  try {
+    const response = await axios.get(
+      `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artistName}&api_key=${process.env.LASTFM_API_KEY}&format=json`
+    );
+    return await response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 export async function getArtistAlbums(artistId: string, access_token: string) {
@@ -59,5 +64,22 @@ export async function getArtistAlbums(artistId: string, access_token: string) {
     return await response.data;
   } catch (error) {
     console.log(error);
+  }
+}
+export async function getArtistTopTracks(
+  artistId: string,
+  access_token: string
+) {
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`,
+      {
+        headers: { Authorization: "Bearer " + access_token },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error, ["top artists error"]);
   }
 }
