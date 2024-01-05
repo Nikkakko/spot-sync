@@ -4,7 +4,7 @@ import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import AlbumCard from "@/components/AlbumCard";
 import { Icons } from "@/components/icons";
 import CommandBar from "@/components/CommandBar";
@@ -32,8 +32,8 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   });
 
   /* testing */
-  if (user && !profile) {
-    return redirect("/onboarding");
+  if (!profile) {
+    return notFound();
   }
 
   return (
@@ -47,7 +47,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               quality={100}
-              className=" "
+              className=""
             />
           </div>
           <div className="flex flex-col">
