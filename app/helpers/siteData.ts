@@ -234,3 +234,34 @@ export const selectValues = [
     ],
   },
 ];
+
+export type ThemeType = {
+  id: number;
+  type: "default" | "pro";
+  title: "Default" | "Psychedelic" | "Acoustic" | "Pop";
+};
+export const themes: ThemeType[] = [
+  {
+    id: 1,
+    type: "default",
+    title: "Default",
+  },
+
+  {
+    id: 2,
+    type: "pro",
+    title: "Psychedelic",
+  },
+
+  {
+    id: 3,
+    type: "pro",
+    title: "Acoustic",
+  },
+
+  {
+    id: 4,
+    type: "pro",
+    title: "Pop",
+  },
+];

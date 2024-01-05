@@ -9,6 +9,7 @@ import AlbumCard from "@/components/AlbumCard";
 import { Icons } from "@/components/icons";
 import CommandBar from "@/components/CommandBar";
 import SocialCard from "@/components/SocialCard";
+import { truncate } from "@/utils";
 
 interface PageProps {
   params: {
@@ -38,9 +39,9 @@ async function ProfilePage({ params: { slug } }: PageProps) {
 
   return (
     <div className="relative flex flex-col justify-center items-center w-full pb-20">
-      <div className="mt-32 p-8 shadow-md rounded-xl items-start w-full bg-white">
-        <div className="flex items-start space-x-4">
-          <div className="relative w-20 h-20 rounded-full overflow-hidden">
+      <div className="mt-32 p-1 shadow-md rounded-xl items-start w-full bg-white">
+        <div className="flex items-center ">
+          <div className="relative w-52 h-52 rounded-lg overflow-hidden">
             <Image
               src={profile?.image as string}
               alt={profile?.name as string}
@@ -50,29 +51,25 @@ async function ProfilePage({ params: { slug } }: PageProps) {
               className=""
             />
           </div>
-          <div className="flex flex-col">
-            <h1 className="text-2xl font-bold">{profile?.name}</h1>
-            <Link
-              href={profile?.spotifyUrl as string}
-              target="_blank"
-              className="text-sm text-gray-600 font-semibold "
-            >
-              View on Spotify
-            </Link>
-          </div>
-        </div>
+          <div className="flex flex-col flex-1 px-4">
+            <div>
+              <h1 className="text-2xl font-bold">{profile?.name}</h1>
+              <Link
+                href={profile?.spotifyUrl as string}
+                target="_blank"
+                className="text-sm text-gray-600 font-semibold "
+              >
+                View on Spotify
+              </Link>
+            </div>
 
-        <div className="mt-4">
-          <h2 className="text-xl font-bold ">Bio</h2>
-          {/* seperate bio content with new line */}
-          <p className="text-gray-600 font-semibold">
-            {profile?.bio?.split("\n").map((text, index) => (
-              <span key={index}>
-                {text}
-                <br />
-              </span>
-            ))}
-          </p>
+            <div className="mt-2">
+              {/* seperate bio content with new line */}
+              <p className="text-gray-600 font-light">
+                {truncate(profile?.bio as string, 200)}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
