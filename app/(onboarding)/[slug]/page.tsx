@@ -16,6 +16,7 @@ import CommandBar from "@/components/CommandBar";
 import SocialCard from "@/components/SocialCard";
 import { truncate } from "@/utils";
 import GeneralTabs from "@/components/Tabs/GeneralTabs";
+import { Shell } from "@/components/layouts/Shell";
 
 interface PageProps {
   params: {
@@ -92,9 +93,9 @@ async function ProfilePage({ params: { slug } }: PageProps) {
       {profile?.socials?.length! > 0 &&
         profile?.socials.map(social => (
           <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
-            <div className="mt-6 w-full">
+            <section className="mt-4 w-full">
               <SocialCard social={social} />
-            </div>
+            </section>
           </React.Suspense>
         ))}
 
