@@ -265,3 +265,24 @@ export const themes: ThemeType[] = [
     title: "Pop",
   },
 ];
+
+interface TabValue {
+  id: number;
+  value: string;
+}
+
+export const tabValues: TabValue[] = [
+  {
+    id: 1,
+    value: "General",
+  },
+  {
+    id: 2,
+    value: "Theme",
+  },
+
+  {
+    id: 4,
+    value: "Links",
+  },
+];

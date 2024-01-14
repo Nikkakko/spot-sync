@@ -16,14 +16,6 @@ const SocialCard: React.FC<SocialCardProps> = ({ social }) => {
   const [isPending, startTransition] = React.useTransition();
   const router = useRouter();
 
-  const handleNavigate = () => {
-    startTransition(() => {
-      router.push(
-        social.url.startsWith("http") ? social.url : `https://${social.url}`
-      );
-    });
-  };
-
   const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     startTransition(async () => {
@@ -32,15 +24,11 @@ const SocialCard: React.FC<SocialCardProps> = ({ social }) => {
   };
 
   return (
-    <Link
+    <div
       className={cn(
         " border border-neutral-800/20 rounded-lg p-2 flex items-center space-x-4 shadow-md group  duration-200 transition-all ease-in-out cursor-pointer hover:scale-105 transform ",
         isPending && "opacity-50"
       )}
-      href={
-        social.url.startsWith("http") ? social.url : `https://${social.url}`
-      }
-      target="_blank"
     >
       <div className="bg-[#ededed] w-[48px] h-[48px] flex items-center justify-center rounded-lg">
         <Icon className="" />
@@ -59,7 +47,7 @@ const SocialCard: React.FC<SocialCardProps> = ({ social }) => {
       </div>
       <div
         className={cn(
-          "opacity-0 group-hover:opacity-100  transition-opacity duration-200 cursor-pointer"
+          "opacity-0 group-hover:opacity-100 hover:scale-105  transition-opacity duration-200 cursor-pointer z-20"
         )}
         role="button"
         aria-label="Remove social"
@@ -67,7 +55,7 @@ const SocialCard: React.FC<SocialCardProps> = ({ social }) => {
       >
         <Icons.x className="w-6 h-6" />
       </div>
-    </Link>
+    </div>
   );
 };
 
