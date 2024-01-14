@@ -89,14 +89,14 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         <GeneralTabs album={profile?.albums} topTracks={topTracks} />
       </React.Suspense>
 
-      {/* {profile?.socials?.length! > 0 &&
+      {profile?.socials?.length! > 0 &&
         profile?.socials.map(social => (
           <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
             <div className="mt-6 w-full">
               <SocialCard social={social} />
             </div>
           </React.Suspense>
-        ))} */}
+        ))}
 
       {user?.id === profile?.userId && <CommandBar />}
     </div>
