@@ -51,7 +51,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full pb-20">
+    <Shell className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl">
       <div className="mt-32 p-1 shadow-md rounded-xl items-start w-full bg-white">
         <div className="flex items-center ">
           <div className="relative w-52 h-52 rounded-lg overflow-hidden">
@@ -100,7 +100,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         ))}
 
       {user?.id === profile?.userId && <CommandBar />}
-    </div>
+    </Shell>
   );
 }
 

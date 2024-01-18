@@ -11,6 +11,32 @@ datasource db {
 }
 
 
+enum ThemeType {
+ DEFAULT
+ PRO
+}
+
+enum ThemeTitle {
+  DEFAULT
+  PSYCHEDELIC
+  ACUSTIC
+  POP
+}
+
+enum ThemeColor {
+  DEFAULT
+  RED
+  BLUE
+  GREEN
+  YELLOW
+  PINK
+  PURPLE
+  ORANGE
+  BLACK
+  WHITE
+}
+
+
 model UserProfile {
    id          String  @id @default(auto()) @map("_id") @db.ObjectId
    userId     String 
@@ -19,6 +45,7 @@ model UserProfile {
     artistId String
     image     String?
     coverImage String?
+    theme     Theme[]
     bio       String? 
     spotifyUrl String?
     albums    Album[]
@@ -54,3 +81,16 @@ model Social {
   profileId   String @db.ObjectId
 }
 
+
+model Theme {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String
+
+  type        ThemeType @default(DEFAULT)
+  name       ThemeTitle @default(DEFAULT)
+  color       ThemeColor @default(DEFAULT)
+
+  // relations
+  profile     UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId   String @db.ObjectId
+}

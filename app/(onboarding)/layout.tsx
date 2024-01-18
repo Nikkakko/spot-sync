@@ -7,7 +7,7 @@ export default async function OnboardingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col container max-w-3xl ">
+    <div className="relative flex min-h-screen flex-col container max-w-full">
       {children}
     </div>
   );
