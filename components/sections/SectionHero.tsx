@@ -17,10 +17,6 @@ const SectionHero: React.FC<SectionHeroProps> = ({}) => {
           <br />
           designed website
         </h1>
-
-        <form>
-          <Button className="capitalize">Create your site</Button>
-        </form>
       </div>
 
       <div className="hidden lg:block">
