@@ -4,11 +4,13 @@ import { Button } from "../ui/button";
 import { useRef } from "@/utils/store";
 import { useUploadThing } from "@/utils/uploadthing";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface CustomizeHeaderProps {}
 
 const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
   const { ref, isSubmitting } = useRef();
+  const router = useRouter();
 
   const handleSubmit = () => {
     if (ref.current) {
@@ -22,7 +24,11 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
         backdrop-filter backdrop-blur-sm z-10
     "
     >
-      <Button className="hover:no-underline" variant="link">
+      <Button
+        className="hover:no-underline"
+        variant="link"
+        onClick={() => router.back()}
+      >
         Exit
       </Button>
       <h1

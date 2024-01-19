@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser, SignOutButton, UserButton } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { Icons } from "../icons";
 import FlickeringText from "../FlickeringText";
@@ -27,17 +27,18 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
         </Link>
 
         <FlickeringText text={title} />
-
-        <Link
-          className={cn(
-            buttonVariants({ variant: "link" }),
-            "font-bold hover:no-underline hover:text-black/50"
-          )}
-          href={profile ? `/${profile?.profileUrl}` : "/onboarding"}
-        >
-          {user ? "My Site" : "Login"}
-          <Icons.arrowRight className="w-4 h-4 ml-2 " />
-        </Link>
+        <div>
+          <Link
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "font-bold hover:no-underline hover:text-black/50"
+            )}
+            href={profile ? `/${profile?.profileUrl}` : "/onboarding"}
+          >
+            {user ? "My Site" : "Login"}
+            <Icons.arrowRight className="w-4 h-4 ml-2 " />
+          </Link>
+        </div>
       </div>
     </header>
   );

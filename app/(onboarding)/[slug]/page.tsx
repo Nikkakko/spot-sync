@@ -6,7 +6,7 @@ import {
 } from "@/lib/spotify";
 import * as React from "react";
 import db from "@/lib/db";
-import { currentUser } from "@clerk/nextjs";
+import { UserButton, currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -31,7 +31,6 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   const profile = await db.userProfile.findFirst({
     where: {
       profileUrl: slug,
-      userId: user?.id,
     },
 
     include: {
@@ -51,7 +50,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <Shell className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20">
       <div className="mt-32 p-1 shadow-md rounded-xl items-start w-full bg-white">
         <div className="flex items-center ">
           <div className="relative w-52 h-52 rounded-lg overflow-hidden">
@@ -100,7 +99,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         ))}
 
       {user?.id === profile?.userId && <CommandBar />}
-    </Shell>
+    </div>
   );
 }
 
