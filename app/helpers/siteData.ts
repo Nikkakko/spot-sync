@@ -235,37 +235,6 @@ export const selectValues = [
   },
 ];
 
-export type ThemeType = {
-  id: number;
-  type: "default" | "pro";
-  title: "Default" | "Psychedelic" | "Acoustic" | "Pop";
-};
-export const themes: ThemeType[] = [
-  {
-    id: 1,
-    type: "default",
-    title: "Default",
-  },
-
-  {
-    id: 2,
-    type: "pro",
-    title: "Psychedelic",
-  },
-
-  {
-    id: 3,
-    type: "pro",
-    title: "Acoustic",
-  },
-
-  {
-    id: 4,
-    type: "pro",
-    title: "Pop",
-  },
-];
-
 interface TabValue {
   id: number;
   value: string;
@@ -284,5 +253,56 @@ export const tabValues: TabValue[] = [
   {
     id: 4,
     value: "Links",
+  },
+];
+
+type faqColor = "violet" | "blue" | "pink" | "yellow" | "green";
+
+type faqCardType = {
+  id: number;
+  title: string;
+  description: string;
+  color: faqColor;
+}[];
+
+export const faqCard: faqCardType = [
+  {
+    id: 1,
+    title: "What is Noise?",
+    description:
+      "Noise is a free website builder for musicians. It helps artists create beautiful websites that are easy to update and maintain.",
+    color: "violet",
+  },
+
+  {
+    id: 2,
+    title: "How does it work?",
+    description:
+      "You sign up, choose your Spotify artist profile, claim a unique link and hit create. Noise 'll build out your website based on your profile information. Then, you can change the design and personalize it a bit more!s",
+    color: "blue",
+  },
+
+  {
+    id: 3,
+    title: "Why is it different?",
+    description:
+      "Popular site builders like Squarespace are bloated, complex and a pain to use and maintain. No matter what you do, the final result will not satisfy you. Simple options like Linktree are just, you know, too simple. Noise lands in the middle, as it allows you to have a beautiful website without all the complexity around designing, building and maintaining it.!",
+    color: "pink",
+  },
+
+  {
+    id: 4,
+    title: "Is it really free?",
+    description:
+      "Yes. You can a create a site on Noise for free and keep it as much as you want. That said, we'll launch a Pro version that costs a small fee to access more themes and features (e.g. connecting to a custom domain) but the free version will always remain free.",
+    color: "yellow",
+  },
+
+  {
+    id: 5,
+    title: "What's next?",
+    description:
+      "We're working on a lot of things. We'll soon launch a Pro version with more themes and features. We're also working on a new editor to make it even easier to personalize your site.",
+    color: "green",
   },
 ];
