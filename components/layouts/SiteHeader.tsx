@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import db from "@/lib/db";
 import { Icons } from "../icons";
+import CustomUserButton from "../modals/CustomUserButton";
 
 interface SiteHeaderProps {}
 
@@ -65,9 +66,12 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
               "
               />
             </Link>
+            <CustomUserButton
+              email={user?.emailAddresses[0].emailAddress}
+              userProfileImage={user?.imageUrl}
+              userName={user?.firstName + " " + user?.lastName}
+            />
           </SignedIn>
-
-          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
     </header>
