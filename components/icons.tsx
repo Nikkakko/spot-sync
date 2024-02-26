@@ -46,4 +46,4 @@ export const Icons: { [key: string]: LucideIcon } = {
   vimeo: Music,
   playButton: Play,
   pauseButton: Pause,
-};
+} as const;

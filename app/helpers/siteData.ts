@@ -246,11 +246,6 @@ export const tabValues: TabValue[] = [
     value: "General",
   },
   {
-    id: 2,
-    value: "Theme",
-  },
-
-  {
     id: 4,
     value: "Links",
   },

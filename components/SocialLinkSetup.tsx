@@ -67,14 +67,14 @@ const SocialLinkSetup: React.FC<SocialLinkSetupProps> = ({}) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col space-y-4 border border-neutral-800/20 rounded-lg p-4"
+        className="flex flex-col space-y-4 border border-neutral-800/20 rounded-lg p-4 "
       >
         <div className="flex items-center space-x-4">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="w-[130px]">
+              <FormItem className="w-[150px]">
                 <FormLabel>Category</FormLabel>
                 <FormControl>
                   <Select
@@ -138,7 +138,12 @@ const SocialLinkSetup: React.FC<SocialLinkSetupProps> = ({}) => {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          size="sm"
+          className=" max-w-40"
+        >
           {isSubmitting ? "Submitting..." : "Add Link"}
         </Button>
       </form>

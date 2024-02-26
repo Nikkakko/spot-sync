@@ -40,7 +40,7 @@ const SiteCta: React.FC<SiteCtaProps> = async ({}) => {
               buttonVariants({ variant: "link" }),
               "text-5xl text-blue-600 p-0 mt-1 hover:no-underline"
             )}
-            href={profile ? `/${profile?.profileUrl}` : "/"}
+            href={user ? `/${profile?.profileUrl}` : "/"}
           >
             Make Your Noise {/* todo sign in modal */}
           </a>

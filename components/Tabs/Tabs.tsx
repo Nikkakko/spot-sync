@@ -27,9 +27,9 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
   return (
     <Tabs
       defaultValue={tabValues[0].value.toLowerCase()}
-      className=" max-w-xl mt-6"
+      className="max-w-xl mt-6"
     >
-      <TabsList className="grid w-full grid-cols-3 max-w-[400px] mx-auto">
+      <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto ">
         {tabValues.map(tab => (
           <TabsTrigger key={tab.id} value={tab.value.toLowerCase()}>
             {tab.value}
@@ -41,7 +41,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
           <TabsContent
             key={tab.id}
             value={tab.value.toLowerCase()}
-            className="w-full mx-auto px-4 mt-12"
+            className="w-full mx-auto  mt-12"
           >
             {tab.value === "General" && (
               <General
@@ -50,12 +50,6 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 profileUrl={profile?.profileUrl as string}
                 image={profile?.image as string}
                 coverImage={profile?.coverImage as string}
-              />
-            )}
-            {tab.value === "Theme" && (
-              <Theme
-                image={profile?.image as string}
-                name={profile?.name as string}
               />
             )}
 

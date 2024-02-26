@@ -52,7 +52,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   return (
     <div className="relative flex flex-col justify-center items-center w-full pb-20">
       <div className="mt-32 p-1 shadow-md rounded-xl items-start w-full bg-white">
-        <div className="flex items-center ">
+        <div className="flex items-start">
           <div className="relative w-52 h-52 rounded-lg overflow-hidden">
             <Image
               src={profile?.image as string}
@@ -64,16 +64,14 @@ async function ProfilePage({ params: { slug } }: PageProps) {
             />
           </div>
           <div className="flex flex-col flex-1 px-4">
-            <div>
-              <h1 className="text-2xl font-bold">{profile?.name}</h1>
-              <Link
-                href={profile?.spotifyUrl as string}
-                target="_blank"
-                className="text-sm text-gray-600 font-semibold "
-              >
-                View on Spotify
-              </Link>
-            </div>
+            <h1 className="text-2xl font-bold">{profile?.name}</h1>
+            <Link
+              href={profile?.spotifyUrl as string}
+              target="_blank"
+              className="text-sm text-gray-600 font-semibold "
+            >
+              View on Spotify
+            </Link>
 
             <div className="mt-2">
               {/* seperate bio content with new line */}

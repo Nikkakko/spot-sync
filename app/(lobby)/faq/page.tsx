@@ -12,6 +12,7 @@ const FaqPage: React.FC<FaqPageProps> = ({}) => {
     green: "bg-green-500",
     yellow: "bg-yellow-500",
   } as const;
+
   return (
     <>
       <section className="py-14 border-t border-[#ccc]">

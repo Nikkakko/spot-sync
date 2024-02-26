@@ -21,7 +21,7 @@ async function CustomizePage({}: CustomizationProps) {
   }
 
   return (
-    <Shell className="flex items-center ">
+    <Shell className="flex items-center min-h-screen ">
       <TabsSection />
     </Shell>
   );

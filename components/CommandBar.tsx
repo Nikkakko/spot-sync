@@ -42,7 +42,7 @@ const CommandBar: React.FC<CommandBarProps> = ({}) => {
   };
 
   return (
-    <div className="fixed bottom-6 bg-black shadow-lg rounded-xl px-4 py-2">
+    <div className="fixed bottom-4 bg-black shadow-lg rounded-xl px-4 py-2">
       <div className="flex items-center gap-4">
         {settingsBar.map(({ href, tooltip, icon }) => (
           <TooltipAction key={tooltip} label={tooltip} side="top">
