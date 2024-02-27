@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import General from "./General";
-import Theme from "./Theme";
 import Links from "./Links";
 import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
