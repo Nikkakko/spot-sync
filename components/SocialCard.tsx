@@ -42,7 +42,7 @@ const SocialCard: React.FC<SocialCardProps> = ({ social }) => {
           className="text-sm text-neutral-500 hover:text-neutral-600 max-w-fit"
           target="_blank"
         >
-          {social.url.replace(/(^\w+:|^)\/\//, "")}
+          {social.url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "")}
         </Link>
       </div>
       <div

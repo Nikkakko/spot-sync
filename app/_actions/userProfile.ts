@@ -9,20 +9,7 @@ import {
 import { currentUser } from "@clerk/nextjs";
 import { getArtistAlbums, getArtistBio } from "@/lib/spotify";
 import { cleanText, stringToSlug } from "@/lib/utils";
-
-type artisAlbumType = {
-  name: string;
-  images: [
-    {
-      url: string;
-    }
-  ];
-  release_date: string;
-  external_urls: {
-    spotify: string;
-  };
-  album_type: string;
-};
+import { artisAlbumType } from "@/types";
 
 export async function createProfileAction(values: CreateProfileSchema) {
   const user = await currentUser();
@@ -31,21 +18,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
     throw new Error("User not found");
   }
 
-  const [artistBio, artistAlbums] = await Promise.all([
-    getArtistBio(values.name),
-    getArtistAlbums(values.artistId, values.token),
-  ]);
-
-  const profileAlbums = artistAlbums?.items?.map((album: artisAlbumType) => {
-    return {
-      name: album.name,
-      image: album.images[0].url,
-      releaseDate: album.release_date,
-      spotifyUrl: album.external_urls.spotify,
-      albumType: album.album_type,
-      userId: user.id,
-    };
-  });
+  const [artistBio] = await Promise.all([getArtistBio(values.name)]);
 
   if (!user) {
     throw new Error("User not found");
@@ -77,9 +50,7 @@ export async function createProfileAction(values: CreateProfileSchema) {
           bio: cleanText(
             artistBio.artist.bio.content || artistBio.artist.bio.summary
           ),
-          albums: {
-            create: profileAlbums,
-          },
+
           socials: {},
         },
       });

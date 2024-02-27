@@ -6,17 +6,17 @@ import {
 } from "@/lib/spotify";
 import * as React from "react";
 import db from "@/lib/db";
-import { UserButton, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import AlbumCard from "@/components/AlbumCard";
-import { Icons } from "@/components/icons";
+
 import CommandBar from "@/components/CommandBar";
 import SocialCard from "@/components/SocialCard";
 import { truncate } from "@/utils";
 import GeneralTabs from "@/components/Tabs/GeneralTabs";
-import { Shell } from "@/components/layouts/Shell";
+
+import AlbumLoader from "@/components/Loaders/AlbumLoader";
 
 interface PageProps {
   params: {
@@ -32,17 +32,18 @@ async function ProfilePage({ params: { slug } }: PageProps) {
     where: {
       profileUrl: slug,
     },
-
     include: {
-      albums: true,
       socials: true,
     },
   });
 
-  const topTracks = await getArtistTopTracks(
-    profile?.artistId as string,
-    token.access_token as string
-  );
+  const [topTracks, getAlbums] = await Promise.all([
+    getArtistTopTracks(
+      profile?.artistId as string,
+      token.access_token as string
+    ),
+    getArtistAlbums(profile?.artistId as string, token.access_token as string),
+  ]);
 
   /* testing */
   if (!profile) {
@@ -50,8 +51,10 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full pb-20">
-      <div className="mt-32 p-1 shadow-md rounded-xl items-start w-full bg-white">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto">
+      {/* add cover image to bg */}
+
+      <div className="mt-14 p-1 shadow-md rounded-xl items-start w-full bg-white">
         <div className="flex items-start">
           <div className="relative w-52 h-52 rounded-lg overflow-hidden">
             <Image
@@ -83,8 +86,10 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         </div>
       </div>
 
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <GeneralTabs album={profile?.albums} topTracks={topTracks} />
+      <React.Suspense fallback={<AlbumLoader />}>
+        <GeneralTabs album={getAlbums?.items} topTracks={topTracks} />
+        {((getAlbums === undefined || getAlbums === null) && <AlbumLoader />) ||
+          (getAlbums?.items.length === 0 && <AlbumLoader />)}
       </React.Suspense>
 
       {profile?.socials?.length! > 0 &&

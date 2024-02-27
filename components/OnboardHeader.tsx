@@ -42,7 +42,7 @@ const OnboardHeader: React.FC<OnboardHeaderProps> = ({}) => {
       {step !== "default" && (
         <Button
           variant="secondary"
-          className="absolute top-12 right-0"
+          className="absolute top-12 left-0"
           onClick={handleBack}
         >
           <Icons.arrowLeft className="w-6 h-6 hover:text-gray-400 transition-all" />

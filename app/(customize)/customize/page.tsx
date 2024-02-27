@@ -16,7 +16,7 @@ async function CustomizePage({}: CustomizationProps) {
     },
   });
 
-  if (!userProfile) {
+  if (!userProfile || !user) {
     return redirect("/");
   }
 

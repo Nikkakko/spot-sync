@@ -24,7 +24,7 @@ const OnboardingPage: React.FC<OnBoardingProps> = async () => {
   }
 
   return (
-    <div className="max-w-2xl py-10 h-screen flex flex-col justify-between">
+    <div className="max-w-2xl py-10 h-screen flex flex-col justify-between mx-auto">
       <OnboardHeader />
       <ArtistProfileCard />
       <UserForm token={token.access_token} />

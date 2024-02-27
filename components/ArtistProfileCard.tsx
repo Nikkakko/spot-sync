@@ -3,6 +3,7 @@ import { useUserInfoStore } from "@/hooks/user-info";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import * as React from "react";
+import { Icons } from "./icons";
 
 interface ArtistProfileCardProps {}
 
@@ -38,14 +39,20 @@ const ArtistProfileCard: React.FC<ArtistProfileCardProps> = ({}) => {
             }}
           >
             <div className="flex items-center md:flex-col ">
-              <div className="relative w-12 h-12   md:w-[100px] md:h-[100px] rounded-full">
-                <Image
-                  src={artist.images[0]?.url || artist.images[1]?.url}
-                  alt={artist.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority
-                />
+              <div className="relative w-12 h-12 flex items-center justify-center   md:w-[100px] md:h-[100px] rounded-full">
+                {artist.images.length === 0 ? (
+                  <div className="bg-secondaryText w-12 h-12 rounded-full p-2 flex items-center justify-center">
+                    <Icons.user className="w-12 h-12" />
+                  </div>
+                ) : (
+                  <Image
+                    src={artist.images[0]?.url || artist.images[1]?.url}
+                    alt={artist.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
+                  />
+                )}
               </div>
 
               <div className="flex flex-col flex-1 p-2 text-center">

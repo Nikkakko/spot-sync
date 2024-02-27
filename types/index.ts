@@ -14,6 +14,20 @@ interface Album {
   uri: string;
 }
 
+export type artisAlbumType = {
+  name: string;
+  images: [
+    {
+      url: string;
+    }
+  ];
+  release_date: string;
+  external_urls: {
+    spotify: string;
+  };
+  album_type: string;
+};
+
 interface Followers {
   href: null;
   total: number;
