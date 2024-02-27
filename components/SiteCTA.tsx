@@ -42,7 +42,7 @@ const SiteCta: React.FC<SiteCtaProps> = async ({}) => {
             )}
             href={user ? `/${profile?.profileUrl}` : "/"}
           >
-            Make Your Noise {/* todo sign in modal */}
+            Make Your Spot-Sync {/* todo sign in modal */}
           </a>
         </div>
       </div>

@@ -9,8 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FreeIcon, Icons } from "../icons";
 import { SignOutButton } from "@clerk/nextjs";
@@ -32,7 +30,7 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="default">
-          <Icons.user className="w-6 h-6" aria-hidden="true" />
+          <Icons.user className="w-6 h-6" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] ">
@@ -47,14 +45,14 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
                 className="rounded-full"
               />
             ) : (
-              <Icons.user className="w-10 h-10" aria-hidden="true" />
+              <Icons.user className="w-10 h-10" />
             )}
 
             <div className="flex flex-col space-y-1">
               <DialogTitle className="text-sm font-bold text-secondaryText">
                 {email}
               </DialogTitle>
-              <DialogDescription className="text-xs text-secondaryText ">
+              <DialogDescription className="text-xs text-secondaryText text-start ">
                 {userName}
               </DialogDescription>
             </div>
@@ -68,7 +66,7 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
         <DialogFooter className="flex sm:flex-col space-y-2">
           <FreeIcon />
           <DialogDescription className="text-secondaryText font-semibold">
-            {`  You're on the free plan which allows you to create your Noise for
+            {`  You're on the free plan which allows you to create your Spot-Sync for
             free, add and customize your links, show off your music and more.`}
           </DialogDescription>
 

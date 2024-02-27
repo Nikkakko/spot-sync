@@ -124,7 +124,7 @@ export const featuresCard = [
     id: 3,
     title: "Look good on all devices, from desktop to mobile",
     description:
-      "All Noise themes are fully responsive to ensure that your site looks good everywhere.",
+      "All Spot-Sync themes are fully responsive to ensure that your site looks good everywhere.",
   },
   {
     id: 4,
@@ -136,7 +136,7 @@ export const featuresCard = [
     id: 5,
     title: "Promote your socials just like your usual link-in-bio service",
     description:
-      "Noise detects your social links and adds them automatically but you can update them as you want.",
+      "Spot-Sync detects your social links and adds them automatically but you can update them as you want.",
   },
   {
     id: 6,
@@ -154,13 +154,13 @@ export const featuresCard = [
     id: 8,
     title: "Create for free and share your unique website everywhere",
     description:
-      "Make your Noise site, personalize it, share it and keep it as much as you want, for free.",
+      "Make your Spot-Sync site, personalize it, share it and keep it as much as you want, for free.",
   },
   {
     id: 9,
     title: "Simple tools making it easy to personalize your site!",
     description:
-      "The editor is minimal by default to help you create the site you want without all the *noise*!",
+      "The editor is minimal by default to help you create the site you want without all the *Spot-Sync*!",
   },
 ];
 
@@ -263,9 +263,9 @@ type faqCardType = {
 export const faqCard: faqCardType = [
   {
     id: 1,
-    title: "What is Noise?",
+    title: "What is Spot-Sync?",
     description:
-      "Noise is a free website builder for musicians. It helps artists create beautiful websites that are easy to update and maintain.",
+      "Spot-Sync is a free website builder for musicians. It helps artists create beautiful websites that are easy to update and maintain.",
     color: "violet",
   },
 
@@ -273,7 +273,7 @@ export const faqCard: faqCardType = [
     id: 2,
     title: "How does it work?",
     description:
-      "You sign up, choose your Spotify artist profile, claim a unique link and hit create. Noise 'll build out your website based on your profile information. Then, you can change the design and personalize it a bit more!s",
+      "You sign up, choose your Spotify artist profile, claim a unique link and hit create. Spot-Sync 'll build out your website based on your profile information. Then, you can change the design and personalize it a bit more!s",
     color: "blue",
   },
 
@@ -281,7 +281,7 @@ export const faqCard: faqCardType = [
     id: 3,
     title: "Why is it different?",
     description:
-      "Popular site builders like Squarespace are bloated, complex and a pain to use and maintain. No matter what you do, the final result will not satisfy you. Simple options like Linktree are just, you know, too simple. Noise lands in the middle, as it allows you to have a beautiful website without all the complexity around designing, building and maintaining it.!",
+      "Popular site builders like Squarespace are bloated, complex and a pain to use and maintain. No matter what you do, the final result will not satisfy you. Simple options like Linktree are just, you know, too simple. Spot-Sync lands in the middle, as it allows you to have a beautiful website without all the complexity around designing, building and maintaining it.!",
     color: "pink",
   },
 
@@ -289,7 +289,7 @@ export const faqCard: faqCardType = [
     id: 4,
     title: "Is it really free?",
     description:
-      "Yes. You can a create a site on Noise for free and keep it as much as you want. That said, we'll launch a Pro version that costs a small fee to access more themes and features (e.g. connecting to a custom domain) but the free version will always remain free.",
+      "Yes. You can a create a site on Spot-Sync for free and keep it as much as you want. That said, we'll launch a Pro version that costs a small fee to access more themes and features (e.g. connecting to a custom domain) but the free version will always remain free.",
     color: "yellow",
   },
 

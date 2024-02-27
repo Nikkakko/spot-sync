@@ -11,10 +11,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  useFormField,
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -82,20 +82,32 @@ const General: React.FC<GeneralProps> = ({
   };
 
   async function onSubmit(values: z.infer<typeof updateFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    //prevent if no changes
+    if (
+      values.name === name &&
+      values.bio === bio &&
+      imageUrl === image &&
+      coverUrl === coverImage
+    ) {
+      return;
+    }
 
     setIsSubmitting(true);
 
-    const data = await updateProfileAction(values, imageUrl, coverUrl);
-    if (data?.success) {
-      toast({
-        title: "Profile updated successfully",
-        description: "Your profile has been updated successfully",
-      });
+    try {
+      const data = await updateProfileAction(values, imageUrl, coverUrl);
+      if (data?.success) {
+        toast({
+          title: "Profile updated successfully",
+          description: "Your profile has been updated successfully",
+        });
+      }
+    } catch (error) {
+      // Handle or display the error as needed
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   }
 
   return (

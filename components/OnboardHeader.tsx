@@ -15,7 +15,7 @@ const stepTexts = {
   createProfile: {
     title: "Nice! Lets claim your unique site handle!",
     description:
-      "Your Noise handle is unique, choose a cool short name and don t worry, you can change it later!",
+      "Your Spot-Sync handle is unique, choose a cool short name and don t worry, you can change it later!",
   },
   default: {
     title: "What s your artist name?",
