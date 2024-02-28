@@ -20,7 +20,7 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
   };
 
   return (
-    <header className="sticky top-0 px-4 py-2 flex items-center justify-between border-b border-black/50 backdrop-filter backdrop-blur-sm z-10">
+    <header className="sticky top-0 px-4 py-2 flex items-center justify-between border-b border-black/50 backdrop-filter backdrop-blur-sm z-10 ">
       <Button
         className="hover:no-underline"
         variant="link"

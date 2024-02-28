@@ -6,6 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
 import { getArtistTopTracks, getToken } from "@/lib/spotify";
 import { tabValues } from "@/app/helpers/siteData";
+import Themes from "./CollorPallete";
 
 interface TabsSectionProps {}
 
@@ -28,7 +29,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
       defaultValue={tabValues[0].value.toLowerCase()}
       className="max-w-xl mt-6"
     >
-      <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto ">
+      <TabsList className="grid w-full grid-cols-3 max-w-[400px] mx-auto ">
         {tabValues.map(tab => (
           <TabsTrigger key={tab.id} value={tab.value.toLowerCase()}>
             {tab.value}
@@ -51,6 +52,8 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 coverImage={profile?.coverImage as string}
               />
             )}
+
+            {tab.value === "Themes" && <Themes />}
 
             {tab.value === "Links" && <Links />}
           </TabsContent>

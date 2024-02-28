@@ -27,8 +27,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
   });
 
   return (
-    <header className=" z-50 w-full h-16 font-mono">
-      <div className="flex items-center justify-between h-full min-w-full px-4 max-w-7xl border">
+    <header className=" z-50 w-full h-16 font-mono ">
+      <div className="flex items-center justify-between h-full min-w-full px-4 max-w-7xl ">
         <Link href="/faq" className="hover:text-black/50 font-bold w-32">
           WHAT?
         </Link>

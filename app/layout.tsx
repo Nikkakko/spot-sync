@@ -21,12 +21,28 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "min-h-screen bg-primarybg font-sans antialiased",
+            "min-h-screen bg-primarybg  font-sans antialiased",
             fontSans.variable,
             fontMono.variable
           )}
         >
-          <Providers attribute="class" enableSystem defaultTheme="light">
+          <Providers
+            attribute="class"
+            enableSystem
+            defaultTheme="system"
+            themes={[
+              "light",
+              "dark",
+              "customlight",
+              "customdark",
+              "purple",
+              "red",
+              "green",
+              "teal",
+              "blue",
+              "crimson",
+            ]}
+          >
             {children}
           </Providers>
         </body>

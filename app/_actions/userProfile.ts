@@ -50,7 +50,6 @@ export async function createProfileAction(values: CreateProfileSchema) {
           bio: cleanText(
             artistBio.artist.bio.content || artistBio.artist.bio.summary
           ),
-
           socials: {},
         },
       });
@@ -72,7 +71,8 @@ export async function createProfileAction(values: CreateProfileSchema) {
 export async function updateProfileAction(
   values: UpdateFormSchema,
   imageUrl: string | null,
-  coverUrl: string | null
+  coverUrl: string | null,
+  color: string | null
 ) {
   const user = await currentUser();
 
@@ -103,6 +103,7 @@ export async function updateProfileAction(
         bio: parsedValues.data.bio,
         image: imageUrl,
         coverImage: coverUrl,
+        theme: color as string,
       },
     });
 

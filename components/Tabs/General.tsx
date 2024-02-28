@@ -11,7 +11,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  useFormField,
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -23,6 +22,7 @@ import * as z from "zod";
 
 import { useRef } from "@/utils/store";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 interface GeneralProps {
   name: string | null;
@@ -45,6 +45,7 @@ const General: React.FC<GeneralProps> = ({
   const [coverPreview, setCoverPreview] = React.useState<string | null>(null);
   const [imageUrl, setImageUrl] = React.useState<string | null>(image);
   const [coverUrl, setCoverUrl] = React.useState<string | null>(coverImage);
+  const { theme, setTheme } = useTheme();
 
   const { startUpload, isUploading } = useUploadThing("imageUploader");
 
@@ -95,7 +96,12 @@ const General: React.FC<GeneralProps> = ({
     setIsSubmitting(true);
 
     try {
-      const data = await updateProfileAction(values, imageUrl, coverUrl);
+      const data = await updateProfileAction(
+        values,
+        imageUrl,
+        coverUrl,
+        theme as string
+      );
       if (data?.success) {
         toast({
           title: "Profile updated successfully",

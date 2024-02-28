@@ -246,6 +246,11 @@ export const tabValues: TabValue[] = [
     value: "General",
   },
   {
+    id: 2,
+    value: "Themes",
+  },
+
+  {
     id: 4,
     value: "Links",
   },
@@ -299,5 +304,44 @@ export const faqCard: faqCardType = [
     description:
       "We're working on a lot of things. We'll soon launch a Pro version with more themes and features. We're also working on a new editor to make it even easier to personalize your site.",
     color: "green",
+  },
+];
+
+export const collorPalette = [
+  {
+    name: "light",
+    color: "#a3a3a3",
+  },
+  {
+    name: "customdark",
+    color: "#1d1d1d",
+  },
+  {
+    name: "purple",
+    color: "#8a2be2",
+  },
+
+  {
+    name: "red",
+    color: "#b60707",
+  },
+  {
+    name: "green",
+    color: "#4d7c0f",
+  },
+
+  {
+    name: "teal",
+    color: "#047857",
+  },
+
+  {
+    name: "blue",
+    color: "#0369A1",
+  },
+
+  {
+    name: "crimson",
+    color: "#be123c",
   },
 ];

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -24,6 +24,15 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        cardBackground: "hsl(var(--card-background-color))",
+        bodyBackground: "hsl(var(--body-background-color))",
+        primaryText: "hsl(var(--primary-text-color))",
+        secondaryTextColor: "hsl(var(--secondary-text-color))",
+        linkTextColor: "hsl(var(--link-text-color))",
+        linkIconFillColor: "hsl(var(--link-icon-fill-color))",
+        linkIconBackgroundColor: "hsl(var(--link-icon-background-color))",
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
