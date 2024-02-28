@@ -317,14 +317,14 @@ export const collorPalette = [
     color: "#1d1d1d",
   },
   {
+    name: "crimson",
+    color: "#be123c",
+  },
+  {
     name: "purple",
     color: "#8a2be2",
   },
 
-  {
-    name: "red",
-    color: "#b60707",
-  },
   {
     name: "green",
     color: "#4d7c0f",
@@ -338,10 +338,5 @@ export const collorPalette = [
   {
     name: "blue",
     color: "#0369A1",
-  },
-
-  {
-    name: "crimson",
-    color: "#be123c",
   },
 ];

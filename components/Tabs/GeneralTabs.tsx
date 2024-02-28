@@ -13,12 +13,12 @@ interface GeneralTabsProps {
 const GeneralTabs: React.FC<GeneralTabsProps> = ({ album, topTracks }) => {
   return (
     <Tabs defaultValue="albums" className="w-full mt-6">
-      <TabsList className="">
+      <TabsList className="bg-cardBackground">
         <TabsTrigger value="albums">Albums</TabsTrigger>
         <TabsTrigger value="top-tracks">Top Tracks</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="albums" className="grid grid-cols-4 gap-4 mt-4">
+      <TabsContent value="albums" className="grid grid-cols-4 gap-4 mt-4 ">
         {album?.map((a, i) => (
           <AlbumCard album={a} key={i} />
         ))}

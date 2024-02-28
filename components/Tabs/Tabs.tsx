@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
 import { getArtistTopTracks, getToken } from "@/lib/spotify";
 import { tabValues } from "@/app/helpers/siteData";
-import Themes from "./CollorPallete";
+import Themes from "./Themes";
 
 interface TabsSectionProps {}
 
@@ -50,6 +50,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 profileUrl={profile?.profileUrl as string}
                 image={profile?.image as string}
                 coverImage={profile?.coverImage as string}
+                userTheme={profile?.theme as string}
               />
             )}
 

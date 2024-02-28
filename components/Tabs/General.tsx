@@ -30,6 +30,7 @@ interface GeneralProps {
   profileUrl: string | null;
   image: string | null;
   coverImage: string | null;
+  userTheme: string | null;
 }
 
 const General: React.FC<GeneralProps> = ({
@@ -38,6 +39,7 @@ const General: React.FC<GeneralProps> = ({
   image,
   name,
   coverImage,
+  userTheme,
 }) => {
   const { ref, setIsSubmitting } = useRef();
   const { toast } = useToast();
@@ -83,15 +85,14 @@ const General: React.FC<GeneralProps> = ({
   };
 
   async function onSubmit(values: z.infer<typeof updateFormSchema>) {
-    //prevent if no changes
-    if (
-      values.name === name &&
-      values.bio === bio &&
-      imageUrl === image &&
-      coverUrl === coverImage
-    ) {
-      return;
-    }
+    const hasChanges =
+      values.name !== name ||
+      values.bio !== bio ||
+      imageUrl !== image ||
+      coverUrl !== coverImage ||
+      theme !== userTheme;
+
+    if (!hasChanges) return;
 
     setIsSubmitting(true);
 
@@ -102,6 +103,7 @@ const General: React.FC<GeneralProps> = ({
         coverUrl,
         theme as string
       );
+
       if (data?.success) {
         toast({
           title: "Profile updated successfully",
@@ -109,7 +111,6 @@ const General: React.FC<GeneralProps> = ({
         });
       }
     } catch (error) {
-      // Handle or display the error as needed
       console.error(error);
     } finally {
       setIsSubmitting(false);

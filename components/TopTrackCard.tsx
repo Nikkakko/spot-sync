@@ -27,12 +27,26 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
   return (
     <div className=" flex flex-col  group" onClick={playAudio}>
       <div
-        className="relative w-44 h-44  rounded-lg border-4 border-white  overflow-hidden
-        hover:opacity-90 hover:scale-105 transition-all duration-200 ease-in-out
-        
-      "
+        className="flex flex-col justify-center pt-1 px-1 pb-4 bg-cardBackground bg-transition duration-200 ease-in-out transform hover:scale-105 
+        opacity-90 hover:opacity-100 rounded-lg"
       >
-        <Image src={track.album.images[0].url} alt={track.name} fill />
+        <div className="relative w-44 max-w-[172px] h-44 rounded-lg overflow-hidden">
+          <Image src={track.album.images[0].url} alt={track.name} fill />
+        </div>
+        <div className="flex flex-col px-1 ">
+          <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
+            {track.name}
+          </p>
+          <div className="flex items-center text-secondaryTextColor">
+            <p className="text-sm font-semibold">
+              {dateFns.format(track.album.release_date, "yyyy")}
+            </p>
+            <span className="mx-1">•</span>
+            <p className="text-sm capitalize font-semibold">
+              {track.album.name}
+            </p>
+          </div>
+        </div>
         <div
           className={cn(
             "opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 ease-in-out hover:cursor-pointer z-10  absolute w-16 h-16 flex items-center justify-center rounded-full bg-white/50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ",
@@ -55,18 +69,6 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
         </div>
       </div>
       <audio className="hidden" src={track.preview_url} ref={audiRef} />
-      <div className="flex flex-col">
-        <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
-          {track.name}
-        </p>
-        <div className="flex items-center text-secondaryTextColor">
-          <p className="text-sm font-semibold">
-            {dateFns.format(track.album.release_date, "yyyy")}
-          </p>
-          <span className="mx-1">•</span>
-          <p className="text-sm capitalize font-semibold">{track.album.name}</p>
-        </div>
-      </div>
     </div>
   );
 };

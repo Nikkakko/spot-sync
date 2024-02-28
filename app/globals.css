@@ -7,8 +7,8 @@
     --background: 0 0% 100%;
     --card-background-color: 0 0% 100%;
 
-    --primary-text-color: 1, 0%, 100%;
-    --secondary-text-color: 0 0% 100% / 0.5;
+    --primary-text-color: 40 10% 3.9%;
+    --secondary-text-color: 240 3.8% 46.1%;
 
     --link-text-color: 0 0% 0% / 0.7;
     --link-icon-fill-color: 1 0% 100%;
@@ -77,33 +77,47 @@
   .customdark {
     --card-background-color: 0, 0%, 11%;
     --body-background-color: 0, 0%, 6%;
+
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
 
   .purple {
     --body-background-color: 262, 64%, 47%;
     --card-background-color: 262, 64%, 18%;
-  }
 
-  .red {
-    --body-background-color: 0, 80%, 44%;
-    --card-background-color: 1, 99%, 18%;
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
 
   .green {
     --body-background-color: 101, 75%, 26%;
     --card-background-color: 93, 85%, 10%;
+
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
 
   .teal {
     --body-background-color: 160, 91%, 27%;
     --card-background-color: 154, 77%, 9%;
+
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
   .blue {
     --body-background-color: 200, 94%, 34%;
+    --card-background-color: 204, 69%, 17%;
+
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
   .crimson {
     --body-background-color: 347, 83%, 41%;
     --card-background-color: 348, 86%, 12%;
+
+    --primary-text-color: 0, 0%, 100%;
+    --secondary-text-color: 0, 0%, 100%, 0.5;
   }
 }
 

@@ -33,10 +33,8 @@ export default function RootLayout({
             themes={[
               "light",
               "dark",
-              "customlight",
               "customdark",
               "purple",
-              "red",
               "green",
               "teal",
               "blue",

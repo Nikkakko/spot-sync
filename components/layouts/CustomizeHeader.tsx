@@ -5,6 +5,7 @@ import { useRef } from "@/utils/store";
 import { useUploadThing } from "@/utils/uploadthing";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 interface CustomizeHeaderProps {}
 

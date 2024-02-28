@@ -15,7 +15,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
         className="flex flex-col pt-1 px-1 pb-4 bg-cardBackground bg-transition duration-200 ease-in-out transform hover:scale-105 
         opacity-90 hover:opacity-100 rounded-lg"
       >
-        <div className="flex flex-col items-start ">
+        <div className="flex flex-col items-start">
           <Image
             src={album.images[0].url}
             alt={album.name}
