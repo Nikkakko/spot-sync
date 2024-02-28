@@ -24,7 +24,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
             className="rounded-md"
           />
           <div className="flex flex-col px-1 ">
-            <p className="text-sm font-bold mt-2 capitalize text-primaryText">
+            <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
               {album.name}
             </p>
             <div className="flex items-center text-secondaryTextColor">

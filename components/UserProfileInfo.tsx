@@ -38,7 +38,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
           />
         </div>
         <div className="flex flex-col flex-1 px-4 ">
-          <h1 className="text-2xl font-bold text-primaryText">
+          <h1 className="text-2xl font-bold text-primaryTextColor">
             {profile?.name}
           </h1>
           <Link

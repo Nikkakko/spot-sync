@@ -27,7 +27,7 @@ module.exports = {
 
         cardBackground: "hsl(var(--card-background-color))",
         bodyBackground: "hsl(var(--body-background-color))",
-        primaryText: "hsl(var(--primary-text-color))",
+        primaryTextColor: "hsl(var(--primary-text-color))",
         secondaryTextColor: "hsl(var(--secondary-text-color))",
         linkTextColor: "hsl(var(--link-text-color))",
         linkIconFillColor: "hsl(var(--link-icon-fill-color))",

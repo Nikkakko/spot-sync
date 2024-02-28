@@ -56,15 +56,15 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
       </div>
       <audio className="hidden" src={track.preview_url} ref={audiRef} />
       <div className="flex flex-col">
-        <p className="text-sm font-bold mt-2 capitalize">{track.name}</p>
-        <div className="flex items-center">
-          <p className="text-sm text-gray-400 font-semibold">
+        <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
+          {track.name}
+        </p>
+        <div className="flex items-center text-secondaryTextColor">
+          <p className="text-sm font-semibold">
             {dateFns.format(track.album.release_date, "yyyy")}
           </p>
-          <span className="mx-1 text-gray-400">•</span>
-          <p className="text-sm text-gray-400 capitalize font-semibold">
-            {track.album.name}
-          </p>
+          <span className="mx-1">•</span>
+          <p className="text-sm capitalize font-semibold">{track.album.name}</p>
         </div>
       </div>
     </div>

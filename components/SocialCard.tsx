@@ -35,7 +35,7 @@ const SocialCard: React.FC<SocialCardProps> = ({ social, ...props }) => {
         <Icon className="fill-linkIconFillColor" />
       </div>
       <div className="flex flex-col flex-1">
-        <span className="capitalize text-primaryText">{social.name}</span>
+        <span className="capitalize text-primaryTextColor">{social.name}</span>
         <Link
           href={
             social.url.startsWith("http") ? social.url : `https://${social.url}`
