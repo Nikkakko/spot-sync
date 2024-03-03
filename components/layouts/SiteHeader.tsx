@@ -46,6 +46,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
           <SignedOut>
             <SignInButton
               afterSignInUrl={(profile?.profileUrl as string) || "/onboarding"}
+              mode="modal"
             >
               <Button className={cn("text-white", "bg-black")}>Sign In</Button>
             </SignInButton>

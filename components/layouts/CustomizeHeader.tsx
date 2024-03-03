@@ -17,6 +17,8 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
   const handleSubmit = () => {
     if (ref.current) {
       ref.current.requestSubmit();
+    } else {
+      console.log("No ref found");
     }
   };
 

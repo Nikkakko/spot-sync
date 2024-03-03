@@ -42,6 +42,7 @@ const General: React.FC<GeneralProps> = ({
   userTheme,
 }) => {
   const { ref, setIsSubmitting } = useRef();
+
   const { toast } = useToast();
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
   const [coverPreview, setCoverPreview] = React.useState<string | null>(null);
@@ -208,7 +209,7 @@ const General: React.FC<GeneralProps> = ({
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-2"
-            ref={ref}
+            ref={ref} // This is the ref we are using to submit the form
           >
             <FormField
               control={form.control}

@@ -49,7 +49,7 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
         </div>
         <div
           className={cn(
-            "opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 ease-in-out hover:cursor-pointer z-10  absolute w-16 h-16 flex items-center justify-center rounded-full bg-white/50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ",
+            "opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 ease-in-out hover:cursor-pointer z-10  absolute w-16 h-16 flex items-center justify-center rounded-full bg-white/50 top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ",
             isPlaying ? "opacity-100 scale-100" : "opacity-0"
           )}
         >
