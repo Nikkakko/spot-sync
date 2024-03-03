@@ -26,7 +26,7 @@ interface TabsContainerProps {
 }
 
 const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const { ref, setIsSubmitting, setIsChanged } = useRef();
   const { toast } = useToast();
 
@@ -109,14 +109,27 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
   }
 
   React.useEffect(() => {
-    if (form.formState.isDirty) {
+    const hasChanges =
+      form.formState.isDirty ||
+      imageUrl !== profile.image ||
+      coverUrl !== profile.coverImage;
+
+    if (hasChanges) {
       setIsChanged(true);
     }
 
     return () => {
       setIsChanged(false);
     };
-  }, [form.formState.isDirty, setIsChanged]);
+  }, [
+    form.formState.isDirty,
+    isUploading,
+    imageUrl,
+    profile.image,
+    coverUrl,
+    profile.coverImage,
+    setIsChanged,
+  ]);
 
   return (
     <Form {...form}>

@@ -13,6 +13,7 @@ import { Textarea } from "../ui/textarea";
 import { useFormContext } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
+import { useRef } from "@/utils/store";
 
 interface GeneralProps {
   name: string | null;
@@ -41,94 +42,26 @@ const General: React.FC<GeneralProps> = ({
   const { control } = useFormContext(); // retrieve all hook methods
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex items-center gap-4">
-        <div className="flex flex-col">
-          <span className="mb-2 text-muted-foreground">Avatar</span>
-          <div className="relative block border border-black border-opacity-50 rounded-lg overflow-hidden p-[1px]">
-            <div
-              className={cn(
-                "relative w-[120px] h-[120px] rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out",
-                isUploading && "opacity-50"
-              )}
-            >
-              {imagePreview ? (
-                <Image
-                  src={imagePreview}
-                  alt="profile image"
-                  fill
-                  className="object-cover"
-                />
-              ) : image ? (
-                <Image
-                  src={image as string}
-                  alt="profile image"
-                  fill
-                  className="object-cover"
-                  quality={100}
-                  sizes="120px"
-                />
-              ) : (
-                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted-foreground capitalize font-semibold">
-                  upload image
-                </p>
-              )}
-
-              <input
-                type="file"
-                name="files"
-                onChange={e => handleOnChange(e, true)}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                disabled={isUploading}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col flex-1">
-          <span className="mb-2 text-muted-foreground">Cover</span>
-          <div
-            className="block relative border border-black border-opacity-50 rounded-lg overflow-hidden p-[1px] 
-            group
-          "
-          >
-            <div
-              className={cn(
-                "relative w-[340px] h-[120px] rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out ",
-                isUploading && "opacity-50"
-              )}
-            >
-              {coverPreview ? (
-                <Image
-                  src={coverPreview}
-                  alt="cover image"
-                  fill
-                  className="object-cover"
-                />
-              ) : coverImage ? (
-                <Image
-                  src={coverImage as string}
-                  alt="cover image"
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted-foreground font-semibold capitalize">
-                  add cover image
-                </p>
-              )}
-            </div>
-
-            <input
-              type="file"
-              name="files"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              onChange={e => handleOnChange(e, false)}
-              disabled={isUploading}
-            />
-          </div>
-        </div>
+    <div className="flex flex-col w-full pb-20">
+      <div className="flex items-start flex-col md:flex-row md:items-center gap-4">
+        <ImageUpload
+          label="Avatar"
+          imagePreview={imagePreview}
+          image={image}
+          handleOnChange={handleOnChange}
+          isUploading={isUploading}
+          isAvatar={true}
+        />
+        <ImageUpload
+          label="Cover"
+          imagePreview={coverPreview}
+          image={coverImage}
+          handleOnChange={handleOnChange}
+          isUploading={isUploading}
+          isAvatar={false}
+        />
       </div>
+
       <div className="flex flex-col mt-6">
         <FormField
           control={control}
@@ -168,3 +101,76 @@ const General: React.FC<GeneralProps> = ({
 };
 
 export default General;
+
+type ImageUploadProps = {
+  label: string;
+  imagePreview: string | null;
+  image: string | null;
+  handleOnChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    isAvatar: boolean
+  ) => void;
+  isUploading: boolean;
+  isAvatar: boolean;
+};
+
+const ImageUpload: React.FC<ImageUploadProps> = ({
+  label,
+  imagePreview,
+  image,
+  handleOnChange,
+  isUploading,
+  isAvatar,
+}) => {
+  const width = isAvatar ? "120px" : "340px";
+  const height = "120px";
+  const placeholderText = isAvatar ? "upload image" : "add cover image";
+  const { setIsChanged } = useRef();
+
+  return (
+    <div className="flex flex-col">
+      <span className="mb-2 text-muted-foreground">{label}</span>
+      <div className="relative block border border-black border-opacity-50 rounded-lg p-[1px]">
+        <div
+          className={cn(
+            `relative w-[${width}] h-[${height}] rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out`,
+            isUploading && "opacity-50"
+          )}
+        >
+          {imagePreview ? (
+            <Image
+              src={imagePreview}
+              alt={`${label} image`}
+              fill
+              className="object-cover"
+            />
+          ) : image ? (
+            <Image
+              src={image}
+              alt={`${label} image`}
+              fill
+              className="object-cover"
+              quality={100}
+              sizes={width}
+            />
+          ) : (
+            <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted-foreground capitalize font-semibold">
+              {placeholderText}
+            </p>
+          )}
+
+          <input
+            type="file"
+            name="files"
+            onChange={e => {
+              handleOnChange(e, isAvatar);
+              setIsChanged(true);
+            }}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            disabled={isUploading}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
