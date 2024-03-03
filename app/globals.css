@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
+    --body-background-color: 0, 0%, 87%;
     --card-background-color: 0 0% 100%;
 
     --primary-text-color: 40 10% 3.9%;

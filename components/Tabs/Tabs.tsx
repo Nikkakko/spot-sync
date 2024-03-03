@@ -54,7 +54,12 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
               />
             )}
 
-            {tab.value === "Themes" && <Themes />}
+            {tab.value === "Themes" && (
+              <Themes
+                image={profile?.image as string}
+                name={profile?.name as string}
+              />
+            )}
 
             {tab.value === "Links" && <Links />}
           </TabsContent>

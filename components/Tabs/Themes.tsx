@@ -1,11 +1,29 @@
 import * as React from "react";
 import ColorPalette from "../ColorPalette";
-interface ThemesProps {}
+import DefaultTheme from "../DefaultTheme";
+interface ThemesProps {
+  image: string;
+  name: string;
+}
 
-const Themes: React.FC<ThemesProps> = ({}) => {
+const themesList = [
+  {
+    id: "1",
+    name: "Default",
+    isPro: false,
+  },
+
+  {
+    id: "2",
+    name: "Pop",
+    isPro: true,
+  },
+];
+
+const Themes: React.FC<ThemesProps> = ({ image, name }) => {
   return (
-    <div className="flex items-center gap-2 bg-white py-2 px-4 rounded-md">
-      <ColorPalette />
+    <div className="flex items-center gap-2 bg-white py-2 px-2 rounded-md">
+      <DefaultTheme image={image} name={name} />
     </div>
   );
 };
