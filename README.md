@@ -8,7 +8,6 @@ Spot-Sync is a simple tool to sync your Spotify playlists with your local music 
 - Typescript
 - Tailwindcss
 - Prisma (MongoDB)
-- Spotipy
 
 ## Features
 
