@@ -133,9 +133,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       <div className="relative block border border-black border-opacity-50 rounded-lg p-[1px]">
         <div
           className={cn(
-            `relative w-[${width}] h-[${height}] rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out`,
+            `relative  rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out`,
             isUploading && "opacity-50"
           )}
+          style={{
+            width,
+            height,
+          }}
         >
           {imagePreview ? (
             <Image
