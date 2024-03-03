@@ -1,9 +1,10 @@
 "use client";
 import * as React from "react";
 import ColorPalette from "./ColorPalette";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
+import { UseControllerProps, useFormContext } from "react-hook-form";
+import { UpdateFormSchema } from "@/lib/validation";
 
 interface DefaultThemeProps {
   image: string;
@@ -11,7 +12,8 @@ interface DefaultThemeProps {
 }
 
 const DefaultTheme: React.FC<DefaultThemeProps> = ({ image, name }) => {
-  const { theme } = useTheme();
+  const { getValues } = useFormContext(); // retrieve all hook methods
+  const values = getValues();
 
   return (
     <div className="bg-white flex flex-col gap-2">

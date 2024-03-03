@@ -1,11 +1,7 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { useUploadThing } from "@/utils/uploadthing";
-
-import { updateProfileAction } from "@/app/_actions/userProfile";
 import {
-  Form,
   FormControl,
   FormField,
   FormItem,
@@ -14,15 +10,9 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { useToast } from "../ui/use-toast";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { updateFormSchema } from "@/lib/validation";
-import * as z from "zod";
+import { useFormContext } from "react-hook-form";
 
-import { useRef } from "@/utils/store";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
 
 interface GeneralProps {
   name: string | null;
@@ -30,93 +20,25 @@ interface GeneralProps {
   profileUrl: string | null;
   image: string | null;
   coverImage: string | null;
-  userTheme: string | null;
+  currentTheme: string | undefined;
+  isUploading: boolean;
+  imagePreview: string | null;
+  coverPreview: string | null;
+  handleOnChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    isImage: boolean
+  ) => void;
 }
 
 const General: React.FC<GeneralProps> = ({
-  bio,
-  profileUrl,
   image,
-  name,
   coverImage,
-  userTheme,
+  coverPreview,
+  isUploading,
+  imagePreview,
+  handleOnChange,
 }) => {
-  const { ref, setIsSubmitting } = useRef();
-
-  const { toast } = useToast();
-  const [imagePreview, setImagePreview] = React.useState<string | null>(null);
-  const [coverPreview, setCoverPreview] = React.useState<string | null>(null);
-  const [imageUrl, setImageUrl] = React.useState<string | null>(image);
-  const [coverUrl, setCoverUrl] = React.useState<string | null>(coverImage);
-  const { theme, setTheme } = useTheme();
-
-  const { startUpload, isUploading } = useUploadThing("imageUploader");
-
-  const form = useForm<z.infer<typeof updateFormSchema>>({
-    resolver: zodResolver(updateFormSchema),
-    defaultValues: {
-      name: name || "",
-      bio: bio || "",
-    },
-  });
-
-  const handleOnChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-    isImage: boolean
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Do something with files
-    if (isImage) {
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setCoverPreview(URL.createObjectURL(file));
-    }
-
-    // Then start the upload
-    const data = await startUpload([file]);
-    if (data) {
-      if (isImage) {
-        setImageUrl(data[0].url);
-      } else {
-        setCoverUrl(data[0].url);
-      }
-    }
-  };
-
-  async function onSubmit(values: z.infer<typeof updateFormSchema>) {
-    const hasChanges =
-      values.name !== name ||
-      values.bio !== bio ||
-      imageUrl !== image ||
-      coverUrl !== coverImage ||
-      theme !== userTheme;
-
-    if (!hasChanges) return;
-
-    setIsSubmitting(true);
-
-    try {
-      const data = await updateProfileAction(
-        values,
-        imageUrl,
-        coverUrl,
-        theme as string
-      );
-
-      if (data?.success) {
-        toast({
-          title: "Profile updated successfully",
-          description: "Your profile has been updated successfully",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
+  const { control } = useFormContext(); // retrieve all hook methods
 
   return (
     <div className="flex flex-col w-full">
@@ -165,10 +87,14 @@ const General: React.FC<GeneralProps> = ({
 
         <div className="flex flex-col flex-1">
           <span className="mb-2 text-muted-foreground">Cover</span>
-          <div className="block relative border border-black border-opacity-50 rounded-lg overflow-hidden p-[1px]">
+          <div
+            className="block relative border border-black border-opacity-50 rounded-lg overflow-hidden p-[1px] 
+            group
+          "
+          >
             <div
               className={cn(
-                "relative w-[340px] h-[120px] rounded-lg overflow-hidden",
+                "relative w-[340px] h-[120px] rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out ",
                 isUploading && "opacity-50"
               )}
             >
@@ -203,48 +129,39 @@ const General: React.FC<GeneralProps> = ({
           </div>
         </div>
       </div>
-
       <div className="flex flex-col mt-6">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-2"
-            ref={ref} // This is the ref we are using to submit the form
-          >
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-muted-foreground">Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g Kayakata" {...field} />
-                  </FormControl>
+        <FormField
+          control={control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-muted-foreground">Name</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g Kayakata" {...field} />
+              </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-muted-foreground">Bio</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Tell your musical story with a splash of personality—share the quirks, the inspirations, and the wild ride that brought you to this adventure!"
-                      {...field}
-                      className="h-60 resize-y"
-                    />
-                  </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="bio"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-muted-foreground">Bio</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Tell your musical story with a splash of personality—share the quirks, the inspirations, and the wild ride that brought you to this adventure!"
+                  {...field}
+                  className="h-60 resize-y"
+                />
+              </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </form>
-        </Form>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
     </div>
   );

@@ -68,16 +68,22 @@ export async function createProfileAction(values: CreateProfileSchema) {
   }
 }
 
-export async function updateProfileAction(
-  values: UpdateFormSchema,
-  imageUrl: string | null,
-  coverUrl: string | null,
-  color: string | null
-) {
+export async function updateProfileAction({
+  values,
+  image,
+  coverImage,
+}: {
+  values: UpdateFormSchema;
+  image: string;
+  coverImage: string;
+}) {
   const user = await currentUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return {
+      success: false,
+      message: "User not found",
+    };
   }
 
   const userExists = await db.userProfile.findFirst({
@@ -87,7 +93,10 @@ export async function updateProfileAction(
   });
 
   if (!userExists) {
-    throw new Error("User not found");
+    return {
+      success: false,
+      message: "Profile not found",
+    };
   }
 
   const parsedValues = updateFormSchema.safeParse(values);
@@ -101,9 +110,9 @@ export async function updateProfileAction(
       data: {
         name: parsedValues.data.name,
         bio: parsedValues.data.bio,
-        image: imageUrl,
-        coverImage: coverUrl,
-        theme: color as string,
+        image: image,
+        coverImage: coverImage,
+        theme: parsedValues.data.color,
       },
     });
 

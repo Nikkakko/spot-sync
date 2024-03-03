@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
 import { getArtistTopTracks, getToken } from "@/lib/spotify";
 import { tabValues } from "@/app/helpers/siteData";
-import Themes from "./Themes";
+import TabsContainer from "./TabsContainer";
 
 interface TabsSectionProps {}
 
@@ -43,23 +43,17 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
             value={tab.value.toLowerCase()}
             className="w-full mx-auto  mt-12"
           >
-            {tab.value === "General" && (
-              <General
-                bio={profile?.bio as string}
-                name={profile?.name as string}
-                profileUrl={profile?.profileUrl as string}
-                image={profile?.image as string}
-                coverImage={profile?.coverImage as string}
-                userTheme={profile?.theme as string}
-              />
-            )}
-
-            {tab.value === "Themes" && (
-              <Themes
-                image={profile?.image as string}
-                name={profile?.name as string}
-              />
-            )}
+            <TabsContainer
+              tab={tab.value}
+              profile={{
+                bio: profile?.bio as string,
+                name: profile?.name as string,
+                profileUrl: profile?.profileUrl as string,
+                image: profile?.image as string,
+                coverImage: profile?.coverImage as string,
+                theme: profile?.theme as string,
+              }}
+            />
 
             {tab.value === "Links" && <Links />}
           </TabsContent>

@@ -22,6 +22,7 @@ export type CreateProfile = z.infer<typeof createProfile>;
 export const updateFormSchema = z.object({
   name: z.string().min(1).max(20),
   bio: z.string().min(1),
+  color: z.string().min(1),
 });
 
 export type UpdateFormSchema = z.infer<typeof updateFormSchema>;

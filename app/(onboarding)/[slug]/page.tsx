@@ -69,7 +69,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         {(getAlbums?.items?.length ?? 0) === 0 && <AlbumLoader />}
       </React.Suspense>
 
-      {profile?.socials?.length! > 0 &&
+      {profile?.socials?.length > 0 &&
         profile?.socials.map(social => (
           <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
             <section className="mt-4 w-full">
@@ -79,6 +79,14 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         ))}
 
       {user?.id === profile?.userId && <CommandBar />}
+
+      {/* add copyright */}
+      <div className=" p-4 text-center text-secondaryText">
+        <p>
+          &copy; {new Date().getFullYear()} - {profile?.name}
+          <br />
+        </p>
+      </div>
     </div>
   );
 }
