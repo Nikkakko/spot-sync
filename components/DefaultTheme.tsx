@@ -20,22 +20,22 @@ const DefaultTheme: React.FC<DefaultThemeProps> = ({ image, name }) => {
           <Image
             src={image}
             alt={name}
-            objectFit="cover"
             width={120}
             height={120}
+            className="rounded-lg object-cover"
           />
           <div className="flex flex-col gap-2 w-full">
             <h4 className="text-primaryText text-lg text-primaryTextColor">
               {name}
             </h4>
-            <Skeleton className="h-2 w-full bg-bodyBackground" />
-            <Skeleton className="h-2 w-full bg-bodyBackground" />
-            <Skeleton className="h-2 w-full bg-bodyBackground" />
-            <Skeleton className="h-2 w-full bg-bodyBackground" />
+
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className="h-2 w-full bg-bodyBackground" />
+            ))}
           </div>
         </div>
       </div>
-      <div className="bg-[#f5f5f5] border-secondaryText border rounded-md px-4 py-2">
+      <div className="bg-[#f5f5f5] border-secondaryText border rounded-md px-4 py-2 flex justify-center">
         <ColorPalette />
       </div>
 
