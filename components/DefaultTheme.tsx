@@ -3,8 +3,6 @@ import * as React from "react";
 import ColorPalette from "./ColorPalette";
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
-import { UseControllerProps, useFormContext } from "react-hook-form";
-import { UpdateFormSchema } from "@/lib/validation";
 
 interface DefaultThemeProps {
   image: string;
@@ -12,9 +10,6 @@ interface DefaultThemeProps {
 }
 
 const DefaultTheme: React.FC<DefaultThemeProps> = ({ image, name }) => {
-  const { getValues } = useFormContext(); // retrieve all hook methods
-  const values = getValues();
-
   return (
     <div className="bg-white flex flex-col gap-2">
       <div className="bg-bodyBackground w-[468px] h-auto rounded-sm flex items-start justify-center p-4 py-8">
