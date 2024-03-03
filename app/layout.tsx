@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/Providers";
-import { fontMono, fontSans } from "@/lib/fonts";
+import { fontClash, fontMono, fontSans } from "@/lib/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
@@ -22,8 +21,7 @@ export default function RootLayout({
         <body
           className={cn(
             "min-h-screen bg-primarybg  font-sans antialiased",
-            fontSans.variable,
-            fontMono.variable
+            fontClash.variable
           )}
         >
           <Providers

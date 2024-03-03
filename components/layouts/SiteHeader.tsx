@@ -17,7 +17,7 @@ import CustomUserButton from "../modals/CustomUserButton";
 interface SiteHeaderProps {}
 
 const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
-  const title = "Spot-Sync";
+  const title = "S-Sync";
   const user = await currentUser();
 
   const profile = await db.userProfile.findFirst({
@@ -27,7 +27,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
   });
 
   return (
-    <header className=" z-50 w-full h-16 font-mono ">
+    <header className="z-50 w-full h-16 font-clash">
       <div className="flex items-center justify-between h-full min-w-full px-4 max-w-7xl ">
         <Link href="/faq" className="hover:text-black/50 font-bold w-32">
           WHAT?

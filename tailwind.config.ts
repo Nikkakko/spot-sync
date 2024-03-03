@@ -19,7 +19,7 @@ module.exports = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        primarybg: "#dddddd",
+        primarybg: "#E2DFD5",
         secondaryText: "#a3a3a3",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -61,6 +61,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+
+      fontFamily: {
+        clash: "var(--font-clash)",
       },
       borderRadius: {
         lg: "var(--radius)",

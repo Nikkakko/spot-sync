@@ -8,7 +8,7 @@ export default async function OnboardingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col  mx-auto   w-full bg-bodyBackground">
+    <div className="relative flex min-h-screen flex-col  mx-auto  w-full bg-bodyBackground">
       {children}
     </div>
   );
