@@ -29,7 +29,7 @@ export default function RootLayout({
           <Providers
             attribute="class"
             enableSystem
-            defaultTheme="system"
+            defaultTheme="light"
             themes={[
               "light",
               "dark",
