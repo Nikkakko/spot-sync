@@ -11,7 +11,7 @@ export default function Home() {
       <div className="  flex flex-col flex-1 relative ">
         <SectionHero />
         <TabletSection />
-        {/* <FeaturesSection /> */}
+        <FeaturesSection />
       </div>
       <ShowCaseSection />
     </main>

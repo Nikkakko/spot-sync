@@ -1,7 +1,8 @@
 import * as React from "react";
-import { HeroCardProps } from "./SectionHero";
+
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { HeroCardProps } from "@/app/helpers/siteData";
 
 type Props = {
   card: HeroCardProps;
@@ -11,7 +12,7 @@ const HeroCard: React.FC<Props> = ({ card }) => {
   const { title, description, color, buttonColor, buttonText } = card;
   return (
     <div
-      className={cn("lg:p-10 p-4  h-[300px] 2xl:h-[700px]  ")}
+      className={cn("lg:p-10 p-4  h-[300px] 2xl:h-[700px] ")}
       style={{ backgroundColor: color }}
     >
       <div className="flex flex-col justify-between h-full ">
@@ -26,7 +27,7 @@ const HeroCard: React.FC<Props> = ({ card }) => {
 
         <Button
           className={cn(
-            "text-white py-6 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200"
+            "text-white py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200"
           )}
           style={{
             backgroundColor: buttonColor,
