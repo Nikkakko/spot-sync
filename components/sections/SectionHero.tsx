@@ -3,71 +3,81 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { stickers } from "@/app/helpers/siteData";
 import { Shell } from "../layouts/Shell";
+import HeroCard from "./HeroCard";
 
 interface SectionHeroProps {}
 
+export interface HeroCardProps {
+  id: string;
+  title: string;
+  description: string;
+  color: string;
+  buttonColor: string;
+  buttonText: string;
+}
+
+const heroCards: HeroCardProps[] = [
+  {
+    id: "1",
+    title: `THE MODERN LINK IN
+    BIO MADE FOR ARTISTS,
+    MUSICIANS AND BANDS`,
+    description: `Take your link-in-bio to the next level with Noise, promote your music and latest releases, show your links and engage with your fans`,
+    color: "#301b04",
+    buttonColor: "#d74d00",
+    buttonText: "Make Your Profile",
+  },
+  {
+    id: "2",
+    title: `YOUR MUSIC, LINKS,
+    SOCIALS AND LATEST
+    RELEASES IN ONE PLACE!`,
+    description: `Noise is your new digital home as an artist. It's you link in bio that is not boring, looks good and shows-off your music and links.`,
+    color: "#56001a",
+    buttonColor: "#d31b52",
+    buttonText: "Make Your Profile",
+  },
+  {
+    id: "3",
+    title: `STAND OUT FROM
+    THE REST WITH UNIQUE
+    THEMES AND COLORS`,
+    description: `Your link in bio should be as unique as your music! with Noise, yours will look beautifully different to best suit your vibe and style.`,
+    color: "#2a174a",
+    buttonColor: "#7300ce",
+    buttonText: "Make Your Profile",
+  },
+  {
+    id: "4",
+    title: `LOOKS GOOD EVERYWHERE
+    A WEBSITE ON DESKTOP,
+    A LINK-IN-BIO ON MOBILE!`,
+    description: `Your Noise is designed to look great on all devices. It'll look like a mini website on desktop and a link-in-bio on mobile.`,
+    color: "#072a3c",
+    buttonColor: "#00a4ca",
+    buttonText: "Make Your Profile",
+  },
+  {
+    id: "5",
+    title: `KNOW YOUR FANS
+    AND KEEP PULSE ON
+    EVERYTHING!`,
+    description: `See how your fans are interacting with your Noise, who they are, where they are coming from and what interests them about you!`,
+    color: "#213700",
+    buttonColor: "#2ab500",
+    buttonText: "Make Your Profile",
+  },
+];
+
 const SectionHero: React.FC<SectionHeroProps> = ({}) => {
   return (
-    <Shell>
-      <div className="flex flex-col items-center py-[120px] text-center">
-        <h1 className="text-5xl font-bold text-center whitespace-pre-line letter-spacing-tight mb-10">
-          Turn your <span className="text-green-500">Spotify</span>
-          <br />
-          profile into a uniquely
-          <br />
-          designed website
-        </h1>
-      </div>
-
-      <div className="hidden lg:block">
-        {stickers.map((sticker, idx) => (
-          <span
-            key={sticker.id}
-            className={cn(
-              sticker.color,
-              `text-xl font-bold uppercase px-4 py-2 m-2 rounded-full
-                  hover:transform hover:scale-110 hover:rotate-12
-                  absolute z-index: -1
-                
-
-                  /* add random pozition */
-
-                  ${idx === 0 && "left-16 top-0"}
-                  ${idx === 1 && "right-16 top-0"}
-                  ${idx === 2 && "left-36 top-52"}
-                  ${idx === 3 && "right-14 top-40"}
-                  ${idx === 4 && "left-16 top-80"}
-                  ${idx === 5 && "right-16 top-80"}
-                  ${idx === 6 && "right-56 top-96"}
-                  ${idx === 7 && "left-56 top-96"}
-                  ${idx === 8 && "left-52 top-16"}
-                  ${idx === 9 && "right-44 top-12"}
-                  
-
-                  
-                  
-               
-                 
-                  /* rotation based on index */
-                  ${idx === 0 && "rotate-[-15deg]"}
-                  ${idx === 1 && "rotate-[15deg]"}
-                  ${idx === 2 && "rotate-[15deg]"}
-                  ${idx === 3 && "rotate-[-15deg]"}
-                  ${idx === 4 && "rotate-[-15deg]"}
-                  ${idx === 5 && "rotate-[15deg]"}
-                  ${idx === 6 && "rotate-[15deg]"}
-                  ${idx === 7 && "rotate-[-15deg]"}
-                  ${idx === 8 && "rotate-[15deg]"}
-                  ${idx === 9 && "rotate-[-15deg]"}
-
-                `
-            )}
-          >
-            {sticker.item}
-          </span>
+    <div className="font-clash max-w-full px-2 2xl:px-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        {heroCards.map(card => (
+          <HeroCard key={card.id} card={card} />
         ))}
       </div>
-    </Shell>
+    </div>
   );
 };
 

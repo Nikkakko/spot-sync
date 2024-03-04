@@ -19,10 +19,12 @@ import {
   Music,
   Play,
   Pause,
+  MoveRight,
 } from "lucide-react";
 
 export const Icons: { [key: string]: LucideIcon } = {
   arrowRight: ArrowRight,
+  moveRight: MoveRight,
   arrowLeft: ArrowLeft,
   loader: Loader2,
   share: Share,

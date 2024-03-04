@@ -21,7 +21,8 @@ export default function RootLayout({
         <body
           className={cn(
             "min-h-screen bg-primarybg  font-sans antialiased",
-            fontClash.variable
+            fontClash.variable,
+            fontMono.variable
           )}
         >
           <Providers

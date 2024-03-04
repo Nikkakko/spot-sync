@@ -57,13 +57,13 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
               href={`${profile?.profileUrl || "/onboarding"}`}
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "uppercase font-bold text-base p-0 w-32"
+                "uppercase font-bold text-base p-0 w-32 tracking-wider group"
               )}
             >
               Profile{" "}
-              <Icons.arrowRight
+              <Icons.moveRight
                 className="w-4 h-4 ml-2 text-black/50 
-               
+              group-hover:text-black transition-colors duration-200 ease-in-out
               "
               />
             </Link>
