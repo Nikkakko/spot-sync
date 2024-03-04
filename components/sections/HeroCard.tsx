@@ -28,7 +28,11 @@ const HeroCard: React.FC<Props> = ({ card }) => {
           className={cn(
             "text-white py-6 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200"
           )}
-          style={{ backgroundColor: buttonColor }}
+          style={{
+            backgroundColor: buttonColor,
+            offset: "4px 4px 0px 0px",
+            boxShadow: "4px 4px 0px 0px #0000006c",
+          }}
         >
           {buttonText}
         </Button>
