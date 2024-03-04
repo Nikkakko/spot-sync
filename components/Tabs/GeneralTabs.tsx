@@ -18,12 +18,18 @@ const GeneralTabs: React.FC<GeneralTabsProps> = ({ album, topTracks }) => {
         <TabsTrigger value="top-tracks">Top Tracks</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="albums" className="grid grid-cols-4 gap-4 mt-4 ">
+      <TabsContent
+        value="albums"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt- "
+      >
         {album?.map((a, i) => (
           <AlbumCard album={a} key={i} />
         ))}
       </TabsContent>
-      <TabsContent value="top-tracks" className="grid grid-cols-4 gap-4 mt-4">
+      <TabsContent
+        value="top-tracks"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4"
+      >
         {topTracks.tracks.map((t, i) => (
           <TopTrackCard key={i} track={t} />
         ))}

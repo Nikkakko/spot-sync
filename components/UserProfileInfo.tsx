@@ -25,19 +25,19 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   }, [profile?.theme]);
 
   return (
-    <div className="mt-14 p-1 shadow-md rounded-xl items-start w-full bg-cardBackground ">
-      <div className="flex items-start">
-        <div className="relative w-52 h-52 rounded-lg overflow-hidden">
+    <div className="mt-14 p-1 shadow-md rounded-xl items-start w-full bg-cardBackground  ">
+      <div className="flex items-start flex-col lg:flex-row">
+        <div className="relative w-full lg:w-52 h-[350px] lg:h-52 rounded-lg overflow-hidden">
           <Image
             src={profile?.image as string}
             alt={profile?.name as string}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             quality={100}
-            className=""
+            className="object-cover object-top "
           />
         </div>
-        <div className="flex flex-col flex-1 px-4 ">
+        <div className="hidden md:flex flex-col flex-1 lg:px-4 ">
           <h1 className="text-2xl font-bold text-primaryTextColor">
             {profile?.name}
           </h1>

@@ -25,7 +25,9 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
           />
           <div className="flex flex-col px-1 ">
             <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
-              {album.name}
+              {album.name.length > 20
+                ? album.name.slice(0, 20) + "..."
+                : album.name}
             </p>
             <div className="flex items-center text-secondaryTextColor">
               <p className="text-sm  font-semibold">

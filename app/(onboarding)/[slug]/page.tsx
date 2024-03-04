@@ -51,7 +51,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto  ">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto  px-1 ">
       {/* add cover image to bg */}
 
       <UserProfileInfo
@@ -72,7 +72,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
       {profile?.socials?.length > 0 &&
         profile?.socials.map(social => (
           <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
-            <section className="mt-4 w-full">
+            <section className="mt-4 w-full grid grid-cols1 gap-1 ">
               <SocialCard social={social} />
             </section>
           </React.Suspense>

@@ -27,7 +27,7 @@ const HeroCard: React.FC<Props> = ({ card }) => {
 
         <Button
           className={cn(
-            "text-white py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200"
+            "text-white py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200 tracking-widest"
           )}
           style={{
             backgroundColor: buttonColor,
