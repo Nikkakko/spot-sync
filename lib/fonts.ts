@@ -41,7 +41,7 @@ export const fontClash = localFont({
 
     //add extra light
     {
-      path: "../fonts/clash/ClashDisplay-ExtraLight.woff",
+      path: "../fonts/clash/ClashDisplay-Extralight.woff",
       weight: "200",
       style: "normal",
     },

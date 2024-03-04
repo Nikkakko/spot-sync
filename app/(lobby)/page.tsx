@@ -10,7 +10,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col ">
       <div className="  flex flex-col flex-1 relative ">
         <SectionHero />
-        {/* <TabletSection /> */}
+        <TabletSection />
         {/* <FeaturesSection /> */}
       </div>
       <ShowCaseSection />
