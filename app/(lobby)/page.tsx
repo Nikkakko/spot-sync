@@ -10,7 +10,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col ">
       <div className="  flex flex-col flex-1 relative ">
         <SectionHero />
-        <div className="flex  flex-col gap-4  font-clash max-w-lg mx-auto whitespace-pre-line  pt-20">
+        <div className="flex  flex-col gap-4  font-clash max-w-2xl mx-auto whitespace-pre-line  pt-20">
           <h1 className="text-black font-bold text-5xl text-center ">
             JOIN HUNDREDS OF ARTISTS WHO ALREADY MADE THEIR NOISE
           </h1>

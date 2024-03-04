@@ -30,9 +30,14 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
         className="flex flex-col justify-center pt-1 px-1 pb-4 bg-cardBackground bg-transition duration-200 ease-in-out transform hover:scale-105 
         opacity-90 hover:opacity-100 rounded-lg"
       >
-        <div className="relative w-44 max-w-[172px] h-44 rounded-lg overflow-hidden">
-          <Image src={track.album.images[0].url} alt={track.name} fill />
-        </div>
+        <Image
+          src={track.album.images[0].url}
+          alt={track.name}
+          width={200}
+          height={200}
+          className="rounded-md"
+        />
+
         <div className="flex flex-col px-1 ">
           <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
             {track.name}

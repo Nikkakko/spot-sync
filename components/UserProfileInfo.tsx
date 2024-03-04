@@ -17,6 +17,7 @@ interface UserProfileInfoProps {
 
 const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   const { setTheme, theme } = useTheme();
+  const [isTruncated, setIsTruncated] = React.useState(true);
 
   React.useEffect(() => {
     if (profile?.theme) setTheme(profile?.theme as string);
@@ -37,7 +38,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
             className="object-cover object-top "
           />
         </div>
-        <div className="hidden md:flex flex-col flex-1 lg:px-4 ">
+        <div className="flex flex-col flex-1 lg:px-4">
           <h1 className="text-2xl font-bold text-primaryTextColor">
             {profile?.name}
           </h1>
@@ -49,9 +50,12 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
             View on Spotify
           </Link>
 
-          <div className="mt-2">
+          <div className="py-2">
             {/* seperate bio content with new line */}
-            <p className="text-secondaryTextColor font-light">
+            <p
+              className="text-secondaryTextColor font-light"
+              onClick={() => setIsTruncated(prev => !prev)}
+            >
               {truncate(profile?.bio as string, 200)}
             </p>
           </div>

@@ -81,7 +81,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
       {user?.id === profile?.userId && <CommandBar />}
 
       {/* add copyright */}
-      <div className=" p-4 text-center text-secondaryText">
+      <div className=" p-4 text-center text-primarybg">
         <p>
           &copy; {new Date().getFullYear()} - {profile?.name}
           <br />
