@@ -34,7 +34,7 @@ export const fontClash = localFont({
     },
 
     {
-      path: "../fonts/clash/ClashDisplay-SemiBold.woff",
+      path: "../fonts/clash/ClashDisplay-Semibold.woff",
       weight: "600",
       style: "normal",
     },
