@@ -17,7 +17,6 @@ interface UserProfileInfoProps {
 
 const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   const { setTheme, theme } = useTheme();
-  const [isTruncated, setIsTruncated] = React.useState(true);
 
   React.useEffect(() => {
     if (profile?.theme) setTheme(profile?.theme as string);
@@ -52,10 +51,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
 
           <div className="py-2">
             {/* seperate bio content with new line */}
-            <p
-              className="text-secondaryTextColor font-light"
-              onClick={() => setIsTruncated(prev => !prev)}
-            >
+            <p className="text-secondaryTextColor font-light">
               {truncate(profile?.bio as string, 200)}
             </p>
           </div>

@@ -1,9 +1,4 @@
-import {
-  getArtistAlbums,
-  getArtistBio,
-  getArtistTopTracks,
-  getToken,
-} from "@/lib/spotify";
+import { getArtistAlbums, getArtistTopTracks, getToken } from "@/lib/spotify";
 import * as React from "react";
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
@@ -17,13 +12,44 @@ import GeneralTabs from "@/components/Tabs/GeneralTabs";
 
 import AlbumLoader from "@/components/Loaders/AlbumLoader";
 import UserProfileInfo from "@/components/UserProfileInfo";
+import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
   params: {
     slug: string;
   };
 }
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const { slug } = params;
 
+  // get user profile
+  const profile = await db.userProfile.findFirst({
+    where: {
+      profileUrl: slug,
+    },
+  });
+
+  // if profile not found return 404
+
+  if (!profile) {
+    return {
+      title: "Not Found",
+      description: "Profile not found",
+    };
+  }
+
+  // return metadata
+
+  return {
+    title: profile.name,
+    description: profile.bio,
+    keywords: profile.name,
+  };
+}
 async function ProfilePage({ params: { slug } }: PageProps) {
   const user = await currentUser();
   const token = await getToken();
