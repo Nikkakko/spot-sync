@@ -13,6 +13,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { slides } from "@/app/helpers/siteData";
 import Image from "next/image";
 import { Shell } from "../layouts/Shell";
+import { cn } from "@/lib/utils";
 
 interface TabletSectionProps {}
 
@@ -24,15 +25,20 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
           align: "start",
           loop: true,
         }}
-        className="w-full h-full  "
+        className="w-full h-full  max-w-6xl "
       >
-        <CarouselContent>
+        <CarouselContent className="">
           {slides.map((item, index) => (
             <CarouselItem
               key={item.id}
               className="flex items-center justify-center "
             >
-              <div className="relative w-[300px] h-[250px]  lg:w-[1146px] lg:h-[686px]  rounded-xl overflow-hidden">
+              <div
+                className={cn(
+                  "relative w-[300px] h-[250px]  lg:w-[1146px] lg:h-[686px]  rounded-xl overflow-hidden"
+                  //eachh slide basis-1/3 of the screen width
+                )}
+              >
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -45,8 +51,8 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNext className="-right-0 lg:-right-12" />
-        <CarouselPrevious className="-left-0 lg:-left-12" />
+        <CarouselNext className="-right-2 lg:-right-12" />
+        <CarouselPrevious className="-left-2 lg:-left-12" />
       </Carousel>
     </Shell>
   );
