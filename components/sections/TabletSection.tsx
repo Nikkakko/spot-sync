@@ -18,10 +18,11 @@ interface TabletSectionProps {}
 
 const TabletSection: React.FC<TabletSectionProps> = ({}) => {
   return (
-    <Shell className=" justify-center items-center py-20 ">
+    <Shell className="justify-center items-center px-0 py-4 lg:py-20 ">
       <Carousel
         opts={{
           align: "start",
+          loop: true,
         }}
         className="w-full h-full  "
       >
@@ -31,7 +32,7 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
               key={item.id}
               className="flex items-center justify-center "
             >
-              <div className="relative  w-[1146px] h-[686px]  rounded-xl overflow-hidden">
+              <div className="relative w-[300px] h-[250px]  lg:w-[1146px] lg:h-[686px]  rounded-xl overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -44,8 +45,8 @@ const TabletSection: React.FC<TabletSectionProps> = ({}) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNext />
-        <CarouselPrevious />
+        <CarouselNext className="-right-0 lg:-right-12" />
+        <CarouselPrevious className="-left-0 lg:-left-12" />
       </Carousel>
     </Shell>
   );

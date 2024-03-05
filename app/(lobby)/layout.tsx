@@ -8,7 +8,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col container mx-auto">
+    <div className="relative flex min-h-screen flex-col container px-2 2xl:px-4 pb-10 mx-auto">
       <SiteHeader />
       {children}
       <SiteFooter />

@@ -9,11 +9,11 @@ const SiteFooter: React.FC<SiteFooterProps> = ({}) => {
   return (
     <Shell
       as="footer"
-      className="flex flex-row justify-between mx-auto  max-w-5xl px-0 py-10 uppercase"
+      className="flex flex-col-reverse lg:flex-row justify-between mx-auto  max-w-5xl px-0 py:4 lg:py-10 uppercase"
     >
       <p className="text-black/50">SPOT-SYNC 2024© All Rights Reserved</p>
       <nav>
-        <ul className="flex space-x-4">
+        <ul className="grid grid-cols-2 pb-4 lg:mt-0 lg:flex lg:flex-row lg:space-x-4">
           {footerLinks.map(link => (
             <li key={link.title}>
               <Link href={link.href} className="text-black/50">

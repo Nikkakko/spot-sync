@@ -9,32 +9,36 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { FreeIcon, Icons } from "../icons";
 import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface CustomUserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   email: string | undefined;
   userProfileImage: string | undefined;
   userName: string | undefined;
+  profileUrl: string | undefined;
 }
 
 const CustomUserButton: React.FC<CustomUserButtonProps> = ({
   email,
   userProfileImage,
   userName,
+  profileUrl,
   ...props
 }) => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="">
         <Button variant="default">
           <Icons.user className="w-6 h-6" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] ">
-        <DialogHeader className="flex items-start justify-between  flex-row gap-2 ">
+      <DialogContent className="sm:max-w-[425px]   px-1 md:px-6">
+        <DialogHeader className="flex items-start justify-between flex-row gap-2 ">
           <div className="flex items-start justify-center gap-2">
             {userProfileImage ? (
               <Image
@@ -58,14 +62,14 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
             </div>
           </div>
 
-          <Button variant="outline" className="max-w-fit " asChild>
+          <Button variant="outline" className="max-w-fit  " asChild>
             <SignOutButton />
           </Button>
         </DialogHeader>
 
-        <DialogFooter className="flex sm:flex-col space-y-2">
+        <DialogFooter className="flex space-y-2">
           <FreeIcon />
-          <DialogDescription className="text-secondaryText font-semibold">
+          <DialogDescription className="text-secondaryText font-semibold md:m-0">
             {`  You're on the free plan which allows you to create your Spot-Sync for
             free, add and customize your links, show off your music and more.`}
           </DialogDescription>
@@ -73,6 +77,12 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
           <Button variant="default" className="w-full capitalize">
             Go Pro
           </Button>
+          <Link
+            className={cn(buttonVariants({ variant: "outline" }), "md:hidden")}
+            href={profileUrl || "/onboarding"}
+          >
+            View Profile
+          </Link>
         </DialogFooter>
       </DialogContent>
     </Dialog>

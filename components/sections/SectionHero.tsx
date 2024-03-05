@@ -15,7 +15,7 @@ const SectionHero: React.FC<SectionHeroProps> = ({}) => {
   );
 
   return (
-    <section className="grid grid-cols-1 gap-2 px-2 2xl:px-4 font-clash">
+    <section className="grid grid-cols-1 gap-2 font-clash">
       {cardGroups.map((group, groupIndex) => (
         <section
           key={groupIndex}

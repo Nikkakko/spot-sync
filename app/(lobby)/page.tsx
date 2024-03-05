@@ -7,18 +7,15 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col ">
+    <main className="flex flex-1 flex-col">
       <div className="  flex flex-col flex-1 relative ">
         <SectionHero />
-        <div className="flex  flex-col gap-4  font-clash max-w-2xl mx-auto whitespace-pre-line  pt-20">
-          <h1 className="text-black font-bold text-5xl text-center ">
-            JOIN HUNDREDS OF ARTISTS WHO ALREADY MADE THEIR NOISE
-          </h1>
-          <p className=" text-black/60 font-mono font-semibold text-center tracking-tight leading-tight  ">
-            {` It's time to ditch your boring link-in-bio. Make your Noise for free
+        <Banner
+          text="JOIN HUNDREDS OF ARTISTS WHO ALREADY MADE THEIR NOISE"
+          subText={`It's time to ditch your boring link-in-bio. Make your Noise for free
             and join hundreds of artists who already made their Noise!`}
-          </p>
-        </div>
+        />
+
         <TabletSection />
         {/* <FeaturesSection /> */}
       </div>
@@ -26,3 +23,16 @@ export default function Home() {
     </main>
   );
 }
+
+const Banner = ({ text, subText }: { text: string; subText: string }) => {
+  return (
+    <div className="flex  flex-col gap-4  font-clash max-w-3xl mx-auto whitespace-pre-line  pt-6 lg:pt-20">
+      <h1 className="text-black font-bold text-2xl lg:text-5xl text-center ">
+        {text}
+      </h1>
+      <p className=" text-black/60 font-mono font-semibold text-center tracking-tight leading-tight  ">
+        {subText}
+      </p>
+    </div>
+  );
+};

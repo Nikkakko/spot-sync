@@ -20,29 +20,30 @@ const SiteCta: React.FC<SiteCtaProps> = async ({}) => {
 
   return (
     <Shell
-      className="flex flex-col py-20 cursor-default   bg-primarybg"
+      className="flex flex-col  py-4 lg:py-20 cursor-default  px-0  bg-primarybg font-clash"
       as="article"
     >
-      <div className="flex flex-col mx-auto items-start ">
+      <div className="flex flex-col mx-auto items-start  ">
         {showCaseText.map((text, index) => (
           <p
-            className="text-5xl whitespace-pre-line opacity-50 leading-[1.2] font-bold hover:opacity-100 transition-opacity duration-200 ease-in-out "
+            className=" text-2xl text-start lg:text-5xl whitespace-pre-line opacity-50 leading-[1.2] font-bold hover:opacity-100 transition-opacity duration-200 ease-in-out "
             key={index}
           >
             {text}
           </p>
         ))}
-        <div className="mt-6 flex flex-col items-start text-start ">
-          <h1 className="text-black font-semibold text-5xl">On Spotify?</h1>
-
+        <div className="mt-6 flex flex-col items-start text-start">
+          <h1 className="text-black font-semibold  text-base lg:text-5xl">
+            On Spotify?
+          </h1>
           <a
             className={cn(
               buttonVariants({ variant: "link" }),
-              "text-5xl text-blue-600 p-0 mt-1 hover:no-underline"
+              "text-3xl lg:text-5xl text-blue-600   uppercase p-0 mt-1 hover:no-underline"
             )}
             href={user ? `/${profile?.profileUrl}` : "/"}
           >
-            Make Your Spot-Sync {/* todo sign in modal */}
+            Make Your Noise! {/* todo sign in modal */}
           </a>
         </div>
       </div>
