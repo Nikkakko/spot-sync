@@ -3,17 +3,30 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { HeroCardProps } from "@/app/helpers/siteData";
+import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   card: HeroCardProps;
 };
 
 const HeroCard: React.FC<Props> = ({ card }) => {
-  const { title, description, color, buttonColor, buttonText } = card;
+  const {
+    title,
+    description,
+    color,
+    buttonColor,
+    buttonText,
+    href,
+
+    showCase,
+  } = card;
   return (
     <div
-      className={cn("lg:p-10 p-4  h-[300px] 2xl:h-[700px] ")}
-      style={{ backgroundColor: color }}
+      className={cn("lg:p-10 p-4  h-[300px] 2xl:h-[700px] relative")}
+      style={{
+        backgroundColor: color,
+      }}
     >
       <div className="flex flex-col justify-between h-full ">
         <div className="flex flex-col gap-2 lg:gap-4 text-start w-full">
@@ -25,18 +38,38 @@ const HeroCard: React.FC<Props> = ({ card }) => {
           </p>
         </div>
 
-        <Button
-          className={cn(
-            "text-white py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200 tracking-widest"
-          )}
-          style={{
-            backgroundColor: buttonColor,
-            offset: "4px 4px 0px 0px",
-            boxShadow: "4px 4px 0px 0px #0000006c",
-          }}
-        >
-          {buttonText}
-        </Button>
+        {showCase && (
+          <Link
+            href={href as string}
+            className="z-20 text-primarybg
+            absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 uppercase font-clash text-4xl font-bold"
+          >
+            {href}
+          </Link>
+        )}
+
+        {showCase && (
+          <div
+            className={cn(
+              "bg-noise-pattern absolute inset-0 mix-blend-overlay opacity-75 bg-opacity-50"
+            )}
+          />
+        )}
+
+        {!showCase && (
+          <Button
+            className={cn(
+              "text-white py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-xl  hover:scale-105 hover:transition-transform hover:duration-200 tracking-widest"
+            )}
+            style={{
+              backgroundColor: buttonColor,
+              offset: "4px 4px 0px 0px",
+              boxShadow: "4px 4px 0px 0px #0000006c",
+            }}
+          >
+            {buttonText}
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -343,11 +343,14 @@ export const collorPalette = [
 
 export interface HeroCardProps {
   id: string;
-  title: string;
-  description: string;
-  color: string;
-  buttonColor: string;
-  buttonText: string;
+  title?: string;
+  description?: string;
+  color?: string;
+  buttonColor?: string;
+  buttonText?: string;
+
+  showCase?: string;
+  href?: string;
 }
 
 export const heroCards: HeroCardProps[] = [
@@ -362,6 +365,20 @@ export const heroCards: HeroCardProps[] = [
     buttonText: "Make Your Profile",
   },
   {
+    id: "222",
+    color: "#d74d00",
+    showCase: "/assets/kaya-showcase.png",
+    href: "/kayakata",
+  },
+
+  {
+    id: "212",
+    color: "#56001a",
+    showCase: "/assets/kaya-showcase.png",
+    href: "/zazanozadze",
+  },
+
+  {
     id: "2",
     title: `YOUR MUSIC, LINKS,
     SOCIALS AND LATEST
@@ -371,6 +388,7 @@ export const heroCards: HeroCardProps[] = [
     buttonColor: "#d31b52",
     buttonText: "Make Your Profile",
   },
+
   {
     id: "3",
     title: `STAND OUT FROM

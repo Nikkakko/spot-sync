@@ -8,7 +8,10 @@ export async function addLinksAction(values: LinksFormSchema) {
   const user = await currentUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return {
+      success: false,
+      message: "User not found",
+    };
   }
 
   const userExists = await db.userProfile.findFirst({
@@ -18,7 +21,10 @@ export async function addLinksAction(values: LinksFormSchema) {
   });
 
   if (!userExists) {
-    throw new Error("User not found");
+    return {
+      success: false,
+      message: "User not found",
+    };
   }
 
   const parsedValues = linksFormSchema.safeParse(values);

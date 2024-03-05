@@ -99,6 +99,11 @@ module.exports = {
         "section-pattern": 'url("/assets/section-bg.svg")',
         "section-pattern2": 'url("/assets/section-bg2.svg")',
         "section-pattern3": 'url("/assets/section-bg3.svg")',
+        "noise-pattern": 'url("/assets/feature-noise.png")',
+      },
+
+      backgroundSize: {
+        "noise-pattern": "100px 100px",
       },
     },
   },

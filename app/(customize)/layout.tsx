@@ -13,7 +13,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col ">
+    <div className="relative flex min-h-screen flex-col bg-[#e5e5e5]">
       <CustomizeHeader />
       {children}
     </div>
