@@ -348,8 +348,7 @@ export interface HeroCardProps {
   color?: string;
   buttonColor?: string;
   buttonText?: string;
-
-  showCase?: string;
+  showCase?: boolean;
   href?: string;
 }
 
@@ -365,17 +364,10 @@ export const heroCards: HeroCardProps[] = [
     buttonText: "Make Your Profile",
   },
   {
-    id: "222",
+    id: "22782",
     color: "#d74d00",
-    showCase: "/assets/kaya-showcase.png",
+    showCase: true,
     href: "/kayakata",
-  },
-
-  {
-    id: "212",
-    color: "#56001a",
-    showCase: "/assets/kaya-showcase.png",
-    href: "/zazanozadze",
   },
 
   {
@@ -390,6 +382,13 @@ export const heroCards: HeroCardProps[] = [
   },
 
   {
+    id: "21256",
+    color: "#56001a",
+    showCase: true,
+    href: "/zazanozadze",
+  },
+
+  {
     id: "3",
     title: `STAND OUT FROM
     THE REST WITH UNIQUE
@@ -398,6 +397,12 @@ export const heroCards: HeroCardProps[] = [
     color: "#2a174a",
     buttonColor: "#7300ce",
     buttonText: "Make Your Profile",
+  },
+  {
+    id: "2126",
+    color: "#2a174a",
+    showCase: true,
+    href: "/kayakata",
   },
   {
     id: "4",
@@ -410,6 +415,12 @@ export const heroCards: HeroCardProps[] = [
     buttonText: "Make Your Profile",
   },
   {
+    id: "2252",
+    color: "#072a3c",
+    showCase: true,
+    href: "/zazanozadze",
+  },
+  {
     id: "5",
     title: `KNOW YOUR FANS
     AND KEEP PULSE ON
@@ -418,5 +429,12 @@ export const heroCards: HeroCardProps[] = [
     color: "#213700",
     buttonColor: "#2ab500",
     buttonText: "Make Your Profile",
+  },
+
+  {
+    id: "2122",
+    color: "#213700",
+    showCase: true,
+    href: "/kayakata",
   },
 ];

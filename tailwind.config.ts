@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   darkMode: "class",
   content: [
@@ -105,7 +106,14 @@ module.exports = {
       backgroundSize: {
         "noise-pattern": "100px 100px",
       },
+
+      gridTemplateAreas: {
+        hero: ["left right"],
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@savvywombat/tailwindcss-grid-areas"),
+  ],
 };
