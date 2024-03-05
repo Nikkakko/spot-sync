@@ -9,12 +9,6 @@ import { cn } from "@/lib/utils";
 interface SectionHeroProps {}
 
 const SectionHero: React.FC<SectionHeroProps> = ({}) => {
-  const firstTwo = heroCards.slice(0, 2);
-  const secondTwo = heroCards.slice(2, 4);
-  const thirdTwo = heroCards.slice(4, 6);
-  const fourthTwo = heroCards.slice(6, 8);
-  const fifthTwo = heroCards.slice(8, 10);
-
   const cardGroups = Array.from(
     { length: Math.ceil(heroCards.length / 2) },
     (_, i) => heroCards.slice(i * 2, i * 2 + 2)
