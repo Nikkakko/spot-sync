@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <Shell variant="centered" className="items-center max-w-sm">
-      <h2 className="text-4xl font-bold text-start mb-4">
+    <Shell variant="centered" className="items-start max-w-md">
+      <h2 className="text-3xl font-semibold text-start mb-2 uppercase">
         Not quite my tempo!
       </h2>
-      <p className="text-start text-gray-600 mb-8">
+      <p className="text-start text-black mb-8">
         You have lost your way or we just didn&apos;t find what you&apos;re
         looking for! Why not get back to the homepage!
       </p>
