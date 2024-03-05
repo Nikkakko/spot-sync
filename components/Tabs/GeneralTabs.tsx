@@ -30,7 +30,7 @@ const GeneralTabs: React.FC<GeneralTabsProps> = ({ album, topTracks }) => {
         value="top-tracks"
         className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4"
       >
-        {topTracks.tracks.map((t, i) => (
+        {topTracks?.tracks?.map((t, i) => (
           <TopTrackCard key={i} track={t} />
         ))}
       </TabsContent>

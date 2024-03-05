@@ -19,7 +19,6 @@ const SocialCard: React.FC<SocialCardProps> = ({
 }) => {
   const Icon = Icons[social.icon.toLowerCase()];
   const [isPending, startTransition] = React.useTransition();
-  const router = useRouter();
   const pathname = usePathname();
 
   const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -59,7 +58,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
           </span>
           <span
             className={cn(
-              "text-sm  hover:text-neutral-600 max-w-fit font-mono",
+              "text-sm  max-w-fit font-mono",
               basicLink ? "text-black" : "text-primaryTextColor"
             )}
           >
