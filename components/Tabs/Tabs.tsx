@@ -22,7 +22,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
   return (
     <Tabs
       defaultValue={tabValues[0].value.toLowerCase()}
-      className="max-w-xl mt-6 px-2 md:px-0 mx-auto container w-full"
+      className="max-w-xl w-full mx-auto"
     >
       <TabsList className="grid w-full grid-cols-3 max-w-[400px] mx-auto ">
         {tabValues.map(tab => (
