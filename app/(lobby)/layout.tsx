@@ -1,3 +1,4 @@
+import { Shell } from "@/components/layouts/Shell";
 import SiteFooter from "@/components/layouts/SiteFooter";
 import SiteHeader from "@/components/layouts/SiteHeader";
 import * as React from "react";
@@ -8,10 +9,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col container px-2 2xl:px-4 pb-10 mx-auto">
+    <Shell>
       <SiteHeader />
       {children}
       <SiteFooter />
-    </div>
+    </Shell>
   );
 }

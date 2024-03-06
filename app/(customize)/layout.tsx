@@ -1,6 +1,7 @@
 import * as React from "react";
 import CustomizeHeader from "@/components/layouts/CustomizeHeader";
 import { Metadata } from "next";
+import { Shell } from "@/components/layouts/Shell";
 
 export const metadata: Metadata = {
   title: "Customize your site - Spot-Sync",
@@ -13,9 +14,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#e5e5e5]">
+    <Shell className="bg-[#e5e5e5] px-0">
       <CustomizeHeader />
       {children}
-    </div>
+    </Shell>
   );
 }

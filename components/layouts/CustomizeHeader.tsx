@@ -22,7 +22,7 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
   };
 
   return (
-    <header className="sticky top-0  py-2 border-b border-black/50 backdrop-filter backdrop-blur-sm z-10 font-clash ">
+    <header className="sticky top-0  py-2  backdrop-filter backdrop-blur-sm z-10 font-clash ">
       <div className="flex items-center justify-between container mx-auto px-2">
         <Button
           className="hover:no-underline flex items-center gap-1 px-0"
@@ -34,7 +34,7 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
           Exit
         </Button>
         <h1 className="text-sm md:text-xl font-semibold text-muted-foreground flex gap-1">
-          Customize <p className="hidden md:block">your site</p>
+          Customize
         </h1>
         <Button
           className={cn("disabled:opacity-50")}
