@@ -1,9 +1,6 @@
 import * as React from "react";
-
 import HeroCard from "./HeroCard";
-import { Shell } from "../layouts/Shell";
 import { heroCards } from "@/app/helpers/siteData";
-import ShowCaseCard from "./ShowCaseCard";
 import { cn } from "@/lib/utils";
 
 interface SectionHeroProps {}

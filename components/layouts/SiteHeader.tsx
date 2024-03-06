@@ -28,10 +28,10 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
 
   return (
     <header className="z-50 w-full h-16 font-clash">
-      <div className="flex items-center justify-between h-full min-w-full lg:px-4 max-w-7xl ">
+      <div className="flex items-center justify-between h-full min-w-full  max-w-7xl ">
         <Link
           href="/faq"
-          className="hover:text-black/50 font-bold w-16 md:w-32"
+          className="hover:text-black/50 font-bold w-16 md:w-[192px]"
         >
           WHAT?
         </Link>
@@ -60,7 +60,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
               href={`${profile?.profileUrl || "/onboarding"}`}
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "hidden md:block uppercase font-bold text-base p-0 w-16 md:w-32 tracking-wider group"
+                "hidden md:flex gap-1 uppercase font-bold text-base p-0 w-16 md:w-32 tracking-wider group"
               )}
             >
               Profile{" "}
