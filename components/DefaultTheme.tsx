@@ -11,8 +11,8 @@ interface DefaultThemeProps {
 
 const DefaultTheme: React.FC<DefaultThemeProps> = ({ image, name }) => {
   return (
-    <div className="bg-white flex flex-col gap-2">
-      <div className="bg-bodyBackground w-[468px] h-auto rounded-sm flex items-start justify-center p-4 py-8">
+    <div className="bg-white flex flex-col gap-2 w-full">
+      <div className="bg-bodyBackground  w-full h-auto rounded-sm flex items-start justify-center p-4 py-8">
         <div className="bg-cardBackground flex items-stat gap-2 p-2 rounded-lg w-full">
           <Image
             src={image}

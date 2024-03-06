@@ -20,11 +20,7 @@ async function CustomizePage({}: CustomizationProps) {
     return redirect("/");
   }
 
-  return (
-    <Shell className="flex items-center min-h-screen ">
-      <TabsSection />
-    </Shell>
-  );
+  return <TabsSection />;
 }
 
 export default CustomizePage;
