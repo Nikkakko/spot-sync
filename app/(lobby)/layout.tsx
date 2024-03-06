@@ -9,7 +9,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Shell>
+    <Shell className="px-2 lg:px-0">
       <SiteHeader />
       {children}
       <SiteFooter />

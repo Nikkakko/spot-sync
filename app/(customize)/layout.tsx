@@ -14,7 +14,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Shell className=" px-2">
+    <Shell className="px-2">
       <CustomizeHeader />
       {children}
     </Shell>

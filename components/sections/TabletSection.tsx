@@ -19,7 +19,10 @@ interface TabletSectionProps {}
 
 const TabletSection: React.FC<TabletSectionProps> = ({}) => {
   return (
-    <Shell className="justify-center items-center px-0 py-4 lg:py-20 ">
+    <Shell
+      className="justify-center items-center px-0 py-4 lg:py-20 "
+      variant="cta"
+    >
       <Carousel
         opts={{
           align: "start",

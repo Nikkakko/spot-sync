@@ -22,6 +22,7 @@ const SiteCta: React.FC<SiteCtaProps> = async ({}) => {
     <Shell
       className="flex flex-col  py-4 lg:py-20 cursor-default  px-0  bg-primarybg font-clash"
       as="article"
+      variant="cta"
     >
       <div className="flex flex-col mx-auto items-start  ">
         {showCaseText.map((text, index) => (

@@ -7,6 +7,8 @@ const shellVariants = cva("flex flex-col relative", {
   variants: {
     variant: {
       default: "container flex flex-col min-h-screen relative",
+      footer: "container flex flex-col  relative",
+      cta: "container flex flex-col  relative",
       features: "container grid grid-cols-1 md:grid-cols-3 gap-16 ",
       sidebar: "",
       centered: "container flex h-[100dvh] max-w-2xl flex-col justify-center",
