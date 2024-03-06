@@ -5,6 +5,7 @@ import * as React from "react";
 import { Icons } from "./icons";
 import * as dateFns from "date-fns";
 import { cn } from "@/lib/utils";
+import { truncate } from "@/utils";
 
 interface TopTrackCardProps {
   track: Track;
@@ -39,16 +40,20 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
         />
 
         <div className="flex flex-col px-1 ">
-          <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">
-            {track.name}
+          <p className="text-xs font-bold mt-2 capitalize text-primaryTextColor whitespace-pre-line">
+            {truncate(track.name, 30)}
           </p>
           <div className="flex items-center text-secondaryTextColor">
             <p className="text-sm font-semibold">
               {dateFns.format(track.album.release_date, "yyyy")}
             </p>
-            <span className="mx-1">•</span>
+            {track.album.album_type !== "single" && (
+              <span className="mx-1">•</span>
+            )}
             <p className="text-sm capitalize font-semibold">
-              {track.album.name}
+              {track.album.album_type === "single"
+                ? " "
+                : " " + track.album.name}
             </p>
           </div>
         </div>
