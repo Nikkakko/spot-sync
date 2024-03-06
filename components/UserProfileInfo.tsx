@@ -20,7 +20,6 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
 
   React.useEffect(() => {
     if (profile?.theme) setTheme(profile?.theme as string);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile?.theme]);
 
