@@ -14,7 +14,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Shell className="bg-[#e5e5e5] px-0">
+    <Shell className=" px-0">
       <CustomizeHeader />
       {children}
     </Shell>
