@@ -31,6 +31,11 @@ const SocialCard: React.FC<SocialCardProps> = ({
     });
   };
 
+  const checktheme =
+    theme !== undefined &&
+    theme === "default" &&
+    Icon.displayName === "SpotifyIcon";
+
   return (
     <Link
       href={
@@ -49,11 +54,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
       >
         <div className="bg-linkIconBackgroundColor w-[48px] h-[48px] flex items-center justify-center rounded-lg">
           <Icon
-            className={cn(
-              theme === "default" && Icon.displayName === "SpotifyIcon"
-                ? "fill-black"
-                : "fill-linkIconFillColor"
-            )}
+            className={cn(checktheme ? "fill-black" : "fill-linkIconFillColor")}
           />
         </div>
         <div className="flex flex-col flex-1">
