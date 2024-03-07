@@ -4,7 +4,7 @@ import UserForm from "@/components/UserForm";
 import { getToken } from "@/lib/spotify";
 import OnboardHeader from "@/components/OnboardHeader";
 import db from "@/lib/db";
-import { currentUser } from "@clerk/nextjs";
+import { SignInButton, currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 interface OnBoardingProps {}

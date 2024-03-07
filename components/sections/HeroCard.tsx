@@ -1,9 +1,12 @@
+"use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { HeroCardProps } from "@/app/helpers/siteData";
 import Link from "next/link";
 import { Icons } from "../icons";
+import { useRouter } from "next/navigation";
+import { SignInButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
   card: HeroCardProps;
@@ -11,6 +14,13 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
 const HeroCard: React.FC<Props> = ({ card, ...props }) => {
   const { title, description, color, buttonColor, buttonText, href, showCase } =
     card;
+
+  const buttonClass = cn(
+    "text-white py-2 2xl:py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-base 2xl:text-xl  hover:scale-105 hover:transition-transform hover:duration-200 tracking-widest ",
+    buttonVariants({ variant: "default" }),
+    //add offset and shadow to button
+    "shadow-md offset-md-2 offset-md-2"
+  );
 
   return (
     <div
@@ -59,18 +69,31 @@ const HeroCard: React.FC<Props> = ({ card, ...props }) => {
         )}
 
         {showCase === undefined && (
-          <Button
-            className={cn(
-              "text-white py-2 2xl:py-10 px-4 mt-4 rounded-md uppercase font-bold w-full text-base 2xl:text-xl  hover:scale-105 hover:transition-transform hover:duration-200 tracking-widest"
-            )}
-            style={{
-              backgroundColor: buttonColor,
-              offset: "4px 4px 0px 0px",
-              boxShadow: "4px 4px 0px 0px #0000006c",
-            }}
-          >
-            {buttonText}
-          </Button>
+          <>
+            <SignedOut>
+              <SignInButton afterSignInUrl={"/onboarding"} mode="modal">
+                <Button
+                  className={buttonClass}
+                  style={{
+                    backgroundColor: buttonColor,
+                  }}
+                >
+                  {buttonText}
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link
+                href={"/onboarding"}
+                className={cn(buttonClass)}
+                style={{
+                  backgroundColor: buttonColor,
+                }}
+              >
+                {buttonText}
+              </Link>
+            </SignedIn>
+          </>
         )}
       </div>
     </div>
