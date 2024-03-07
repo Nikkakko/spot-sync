@@ -50,7 +50,14 @@ export async function createProfileAction(values: CreateProfileSchema) {
           bio: cleanText(
             artistBio.artist.bio.content || artistBio.artist.bio.summary
           ),
-          socials: {},
+          socials: {
+            create: {
+              name: "Spotify",
+              url: parsedValues.data.spotifyUrl,
+              icon: "spotify",
+              userId: user.id,
+            },
+          },
         },
       });
 

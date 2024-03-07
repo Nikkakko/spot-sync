@@ -38,11 +38,11 @@ const OnboardHeader: React.FC<OnboardHeaderProps> = ({}) => {
     }
   };
   return (
-    <div className="flex flex-col   max-w-[250px] md:max-w-xs lg:max-w-sm ">
+    <div className="flex flex-col max-w-[250px] md:max-w-xs lg:max-w-sm ">
       {step !== "default" && (
         <Button
           variant="secondary"
-          className="absolute top-12 left-0"
+          className="absolute top-12 left-[30%]"
           onClick={handleBack}
         >
           <Icons.arrowLeft className="w-6 h-6 hover:text-gray-400 transition-all" />

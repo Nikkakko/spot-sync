@@ -6,6 +6,7 @@ import Link from "next/link";
 import { deleteLinksAction } from "@/app/_actions/links";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 interface SocialCardProps extends React.HTMLProps<HTMLDivElement> {
   social: Social;
@@ -20,6 +21,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
   const Icon = Icons[social.icon.toLowerCase()];
   const [isPending, startTransition] = React.useTransition();
   const pathname = usePathname();
+  const { theme } = useTheme();
 
   const handleDelete = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -35,6 +37,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
         social.url.startsWith("http") ? social.url : `https://${social.url}`
       }
       target="_blank"
+      className="font-clash"
     >
       <div
         className={cn(
@@ -45,24 +48,22 @@ const SocialCard: React.FC<SocialCardProps> = ({
         )}
       >
         <div className="bg-linkIconBackgroundColor w-[48px] h-[48px] flex items-center justify-center rounded-lg">
-          <Icon className="fill-linkIconFillColor" />
+          <Icon
+            className={cn(
+              theme === "default" && Icon.displayName === "SpotifyIcon"
+                ? "fill-black"
+                : "fill-linkIconFillColor"
+            )}
+          />
         </div>
         <div className="flex flex-col flex-1">
           <span
             className={cn(
-              "capitalize",
+              "capitalize text-center font-bold",
               basicLink ? "text-black" : "text-primaryTextColor"
             )}
           >
             {social.name}
-          </span>
-          <span
-            className={cn(
-              "text-sm  max-w-fit font-mono",
-              basicLink ? "text-black" : "text-primaryTextColor"
-            )}
-          >
-            {social.url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "")}
           </span>
         </div>
         <div

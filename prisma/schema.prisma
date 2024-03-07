@@ -28,7 +28,7 @@ model UserProfile {
     artistId String
     image     String?
     coverImage String?
-    theme     String @default("DEFAULT")
+    theme     String @default("default")
     bio       String? 
     spotifyUrl String?
     socials   Social[]

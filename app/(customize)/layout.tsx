@@ -14,9 +14,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Shell className="px-2">
-      <CustomizeHeader />
-      {children}
-    </Shell>
+    <div className="w-full bg-secondarybg">
+      <Shell className="px-2 ">
+        <CustomizeHeader />
+        {children}
+      </Shell>
+    </div>
   );
 }

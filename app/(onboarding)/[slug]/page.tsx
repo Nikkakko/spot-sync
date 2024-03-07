@@ -76,7 +76,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto  px-1 ">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto  px-1 font-clash">
       {/* add cover image to bg */}
       <UserProfileInfo
         profile={{

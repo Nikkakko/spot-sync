@@ -9,10 +9,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Shell className="px-2 lg:px-0">
-      <SiteHeader />
-      {children}
-      <SiteFooter />
-    </Shell>
+    <div className="bg-primarybg w-full">
+      <Shell>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </Shell>
+    </div>
   );
 }

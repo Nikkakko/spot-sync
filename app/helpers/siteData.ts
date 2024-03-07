@@ -309,7 +309,7 @@ export const faqCard: faqCardType = [
 
 export const collorPalette = [
   {
-    name: "light",
+    name: "default",
     color: "#a3a3a3",
   },
   {

@@ -19,12 +19,12 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   const { setTheme, theme } = useTheme();
 
   React.useEffect(() => {
-    if (profile?.theme) setTheme(profile?.theme as string);
+    if (profile?.theme) setTheme(profile?.theme.toLowerCase() as string);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile?.theme]);
 
   return (
-    <div className="mt-14 p-1 shadow-md rounded-xl items-start w-full bg-cardBackground  ">
+    <div className="mt-14 p-1 shadow-md rounded-xl items-start w-full bg-cardBackground z-10 ">
       <div className="flex items-start flex-col lg:flex-row">
         <div className="relative w-full lg:w-52 h-[350px] lg:h-52 rounded-lg overflow-hidden">
           <Image
@@ -40,13 +40,6 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
           <h1 className="text-2xl font-bold text-primaryTextColor">
             {profile?.name}
           </h1>
-          <Link
-            href={profile?.spotifyUrl as string}
-            target="_blank"
-            className="text-sm text-secondaryTextColor font-semibold "
-          >
-            View on Spotify
-          </Link>
 
           <div className="py-2">
             {/* seperate bio content with new line */}

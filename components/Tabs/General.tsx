@@ -42,7 +42,7 @@ const General: React.FC<GeneralProps> = ({
   const { control } = useFormContext(); // retrieve all hook methods
 
   return (
-    <div className="flex flex-col w-full pb-20">
+    <div className="flex flex-col w-full pb-20 ">
       <div className="flex items-start flex-col md:flex-row md:items-center gap-4">
         <ImageUpload
           label="Avatar"
@@ -122,20 +122,20 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   isUploading,
   isAvatar,
 }) => {
-  const width = isAvatar ? "120px" : "340px";
+  const width = isAvatar ? "140px" : "340px";
   const height = "120px";
   const placeholderText = isAvatar ? "upload image" : "add cover image";
   const { setIsChanged } = useRef();
 
   return (
-    <div className={cn("flex flex-col", isAvatar ? "w-32" : "w-full")}>
+    <div className={cn("flex flex-col", isAvatar ? "w-[148px]" : "w-full")}>
       <span className="mb-2 text-muted-foreground">{label}</span>
       <div className="relative block border border-black border-opacity-50 rounded-lg p-[1px]">
         <div
           className={cn(
             `relative h-[120px]  rounded-lg overflow-hidden group hover:opacity-50 transition-opacity duration-200 ease-in-out`,
             isUploading && "opacity-50",
-            label === "Avatar" ? "w-30" : "w-full"
+            label === "Avatar" ? "w-36" : "w-full"
           )}
         >
           {imagePreview ? (

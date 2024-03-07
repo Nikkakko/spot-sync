@@ -48,7 +48,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
         <div className="flex items-center space-x-2">
           <SignedOut>
             <SignInButton
-              afterSignInUrl={(profile?.profileUrl as string) || "/onboarding"}
+              afterSignInUrl={(user && profile?.profileUrl) || "/onboarding"}
               mode="modal"
             >
               <Button className={cn("text-white", "bg-black")}>Sign In</Button>
@@ -57,7 +57,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
 
           <SignedIn>
             <Link
-              href={`${profile?.profileUrl || "/onboarding"}`}
+              href={`${(user && profile?.profileUrl) || "/onboarding"}`}
               className={cn(
                 buttonVariants({ variant: "link" }),
                 "hidden md:flex gap-1 uppercase font-bold text-base p-0 w-16 md:w-32 tracking-wider group"

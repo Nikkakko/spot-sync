@@ -2,18 +2,16 @@
 import * as React from "react";
 import { collorPalette } from "@/app/helpers/siteData";
 import { useTheme } from "next-themes";
-
 import { FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useRef } from "@/utils/store";
-import { UseControllerProps, useFormContext } from "react-hook-form";
-import { UpdateFormSchema } from "@/lib/validation";
+
+import { useFormContext } from "react-hook-form";
 
 interface ColorPaletteProps {}
 
 const ColorPalette: React.FC<ColorPaletteProps> = () => {
   const { theme, setTheme } = useTheme();
-  const { control } = useFormContext(); // retrieve all hook methods
+  const { control } = useFormContext(); // retrieve all hook methods\
 
   return (
     <div className="flex items-center gap-2">

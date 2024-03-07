@@ -20,7 +20,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "min-h-screen bg-primarybg  font-sans antialiased",
+            "min-h-screen font-sans antialiased",
             fontClash.variable,
             fontMono.variable
           )}
@@ -31,6 +31,7 @@ export default function RootLayout({
             defaultTheme="light"
             themes={[
               "light",
+              "default",
               "dark",
               "customdark",
               "purple",

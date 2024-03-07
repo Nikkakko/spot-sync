@@ -13,7 +13,7 @@
 
     --link-text-color: 0 0% 0% / 0.7;
     --link-icon-fill-color: 1 0% 100%;
-    --link-icon-background-color: 1 0% 100% / 0.05;
+    --link-icon-background-color: 0 0% 0% / 0.05;
 
     --foreground: 240 10% 3.9%;
 
@@ -75,12 +75,27 @@
     --ring: 240 4.9% 83.9%;
   }
 
+  .default {
+    --body-background-color: 0, 0%, 87%;
+    --card-background-color: 0 0% 100%;
+
+    --primary-text-color: 40 10% 3.9%;
+    --secondary-text-color: 240 3.8% 46.1%;
+
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 0 0% 0% / 0.05;
+  }
+
   .customdark {
     --card-background-color: 0, 0%, 11%;
     --body-background-color: 0, 0%, 6%;
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
 
   .purple {
@@ -89,6 +104,9 @@
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
 
   .green {
@@ -97,6 +115,9 @@
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
 
   .teal {
@@ -105,6 +126,9 @@
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
   .blue {
     --body-background-color: 200, 94%, 34%;
@@ -112,6 +136,9 @@
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
   .crimson {
     --body-background-color: 347, 83%, 41%;
@@ -119,6 +146,9 @@
 
     --primary-text-color: 0, 0%, 100%;
     --secondary-text-color: 0, 0%, 100%, 0.5;
+    --link-text-color: 0 0% 0% / 0.7;
+    --link-icon-fill-color: 1 0% 100%;
+    --link-icon-background-color: 1 0% 100% / 0.05;
   }
 }
 
