@@ -1,3 +1,4 @@
+import { ThemeColor, ThemeType } from "@prisma/client";
 import * as z from "zod";
 
 export const userQuery = z.object({
@@ -22,7 +23,10 @@ export type CreateProfile = z.infer<typeof createProfile>;
 export const updateFormSchema = z.object({
   name: z.string().min(1).max(20),
   bio: z.string().min(1),
-  color: z.string().min(1),
+  theme: z.object({
+    type: z.nativeEnum(ThemeType),
+    color: z.nativeEnum(ThemeColor),
+  }),
 });
 
 export type UpdateFormSchema = z.infer<typeof updateFormSchema>;

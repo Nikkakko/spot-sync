@@ -12,17 +12,22 @@ interface TabsSectionProps {}
 
 const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
   const user = await currentUser();
-  const token = await getToken();
+
   const profile = await db.userProfile.findFirst({
     where: {
       userId: user?.id as string,
     },
+    include: {
+      theme: true,
+    },
   });
+
+  if (!profile) return null;
 
   return (
     <Tabs
       defaultValue={tabValues[0].value.toLowerCase()}
-      className="max-w-lg w-full mx-auto"
+      className="max-w-lg w-full mx-auto py-10"
     >
       <TabsList className="grid w-full grid-cols-3 max-w-[400px] mx-auto ">
         {tabValues.map(tab => (
@@ -41,12 +46,12 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
             <TabsContainer
               tab={tab.value}
               profile={{
-                bio: profile?.bio as string,
-                name: profile?.name as string,
-                profileUrl: profile?.profileUrl as string,
-                image: profile?.image as string,
-                coverImage: profile?.coverImage as string,
-                theme: profile?.theme as string,
+                bio: profile?.bio,
+                name: profile?.name,
+                profileUrl: profile?.profileUrl,
+                image: profile?.image,
+                coverImage: profile?.coverImage,
+                theme: profile?.theme,
               }}
             />
 

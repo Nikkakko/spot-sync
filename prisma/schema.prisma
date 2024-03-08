@@ -10,55 +10,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
-
-
 enum ThemeColor {
   DEFAULT
   CUSTOMDARK
+  CRIMSON
+  PURPLE
+  GREEN
+  BLUE
+  TEAL
 }
 
+enum ThemeType {
+  DEFAULT
+  POP
+  ACOUSTIC
+  PSYCHEDELIC
+}
 
 model UserProfile {
-   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-   userId     String 
-    name       String?
-    profileUrl String
-    artistId String
-    image     String?
-    coverImage String?
-    theme     String @default("default")
-    bio       String? 
-    spotifyUrl String?
-    socials   Social[]
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String
+  name       String?
+  profileUrl String
+  artistId   String
+  image      String?
+  coverImage String?
+  color      String   @default("default")
+  theme      Theme?   @relation(fields: [themeId], references: [id])
+  themeId    String   @unique @db.ObjectId
+  bio        String?
+  spotifyUrl String?
+  socials    Social[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
+//add stripe subscription
 
+model UserSubscription {
+  id                     String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+}
 
 model Social {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  
-  url         String
-  icon        String
-  userId     String 
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
 
-  profile     UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId   String @db.ObjectId
+  url    String
+  icon   String
+  userId String
+
+  profile   UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String      @db.ObjectId
 }
 
+model Theme {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String
 
-// model Theme {
-//   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-//   userId     String
+  color ThemeColor @default(DEFAULT)
+  type  ThemeType  @default(DEFAULT)
 
-//   color       ThemeColor @default(DEFAULT)
-
-//   // relations
-//   profile     UserProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-//   profileId   String @db.ObjectId
-// }
+  UserProfile UserProfile?
+}

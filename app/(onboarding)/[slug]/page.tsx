@@ -43,7 +43,6 @@ export async function generateMetadata(
   }
 
   // return metadata
-
   return {
     title: profile.name,
     description: profile.bio,
@@ -60,6 +59,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
     },
     include: {
       socials: true,
+      theme: true,
     },
   });
 
@@ -84,7 +84,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
           image: profile?.image as string,
           spotifyUrl: profile?.spotifyUrl as string,
           bio: profile?.bio as string,
-          theme: profile?.theme as string,
+          theme: profile?.theme,
         }}
       />
 

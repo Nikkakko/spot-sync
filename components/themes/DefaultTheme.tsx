@@ -1,17 +1,25 @@
 "use client";
 import * as React from "react";
-import ColorPalette from "./ColorPalette";
+import ColorPalette from "../ColorPalette";
 import Image from "next/image";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
+import { cn } from "@/lib/utils";
 
-interface DefaultThemeProps {
+interface DefaultThemeProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
   name: string;
 }
 
-const DefaultTheme: React.FC<DefaultThemeProps> = ({ image, name }) => {
+const DefaultTheme: React.FC<DefaultThemeProps> = ({
+  image,
+  name,
+  ...props
+}) => {
   return (
-    <div className="bg-white flex flex-col gap-2 w-full">
+    <div
+      className={cn("bg-white flex flex-col gap-2 w-full p-2", props.className)}
+      onClick={props.onClick}
+    >
       <div className="bg-bodyBackground  w-full h-auto rounded-sm flex items-start justify-center p-4 py-8">
         <div className="bg-cardBackground flex items-stat gap-2 p-2 rounded-lg w-full">
           <Image

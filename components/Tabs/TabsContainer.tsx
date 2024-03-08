@@ -12,22 +12,25 @@ import { z } from "zod";
 import { updateProfileAction } from "@/app/_actions/userProfile";
 import { useToast } from "../ui/use-toast";
 import { useUploadThing } from "@/utils/uploadthing";
+import { Theme } from "@prisma/client";
+import { useThemeChoose } from "@/store/themeStore";
 
 interface TabsContainerProps {
   tab: string;
   profile: {
-    bio: string;
-    name: string;
-    profileUrl: string;
-    image: string;
-    coverImage: string;
-    theme: string;
+    bio: string | null;
+    name: string | null;
+    profileUrl: string | null;
+    image: string | null;
+    coverImage: string | null;
+    theme: Theme | null;
   };
 }
 
 const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
   const { theme } = useTheme();
   const { ref, setIsSubmitting, setIsChanged } = useRef();
+  const { selectedTheme, setSelectedTheme } = useThemeChoose();
   const { toast } = useToast();
 
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
@@ -69,7 +72,10 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
     defaultValues: {
       name: profile.name || "",
       bio: profile.bio || "",
-      color: profile.theme || "",
+      theme: {
+        color: selectedTheme.color,
+        type: selectedTheme.type,
+      },
     },
   });
 
@@ -157,6 +163,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
           <Themes
             image={profile?.image as string}
             name={profile?.name as string}
+            coverImage={profile?.coverImage as string}
+            bio={profile?.bio as string}
           />
         )}
       </form>

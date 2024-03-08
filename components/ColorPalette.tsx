@@ -6,15 +6,18 @@ import { FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils";
+import { useThemeChoose } from "@/store/themeStore";
 
-interface ColorPaletteProps {}
+interface ColorPaletteProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const ColorPalette: React.FC<ColorPaletteProps> = () => {
-  const { theme, setTheme } = useTheme();
+const ColorPalette: React.FC<ColorPaletteProps> = ({ ...props }) => {
+  const { setTheme, theme } = useTheme();
+  const { setSelectedTheme } = useThemeChoose();
   const { control } = useFormContext(); // retrieve all hook methods\
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={cn("flex items-center gap-2", props.className)}>
       <FormField
         control={control}
         name="color"

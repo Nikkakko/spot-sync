@@ -30,6 +30,7 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
   const { setArtist, artists, step, setStep, selectedArtist } =
     useUserInfoStore();
   const { toast } = useToast();
+  const [isPending, startTransition] = React.useTransition();
   const router = useRouter();
 
   const form = useForm<UserQuery>({
@@ -49,6 +50,8 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
     setStep("selectArtist");
   }
 
+  const isLoading = form.formState.isSubmitting || isPending;
+
   async function handleCreateProfileCase(
     values: UserQuery,
     selectedArtist: Item | null,
@@ -62,10 +65,26 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
       spotifyUrl: selectedArtist?.external_urls.spotify as string,
       token,
     };
-    await createProfileAction(profileValues);
 
-    router.push(`/${stringToSlug(profileValues.profileUrl)}`);
-    form.reset();
+    try {
+      startTransition(async () => {
+        const userProfile = await createProfileAction(profileValues);
+        if (userProfile?.success) {
+          toast({
+            title: "Profile Created",
+            description: "Your profile has been created successfully",
+          });
+          form.reset();
+          router.push(`/${stringToSlug(profileValues.profileUrl)}`);
+        }
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description:
+          "An error occurred while creating your profile. Please try again.",
+      });
+    }
   }
 
   async function onSubmit(values: UserQuery) {
@@ -76,7 +95,6 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
           break;
         case "selectArtist":
           setStep("createProfile");
-
           break;
         case "createProfile":
           await handleCreateProfileCase(values, selectedArtist, token);
@@ -147,14 +165,8 @@ const UserForm: React.FC<UserFormProps> = ({ token }) => {
           />
         )}
 
-        <Button
-          type="submit"
-          disabled={form.formState.isSubmitting}
-          className="w-full"
-        >
-          {form.formState.isSubmitting && (
-            <Icons.loader className="w-4 h-4 mr-2 animate-spin" />
-          )}
+        <Button type="submit" disabled={isLoading} className="w-full">
+          {isLoading && <Icons.loader className="w-4 h-4 mr-2 animate-spin" />}
 
           {step !== "createProfile" ? "Next" : "Create Profile"}
         </Button>
