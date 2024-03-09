@@ -33,11 +33,9 @@ const SocialCard: React.FC<SocialCardProps> = ({
     });
   };
 
-  const checktheme =
-    theme !== undefined &&
-    theme === "default" &&
-    Icon.displayName === "SpotifyIcon";
+  const checktheme = theme !== undefined && Icon.displayName === "SpotifyIcon";
 
+  console.log(theme, "checktheme");
   React.useEffect(() => {
     if (social) setIsLoading(false);
 
