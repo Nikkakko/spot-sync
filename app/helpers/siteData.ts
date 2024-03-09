@@ -6,6 +6,7 @@ import {
   Slide5,
   Slide6,
 } from "@/public/assets";
+import { ThemeColor } from "@prisma/client";
 export const stickers = [
   {
     id: 1,
@@ -307,36 +308,41 @@ export const faqCard: faqCardType = [
   },
 ];
 
-export const collorPalette = [
+type ColorPalletteProps = {
+  name: ThemeColor;
+  color: string;
+}[];
+
+export const collorPalette: ColorPalletteProps = [
   {
-    name: "default",
+    name: "DEFAULT",
     color: "#a3a3a3",
   },
   {
-    name: "customdark",
+    name: "CUSTOMDARK",
     color: "#1d1d1d",
   },
   {
-    name: "crimson",
+    name: "CRIMSON",
     color: "#be123c",
   },
   {
-    name: "purple",
+    name: "PURPLE",
     color: "#8a2be2",
   },
 
   {
-    name: "green",
+    name: "GREEN",
     color: "#4d7c0f",
   },
 
   {
-    name: "teal",
+    name: "TEAL",
     color: "#047857",
   },
 
   {
-    name: "blue",
+    name: "BLUE",
     color: "#0369A1",
   },
 ];
@@ -438,3 +444,6 @@ export const heroCards: HeroCardProps[] = [
     href: "/kayakata",
   },
 ];
+
+export const apiResponseText =
+  "User-contributed text is available under the Creative Commons By-SA License; additional terms may apply.";

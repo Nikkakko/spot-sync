@@ -58,6 +58,12 @@ export async function createProfileAction(values: CreateProfileSchema) {
               userId: user.id,
             },
           },
+
+          theme: {
+            create: {
+              userId: user.id,
+            },
+          },
         },
       });
 
@@ -99,7 +105,13 @@ export async function updateProfileAction({
     },
   });
 
-  if (!userExists) {
+  const userTheme = await db.theme.findFirst({
+    where: {
+      userId: user.id,
+    },
+  });
+
+  if (!userExists || !userTheme) {
     return {
       success: false,
       message: "Profile not found",
@@ -119,7 +131,19 @@ export async function updateProfileAction({
         bio: parsedValues.data.bio,
         image: image,
         coverImage: coverImage,
-        theme: parsedValues.data.color,
+        theme: {
+          update: {
+            where: {
+              userId: user.id,
+              id: userTheme.id,
+            },
+
+            data: {
+              color: parsedValues.data.theme.color,
+              type: parsedValues.data.theme.type,
+            },
+          },
+        },
       },
     });
 

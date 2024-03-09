@@ -22,6 +22,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album }) => {
             width={200}
             height={200}
             className="rounded-md"
+            priority
           />
           <div className="flex flex-col px-1 ">
             <p className="text-sm font-bold mt-2 capitalize text-primaryTextColor">

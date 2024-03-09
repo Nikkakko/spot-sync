@@ -12,23 +12,28 @@ import { z } from "zod";
 import { updateProfileAction } from "@/app/_actions/userProfile";
 import { useToast } from "../ui/use-toast";
 import { useUploadThing } from "@/utils/uploadthing";
+import { Theme } from "@prisma/client";
+import { useThemeChoose } from "@/store/themeStore";
+import { useRouter } from "next/navigation";
 
 interface TabsContainerProps {
   tab: string;
   profile: {
-    bio: string;
-    name: string;
-    profileUrl: string;
-    image: string;
-    coverImage: string;
-    theme: string;
+    bio: string | null;
+    name: string | null;
+    profileUrl: string | null;
+    image: string | null;
+    coverImage: string | null;
+    theme: Theme | null;
   };
 }
 
 const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { ref, setIsSubmitting, setIsChanged } = useRef();
+  const { selectedTheme, setSelectedTheme } = useThemeChoose();
   const { toast } = useToast();
+  const router = useRouter();
 
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
   const [coverPreview, setCoverPreview] = React.useState<string | null>(null);
@@ -69,9 +74,18 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
     defaultValues: {
       name: profile.name || "",
       bio: profile.bio || "",
-      color: profile.theme || "",
+      theme: {
+        color: profile?.theme?.color || "DEFAULT",
+        type: profile?.theme?.type || "DEFAULT",
+      },
     },
   });
+
+  React.useEffect(() => {
+    setTheme(profile?.theme?.color.toLowerCase() || "default");
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile, form]);
 
   async function onSubmit(values: z.infer<typeof updateFormSchema>) {
     const hasChanges =
@@ -105,6 +119,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
       setIsSubmitting(false);
       setIsChanged(false);
       form.reset();
+      router.push(`/${profile.profileUrl}`);
+      router.refresh();
     }
   }
 
@@ -157,6 +173,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
           <Themes
             image={profile?.image as string}
             name={profile?.name as string}
+            coverImage={profile?.coverImage as string}
           />
         )}
       </form>

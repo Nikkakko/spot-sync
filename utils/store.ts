@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import * as React from "react";
-import { UseControllerProps } from "react-hook-form";
-import { UpdateFormSchema } from "@/lib/validation";
 
 interface refStore {
   ref: React.RefObject<HTMLFormElement>;

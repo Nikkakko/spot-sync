@@ -7,6 +7,7 @@ import { deleteLinksAction } from "@/app/_actions/links";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import SocialCardLoader from "./Loaders/SocialCardLoader";
 
 interface SocialCardProps extends React.HTMLProps<HTMLDivElement> {
   social: Social;
@@ -20,6 +21,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
 }) => {
   const Icon = Icons[social.icon.toLowerCase()];
   const [isPending, startTransition] = React.useTransition();
+  const [isLoading, setIsLoading] = React.useState(true);
   const pathname = usePathname();
   const { theme } = useTheme();
 
@@ -31,10 +33,18 @@ const SocialCard: React.FC<SocialCardProps> = ({
     });
   };
 
-  const checktheme =
-    theme !== undefined &&
-    theme === "default" &&
-    Icon.displayName === "SpotifyIcon";
+  const checktheme = theme !== undefined && Icon.displayName === "SpotifyIcon";
+
+  console.log(theme, "checktheme");
+  React.useEffect(() => {
+    if (social) setIsLoading(false);
+
+    return () => {
+      setIsLoading(true);
+    };
+  }, [social]);
+
+  if (isLoading) return <SocialCardLoader />;
 
   return (
     <Link
@@ -52,7 +62,12 @@ const SocialCard: React.FC<SocialCardProps> = ({
           props.className
         )}
       >
-        <div className="bg-linkIconBackgroundColor w-[48px] h-[48px] flex items-center justify-center rounded-lg">
+        <div
+          className={cn(
+            "w-[48px] h-[48px] flex items-center justify-center rounded-lg",
+            basicLink ? "bg-white/50" : "bg-linkIconBackgroundColor"
+          )}
+        >
           <Icon
             className={cn(checktheme ? "fill-black" : "fill-linkIconFillColor")}
           />
@@ -60,7 +75,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
         <div className="flex flex-col flex-1">
           <span
             className={cn(
-              "capitalize text-center font-bold",
+              "capitalize text-center font-semibold",
               basicLink ? "text-black" : "text-primaryTextColor"
             )}
           >
