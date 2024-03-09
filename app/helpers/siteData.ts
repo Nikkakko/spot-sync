@@ -444,3 +444,6 @@ export const heroCards: HeroCardProps[] = [
     href: "/kayakata",
   },
 ];
+
+export const apiResponseText =
+  "User-contributed text is available under the Creative Commons By-SA License; additional terms may apply.";

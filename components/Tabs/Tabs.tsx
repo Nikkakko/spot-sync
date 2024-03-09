@@ -1,13 +1,10 @@
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import General from "./General";
 import Links from "./Links";
 import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
-import { getArtistTopTracks, getToken } from "@/lib/spotify";
 import { tabValues } from "@/app/helpers/siteData";
 import TabsContainer from "./TabsContainer";
-import Nossr from "../nossr";
 
 interface TabsSectionProps {}
 

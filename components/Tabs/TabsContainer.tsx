@@ -14,6 +14,7 @@ import { useToast } from "../ui/use-toast";
 import { useUploadThing } from "@/utils/uploadthing";
 import { Theme } from "@prisma/client";
 import { useThemeChoose } from "@/store/themeStore";
+import { useRouter } from "next/navigation";
 
 interface TabsContainerProps {
   tab: string;
@@ -28,10 +29,11 @@ interface TabsContainerProps {
 }
 
 const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { ref, setIsSubmitting, setIsChanged } = useRef();
   const { selectedTheme, setSelectedTheme } = useThemeChoose();
   const { toast } = useToast();
+  const router = useRouter();
 
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
   const [coverPreview, setCoverPreview] = React.useState<string | null>(null);
@@ -73,11 +75,15 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
       name: profile.name || "",
       bio: profile.bio || "",
       theme: {
-        color: selectedTheme.color,
-        type: selectedTheme.type,
+        color: profile?.theme?.color || "DEFAULT",
+        type: profile?.theme?.type || "DEFAULT",
       },
     },
   });
+
+  React.useEffect(() => {
+    setTheme(profile?.theme?.color.toLowerCase() || "default");
+  }, [profile, form, setTheme, setSelectedTheme]);
 
   async function onSubmit(values: z.infer<typeof updateFormSchema>) {
     const hasChanges =
@@ -111,6 +117,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
       setIsSubmitting(false);
       setIsChanged(false);
       form.reset();
+      router.push(`/${profile.profileUrl}`);
+      router.refresh();
     }
   }
 
@@ -136,6 +144,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
     profile.coverImage,
     setIsChanged,
   ]);
+
+  console.log(form.watch("theme"));
 
   return (
     <Form {...form}>
@@ -164,7 +174,6 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
             image={profile?.image as string}
             name={profile?.name as string}
             coverImage={profile?.coverImage as string}
-            bio={profile?.bio as string}
           />
         )}
       </form>

@@ -5,14 +5,16 @@ import { truncate } from "@/utils";
 import { Theme } from "@prisma/client";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import Link from "next/link";
+
 import * as React from "react";
-import { Skeleton } from "./ui/skeleton";
+
 import UserProfileLoader from "./Loaders/UserProfileLoader";
+import { apiResponseText } from "@/app/helpers/siteData";
 
 interface UserProfileProps {
   name: string;
   image: string;
+  coverImage: string;
   spotifyUrl: string;
   bio: string;
   theme: Theme | null;
@@ -27,20 +29,18 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   const { selectedTheme, setSelectedTheme } = useThemeChoose();
   const [isLoading, setIsLoading] = React.useState(true);
 
-  // React.useEffect(() => {
-  //   if (profile?.theme?.type === "DEFAULT") {
-  //     setSelectedTheme({ color: "DEFAULT", type: "DEFAULT" });
-  //     setTheme(profile.theme.color.toLowerCase());
-  //   } else {
-  //     if (!profile?.theme) return;
-  //     setSelectedTheme({
-  //       color: profile.theme.color,
-  //       type: profile.theme.type,
-  //     });
-  //     setTheme(profile.theme.color.toLowerCase());
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [profile?.theme]);
+  React.useEffect(() => {
+    if (profile.theme) {
+      setSelectedTheme(profile.theme);
+      setTheme(profile.theme.color.toLowerCase());
+    }
+
+    return () => {
+      setSelectedTheme({ color: "DEFAULT", type: "DEFAULT" });
+      setTheme("default");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.theme]);
 
   const currentType = selectedTheme.type;
 
@@ -59,7 +59,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   return (
     <div
       className={cn(
-        "mt-14 p-1 shadow-md rounded-xl items-start w-full  z-10",
+        "relative mt-14 p-1 shadow-md rounded-xl items-start w-full  z-10",
         currentType === "DEFAULT" && "bg-cardBackground",
         currentType === "POP" && "bg-white"
       )}
@@ -73,8 +73,8 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
       >
         <div
           className={cn(
-            "relative w-full overflow-hidden",
-            currentType === "POP" && "rounded-full  w-32 h-32 mt-4 shadow-md",
+            "relative w-full overflow-hidden z-20",
+            currentType === "POP" && "rounded-full  w-36 h-36 mt-4 shadow-md",
             currentType === "DEFAULT" && "rounded-lg lg:w-52 h-[350px] lg:h-52"
           )}
         >
@@ -85,21 +85,41 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             quality={100}
             className="object-cover object-top "
+            priority
           />
         </div>
-        <div className="flex flex-col flex-1 lg:px-4">
+        <div className="flex flex-col flex-1 lg:px-4 z-20">
           <h1 className="text-2xl font-bold text-primaryTextColor">
             {profile?.name}
           </h1>
 
           <div className="py-2">
             {/* seperate bio content with new line */}
-            <p className="text-secondaryTextColor font-light">
-              {truncate(profile?.bio as string, 200)}
+            <p
+              className={cn(
+                "font-light font-mono text-sm",
+                currentType !== "DEFAULT" && profile?.coverImage
+                  ? "text-black"
+                  : "text-secondaryTextColor"
+              )}
+            >
+              {/* remove apiResponseText from bio */}
+              {profile?.bio?.includes(apiResponseText) &&
+                profile?.bio?.replace(apiResponseText, "")}
             </p>
           </div>
         </div>
       </div>
+
+      {/* add cover image to bg */}
+      {profile?.coverImage && selectedTheme.type !== "DEFAULT" && (
+        <Image
+          src={profile?.coverImage}
+          alt={profile?.name}
+          layout="fill"
+          className="absolute inset-0 w-full h-full object-cover rounded-xl z-0 filter blur-lg"
+        />
+      )}
     </div>
   );
 };

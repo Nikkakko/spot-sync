@@ -84,6 +84,7 @@ async function ProfilePage({ params: { slug } }: PageProps) {
           spotifyUrl: profile?.spotifyUrl as string,
           bio: profile?.bio as string,
           theme: profile?.theme,
+          coverImage: profile?.coverImage as string,
         }}
       />
 
