@@ -77,7 +77,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
         <div className="flex flex-col flex-1">
           <span
             className={cn(
-              "capitalize text-center font-bold",
+              "capitalize text-center font-semibold",
               basicLink ? "text-black" : "text-primaryTextColor"
             )}
           >
