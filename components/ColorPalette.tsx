@@ -16,6 +16,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ ...props }) => {
   const { setSelectedTheme } = useThemeChoose();
   const { control } = useFormContext(); // retrieve all hook methods\
 
+  // console.log(theme);
+
   return (
     <div className={cn("flex items-center gap-2", props.className)}>
       <FormField
@@ -29,7 +31,7 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ ...props }) => {
                 {...field}
                 onValueChange={value => {
                   field.onChange(value);
-                  setTheme(value);
+                  setTheme(value.toLowerCase());
                 }}
                 value={field.value}
                 className="flex items-center gap-2"

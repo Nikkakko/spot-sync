@@ -2,17 +2,15 @@ import { getArtistAlbums, getArtistTopTracks, getToken } from "@/lib/spotify";
 import * as React from "react";
 import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
-
 import { notFound, redirect } from "next/navigation";
-
 import CommandBar from "@/components/CommandBar";
 import SocialCard from "@/components/SocialCard";
-
 import GeneralTabs from "@/components/Tabs/GeneralTabs";
-
 import AlbumLoader from "@/components/Loaders/AlbumLoader";
 import UserProfileInfo from "@/components/UserProfileInfo";
 import type { Metadata, ResolvingMetadata } from "next";
+import Nossr from "@/components/nossr";
+import SocialCardLoader from "@/components/Loaders/SocialCardLoader";
 
 interface PageProps {
   params: {
@@ -76,8 +74,9 @@ async function ProfilePage({ params: { slug } }: PageProps) {
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto  px-1 font-clash">
+    <div className="relative flex flex-col justify-center items-center w-full pb-20 max-w-3xl mx-auto px-1 font-clash">
       {/* add cover image to bg */}
+
       <UserProfileInfo
         profile={{
           name: profile?.name as string,
@@ -95,11 +94,12 @@ async function ProfilePage({ params: { slug } }: PageProps) {
 
       {profile?.socials?.length > 0 &&
         profile?.socials.map(social => (
-          <React.Suspense fallback={<div>Loading...</div>} key={social.id}>
-            <section className="mt-4 w-full grid grid-cols1 gap-1 ">
-              <SocialCard social={social} />
-            </section>
-          </React.Suspense>
+          <section
+            className="mt-4 w-full grid grid-cols1 gap-1 "
+            key={social.id}
+          >
+            <SocialCard social={social} />
+          </section>
         ))}
 
       {user?.id === profile?.userId && <CommandBar />}

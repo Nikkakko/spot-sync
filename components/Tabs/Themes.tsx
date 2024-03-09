@@ -1,11 +1,10 @@
 "use client";
 import * as React from "react";
 import DefaultTheme from "../themes/DefaultTheme";
-import { useThemeChoose } from "@/store/themeStore";
 import PopTheme from "../themes/PopTheme";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import ColorPalette from "../ColorPalette";
+import { useThemeChoose } from "@/store/themeStore";
 
 interface ThemesProps {
   image: string;

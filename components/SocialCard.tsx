@@ -7,6 +7,7 @@ import { deleteLinksAction } from "@/app/_actions/links";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import SocialCardLoader from "./Loaders/SocialCardLoader";
 
 interface SocialCardProps extends React.HTMLProps<HTMLDivElement> {
   social: Social;
@@ -20,6 +21,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
 }) => {
   const Icon = Icons[social.icon.toLowerCase()];
   const [isPending, startTransition] = React.useTransition();
+  const [isLoading, setIsLoading] = React.useState(true);
   const pathname = usePathname();
   const { theme } = useTheme();
 
@@ -35,6 +37,16 @@ const SocialCard: React.FC<SocialCardProps> = ({
     theme !== undefined &&
     theme === "default" &&
     Icon.displayName === "SpotifyIcon";
+
+  React.useEffect(() => {
+    if (social) setIsLoading(false);
+
+    return () => {
+      setIsLoading(true);
+    };
+  }, [social]);
+
+  if (isLoading) return <SocialCardLoader />;
 
   return (
     <Link

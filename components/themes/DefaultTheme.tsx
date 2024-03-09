@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import ColorPalette from "../ColorPalette";
 import Image from "next/image";

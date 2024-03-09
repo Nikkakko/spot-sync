@@ -7,6 +7,7 @@ import db from "@/lib/db";
 import { getArtistTopTracks, getToken } from "@/lib/spotify";
 import { tabValues } from "@/app/helpers/siteData";
 import TabsContainer from "./TabsContainer";
+import Nossr from "../nossr";
 
 interface TabsSectionProps {}
 
@@ -54,7 +55,6 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 theme: profile?.theme,
               }}
             />
-
             {tab.value === "Links" && <Links />}
           </TabsContent>
         );

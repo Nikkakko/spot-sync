@@ -78,7 +78,7 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
           )}
         </div>
       </div>
-      <audio className="hidden" src={track.preview_url} ref={audiRef} />
+      <audio className="hidden w-0" src={track.preview_url} ref={audiRef} />
     </div>
   );
 };
