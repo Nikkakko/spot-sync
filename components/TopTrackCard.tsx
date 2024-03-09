@@ -37,6 +37,7 @@ const TopTrackCard: React.FC<TopTrackCardProps> = ({ track }) => {
           width={200}
           height={200}
           className="rounded-md"
+          priority
         />
 
         <div className="flex flex-col px-1 ">
