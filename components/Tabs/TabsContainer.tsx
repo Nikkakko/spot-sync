@@ -145,8 +145,6 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
     setIsChanged,
   ]);
 
-  console.log(form.watch("theme"));
-
   return (
     <Form {...form}>
       <form
