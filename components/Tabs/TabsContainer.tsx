@@ -83,7 +83,9 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
 
   React.useEffect(() => {
     setTheme(profile?.theme?.color.toLowerCase() || "default");
-  }, [profile, form, setTheme, setSelectedTheme]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile, form]);
 
   async function onSubmit(values: z.infer<typeof updateFormSchema>) {
     const hasChanges =

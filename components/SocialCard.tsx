@@ -64,7 +64,12 @@ const SocialCard: React.FC<SocialCardProps> = ({
           props.className
         )}
       >
-        <div className="bg-linkIconBackgroundColor w-[48px] h-[48px] flex items-center justify-center rounded-lg">
+        <div
+          className={cn(
+            "w-[48px] h-[48px] flex items-center justify-center rounded-lg",
+            basicLink ? "bg-white/50" : "bg-linkIconBackgroundColor"
+          )}
+        >
           <Icon
             className={cn(checktheme ? "fill-black" : "fill-linkIconFillColor")}
           />
