@@ -15,16 +15,45 @@ import { cn } from "@/lib/utils";
 import { useModalStore } from "./ModalStore";
 import { Separator } from "../ui/separator";
 import { PriceProps, buttonPrices, subItems } from "@/app/helpers/siteData";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useToast } from "../ui/use-toast";
+import { Icons } from "../icons";
 
 interface SubscriptionModalProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ ...props }) => {
   const { isOpen, type, onClose } = useModalStore();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
   const [selectedPlan, setSelectedPlan] = React.useState<PriceProps>(
     buttonPrices[0]
   );
 
   const isSubOpen = isOpen && type === "subscription";
+
+  async function onPayment() {
+    try {
+      setIsLoading(true);
+      const response = await axios.post("/api/stripe/subscription", {
+        price: selectedPlan.price,
+        interval: selectedPlan.interval,
+      });
+
+      // Redirect the user to the Stripe checkout session URL
+      if (response.status === 200) {
+        router.push(response.data.url);
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <Dialog open={isSubOpen} onOpenChange={onClose}>
       <DialogContent
@@ -76,14 +105,24 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ ...props }) => {
               )}
               onClick={() => setSelectedPlan(item)}
             >
-              <p className="text-base font-clash ">{item.title}</p>
+              <p className="text-base font-clash ">{item.interval}</p>
               <p className="text-base font-clash ">${item.price}</p>
             </div>
           ))}
         </div>
 
         <DialogFooter>
-          <Button>Take My Money!</Button>
+          <Button
+            className=""
+            size="lg"
+            onClick={onPayment}
+            disabled={isLoading}
+          >
+            {isLoading && (
+              <Icons.loader size={24} className="mr-2 animate-spin" />
+            )}
+            Take My Money!
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import db from "@/lib/db";
 import { Icons } from "../icons";
 import CustomUserButton from "../modals/CustomUserButton";
+import { checkSubscription } from "@/lib/subscription";
 
 interface SiteHeaderProps {}
 
@@ -25,6 +26,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
       userId: user?.id as string,
     },
   });
+
+  const isPro = await checkSubscription();
 
   return (
     <header className="z-50 w-full h-16 font-clash">
@@ -76,6 +79,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
               userProfileImage={user?.imageUrl}
               userName={user?.firstName + " " + user?.lastName}
               profileUrl={profile?.profileUrl}
+              isPro={isPro}
             />
           </SignedIn>
         </div>

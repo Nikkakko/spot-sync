@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs";
 import db from "@/lib/db";
 import { tabValues } from "@/app/helpers/siteData";
 import TabsContainer from "./TabsContainer";
+import { checkSubscription } from "@/lib/subscription";
 
 interface TabsSectionProps {}
 
@@ -20,11 +21,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
     },
   });
 
-  const userSub = await db.userSubscription.findFirst({
-    where: {
-      userId: user?.id as string,
-    },
-  });
+  const isPro = await checkSubscription();
 
   if (!profile) return null;
 
@@ -57,7 +54,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 coverImage: profile?.coverImage,
                 theme: profile?.theme,
               }}
-              userSub={!!userSub}
+              isPro={isPro}
             />
             {tab.value === "Links" && <Links />}
           </TabsContent>

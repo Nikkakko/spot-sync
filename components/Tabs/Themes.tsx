@@ -3,28 +3,18 @@ import * as React from "react";
 import DefaultTheme from "../themes/DefaultTheme";
 import PopTheme from "../themes/PopTheme";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { useThemeChoose } from "@/store/themeStore";
 import { FormField } from "../ui/form";
 import { useFormContext } from "react-hook-form";
-import { ThemeColor, ThemeType } from "@prisma/client";
-import { on } from "events";
-import SubscriptionModal from "../modals/SubscriptionModal";
 import { useModalStore } from "../modals/ModalStore";
 
 interface ThemesProps {
   image: string;
   name: string;
   coverImage: string;
-  userSub: boolean;
+  isPro: boolean;
 }
 
-const Themes: React.FC<ThemesProps> = ({
-  image,
-  name,
-  coverImage,
-  userSub,
-}) => {
+const Themes: React.FC<ThemesProps> = ({ image, name, coverImage, isPro }) => {
   const { control } = useFormContext();
   const { onOpen } = useModalStore();
 
@@ -70,7 +60,7 @@ const Themes: React.FC<ThemesProps> = ({
                   field.value.type === "POP" ? "border-black" : "border-white"
                 )}
                 onClick={async e => {
-                  if (!userSub) {
+                  if (!isPro) {
                     return onOpen("subscription");
                   }
                   e.stopPropagation();

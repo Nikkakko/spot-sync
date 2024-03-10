@@ -479,11 +479,11 @@ export const subItems: SubscriptionItemProps[] = [
 ] as const;
 
 export const buttonPrices: PriceProps[] = [
-  { price: 28, title: "Yearly" },
-  { price: 4, title: "Monthly" },
+  { price: 28, interval: "Yearly" },
+  { price: 4, interval: "Monthly" },
 ] as const;
 
 export type PriceProps = {
   price: number;
-  title: "Yearly" | "Monthly";
+  interval: "Yearly" | "Monthly";
 };

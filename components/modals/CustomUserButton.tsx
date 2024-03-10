@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button, buttonVariants } from "../ui/button";
-import { FreeIcon, Icons } from "../icons";
+import { FreeIcon, Icons, ProIcon } from "../icons";
 import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +21,7 @@ interface CustomUserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   userProfileImage: string | undefined;
   userName: string | undefined;
   profileUrl: string | undefined;
+  isPro: boolean | undefined;
 }
 
 const CustomUserButton: React.FC<CustomUserButtonProps> = ({
@@ -28,6 +29,7 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
   userProfileImage,
   userName,
   profileUrl,
+  isPro,
   ...props
 }) => {
   return (
@@ -68,14 +70,18 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
         </DialogHeader>
 
         <DialogFooter className="flex space-y-2">
-          <FreeIcon />
+          {isPro ? <ProIcon /> : <FreeIcon />}
+
           <DialogDescription className="text-secondaryText font-semibold md:m-0">
-            {`  You're on the free plan which allows you to create your Spot-Sync for
-            free, add and customize your links, show off your music and more.`}
+            {isPro
+              ? `You're on the Pro plan which allows you to select any Theme,
+            add and customize your links, show off your music and more.`
+              : `You're on the free plan which allows you to create your Spot-Sync for
+              free, add and customize your links, show off your music and more.`}
           </DialogDescription>
 
           <Button variant="default" className="w-full capitalize">
-            Go Pro
+            {isPro ? "Manage Subscription" : "Upgrade to Pro"}
           </Button>
           <Link
             className={cn(buttonVariants({ variant: "outline" }), "md:hidden")}
