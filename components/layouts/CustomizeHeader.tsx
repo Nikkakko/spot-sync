@@ -5,7 +5,6 @@ import { useRef } from "@/utils/store";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Icons } from "../icons";
-import Link from "next/link";
 
 interface CustomizeHeaderProps {}
 
@@ -25,12 +24,10 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
   return (
     <header className="sticky top-0  py-2  backdrop-filter backdrop-blur-sm z-10 font-clash ">
       <div className="flex items-center justify-between container mx-auto px-2">
-        <Link
-          href="/"
-          className={cn(
-            "font-semibold text-base flex gap-1 group",
-            buttonVariants({ variant: "link" })
-          )}
+        <Button
+          onClick={() => router.back()}
+          className={cn("font-semibold text-base flex gap-1 group")}
+          variant="link"
         >
           <Icons.moveLeft
             className="w-5 h-5 text-black/50 group-hover:text-black 
@@ -38,7 +35,7 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
           "
           />
           Exit
-        </Link>
+        </Button>
         <h1 className="text-sm md:text-xl font-semibold text-muted-foreground flex gap-1">
           Customize
         </h1>
