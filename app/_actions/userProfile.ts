@@ -10,6 +10,7 @@ import { currentUser } from "@clerk/nextjs";
 import { getArtistAlbums, getArtistBio } from "@/lib/spotify";
 import { cleanText, stringToSlug } from "@/lib/utils";
 import { artisAlbumType } from "@/types";
+import { checkSubscription } from "@/lib/subscription";
 
 export async function createProfileAction(values: CreateProfileSchema) {
   const user = await currentUser();
@@ -91,6 +92,7 @@ export async function updateProfileAction({
   coverImage: string;
 }) {
   const user = await currentUser();
+  const checkSub = await checkSubscription();
 
   if (!user) {
     return {
@@ -121,6 +123,13 @@ export async function updateProfileAction({
   const parsedValues = updateFormSchema.safeParse(values);
 
   if (parsedValues.success) {
+    if (parsedValues.data.theme.type !== "DEFAULT" && !checkSub) {
+      return {
+        sub: false,
+        message: "You need to be subscribed to change the theme",
+      };
+    }
+
     await db.userProfile.update({
       where: {
         userId: user.id,

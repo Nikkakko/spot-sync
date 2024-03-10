@@ -20,6 +20,12 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
     },
   });
 
+  const userSub = await db.userSubscription.findFirst({
+    where: {
+      userId: user?.id as string,
+    },
+  });
+
   if (!profile) return null;
 
   return (
@@ -51,6 +57,7 @@ const TabsSection: React.FC<TabsSectionProps> = async ({}) => {
                 coverImage: profile?.coverImage,
                 theme: profile?.theme,
               }}
+              userSub={!!userSub}
             />
             {tab.value === "Links" && <Links />}
           </TabsContent>
