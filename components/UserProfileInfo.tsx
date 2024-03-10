@@ -31,7 +31,10 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
 
   React.useEffect(() => {
     if (profile.theme) {
-      setSelectedTheme(profile.theme);
+      setSelectedTheme({
+        color: profile.theme.color,
+        type: profile.theme.type,
+      });
       setTheme(profile.theme.color.toLowerCase());
     }
 

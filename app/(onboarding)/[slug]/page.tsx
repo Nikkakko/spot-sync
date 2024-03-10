@@ -93,15 +93,12 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         {(getAlbums?.items?.length ?? 0) === 0 && <AlbumLoader />}
       </React.Suspense>
 
-      {profile?.socials?.length > 0 &&
-        profile?.socials.map(social => (
-          <section
-            className="mt-4 w-full grid grid-cols1 gap-1 "
-            key={social.id}
-          >
-            <SocialCard social={social} />
-          </section>
-        ))}
+      <section className="w-full grid grid-cols-1 gap-2 pt-8 ">
+        {profile?.socials?.length > 0 &&
+          profile?.socials.map(social => (
+            <SocialCard social={social} key={social.id} />
+          ))}
+      </section>
 
       {user?.id === profile?.userId && <CommandBar />}
 
