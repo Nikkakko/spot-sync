@@ -62,7 +62,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
   return (
     <div
       className={cn(
-        "relative mt-14 p-1 shadow-md rounded-xl items-start w-full  z-10",
+        "relative mt-14 p-1 overflow-hidden rounded-xl items-start w-full  z-10",
         currentType === "DEFAULT" && "bg-cardBackground",
         currentType === "POP" && "bg-white"
       )}
@@ -77,8 +77,9 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
         <div
           className={cn(
             "relative w-full overflow-hidden z-20",
-            currentType === "POP" && "rounded-full  w-36 h-36 mt-4 shadow-md",
-            currentType === "DEFAULT" && "rounded-lg lg:w-52 h-[350px] lg:h-52"
+            currentType === "POP" &&
+              "rounded-full  w-36 h-36 mt-4 ring-4 ring-white",
+            currentType === "DEFAULT" && "rounded-lg lg:w-52 h-[350px] lg:h-52 "
           )}
         >
           <Image
@@ -87,12 +88,20 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             quality={100}
-            className="object-cover object-top "
+            className="object-cover"
             priority
           />
         </div>
+
         <div className="flex flex-col flex-1 lg:px-4 z-20">
-          <h1 className="text-2xl font-bold text-primaryTextColor">
+          <h1
+            className={cn(
+              "text-2xl font-bold ",
+              currentType !== "DEFAULT"
+                ? "text-primary"
+                : "text-primaryTextColor"
+            )}
+          >
             {profile?.name}
           </h1>
 
@@ -102,7 +111,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
               className={cn(
                 "font-light font-mono text-sm",
                 currentType !== "DEFAULT" && profile?.coverImage
-                  ? "text-black"
+                  ? "text-white/80"
                   : "text-secondaryTextColor"
               )}
             >
@@ -116,12 +125,16 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ profile }) => {
 
       {/* add cover image to bg */}
       {profile?.coverImage && selectedTheme.type !== "DEFAULT" && (
-        <Image
-          src={profile?.coverImage}
-          alt={profile?.name}
-          layout="fill"
-          className="absolute inset-0 w-full h-full object-cover rounded-xl z-0 filter blur-lg"
-        />
+        <div className="absolute inset-0 w-full h-full bg-black z-0 filter blur-sm">
+          <div className="relative h-full w-full">
+            <Image
+              src={profile?.coverImage}
+              alt={profile?.name}
+              fill
+              className="object-cover opacity-75"
+            />
+          </div>
+        </div>
       )}
     </div>
   );
