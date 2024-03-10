@@ -14,18 +14,15 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { useModalStore } from "./ModalStore";
 import { Separator } from "../ui/separator";
-import { subItems } from "@/app/helpers/siteData";
+import { PriceProps, buttonPrices, subItems } from "@/app/helpers/siteData";
 
 interface SubscriptionModalProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const buttonPrices = [
-  { price: 28, title: "Yearly" },
-  { price: 4, title: "Monthly" },
-];
-
 const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ ...props }) => {
   const { isOpen, type, onClose } = useModalStore();
-  const [selectedPlan, setSelectedPlan] = React.useState("yearly");
+  const [selectedPlan, setSelectedPlan] = React.useState<PriceProps>(
+    buttonPrices[0]
+  );
 
   const isSubOpen = isOpen && type === "subscription";
   return (
@@ -72,12 +69,12 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ ...props }) => {
             <div
               key={index}
               className={cn(
-                "flex items-center justify-between gap-2 py-2 px-4 rounded-md border border-[#06b6d4] cursor-pointer",
-                selectedPlan === item.title.toLowerCase()
+                "flex items-center justify-between gap-2 py-2 px-4 rounded-md border border-[#06b6d4] cursor-pointer hover:scale-105 transition duration-300 ease-in-out",
+                selectedPlan === item
                   ? "bg-[#06b6d4] text-white"
                   : "bg-white text-[#06b6d4]"
               )}
-              onClick={() => setSelectedPlan(item.title.toLowerCase())}
+              onClick={() => setSelectedPlan(item)}
             >
               <p className="text-base font-clash ">{item.title}</p>
               <p className="text-base font-clash ">${item.price}</p>

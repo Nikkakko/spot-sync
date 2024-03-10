@@ -477,3 +477,13 @@ export const subItems: SubscriptionItemProps[] = [
     icon: Tag,
   },
 ] as const;
+
+export const buttonPrices: PriceProps[] = [
+  { price: 28, title: "Yearly" },
+  { price: 4, title: "Monthly" },
+] as const;
+
+export type PriceProps = {
+  price: number;
+  title: "Yearly" | "Monthly";
+};
