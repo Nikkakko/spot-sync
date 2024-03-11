@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type ModalType = "subscription";
+type ModalType = "subscription" | "cancel-sub";
 
 interface ModalData {}
 

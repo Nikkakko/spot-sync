@@ -15,6 +15,8 @@ import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { useModalStore } from "./ModalStore";
 
 interface CustomUserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   email: string | undefined;
@@ -22,6 +24,7 @@ interface CustomUserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   userName: string | undefined;
   profileUrl: string | undefined;
   isPro: boolean | undefined;
+  subEnd: Date | undefined | null;
 }
 
 const CustomUserButton: React.FC<CustomUserButtonProps> = ({
@@ -30,8 +33,10 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
   userName,
   profileUrl,
   isPro,
-  ...props
+  subEnd,
 }) => {
+  const { onOpen } = useModalStore();
+
   return (
     <Dialog>
       <DialogTrigger asChild className="">
@@ -70,7 +75,14 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
         </DialogHeader>
 
         <DialogFooter className="flex space-y-2">
-          {isPro ? <ProIcon /> : <FreeIcon />}
+          <div className="w-full flex items-center justify-between">
+            {isPro ? <ProIcon /> : <FreeIcon />}
+            {subEnd && (
+              <DialogDescription className="text-secondaryText font-semibold md:m-0">
+                {`${format(new Date(subEnd), "dd/MM/yyyy")}`}
+              </DialogDescription>
+            )}
+          </div>
 
           <DialogDescription className="text-secondaryText font-semibold md:m-0">
             {isPro
@@ -80,8 +92,14 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
               free, add and customize your links, show off your music and more.`}
           </DialogDescription>
 
-          <Button variant="default" className="w-full capitalize">
-            {isPro ? "Manage Subscription" : "Upgrade to Pro"}
+          <Button
+            variant="default"
+            className="w-full capitalize"
+            onClick={() => {
+              isPro ? onOpen("cancel-sub") : onOpen("subscription");
+            }}
+          >
+            {isPro ? "Cancel Subscription" : "Go Pro"}
           </Button>
           <Link
             className={cn(buttonVariants({ variant: "outline" }), "md:hidden")}

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import SubscriptionModal from "./SubscriptionModal";
+import CancelDialog from "./CancelDialog";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = React.useState(false);
@@ -15,6 +16,7 @@ const ModalProvider = () => {
   return (
     <>
       <SubscriptionModal />
+      <CancelDialog />
     </>
   );
 };

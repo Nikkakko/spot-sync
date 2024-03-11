@@ -48,18 +48,19 @@ export async function generateMetadata(
   };
 }
 async function ProfilePage({ params: { slug } }: PageProps) {
-  const user = await currentUser();
-  const token = await getToken();
-
-  const profile = await db.userProfile.findFirst({
-    where: {
-      profileUrl: slug,
-    },
-    include: {
-      socials: true,
-      theme: true,
-    },
-  });
+  const [user, token, profile] = await Promise.all([
+    currentUser(),
+    getToken(),
+    db.userProfile.findFirst({
+      where: {
+        profileUrl: slug,
+      },
+      include: {
+        socials: true,
+        theme: true,
+      },
+    }),
+  ]);
 
   const [topTracks, getAlbums] = await Promise.all([
     getArtistTopTracks(

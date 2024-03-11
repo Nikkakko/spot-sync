@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import db from "@/lib/db";
+import {
+  handleCheckoutSessionCompleted,
+  handleSubscriptionDeleted,
+} from "@/lib/subscription";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.text();
@@ -23,51 +27,21 @@ export async function POST(req: Request, res: Response) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    const session = event.data.object as Stripe.Checkout.Session;
-
     switch (event.type) {
       case "checkout.session.completed":
-        if (!session.metadata?.userId) {
-          return new NextResponse("Invalid Request", { status: 400 });
-        }
-
-        const subscription = await stripe.subscriptions.retrieve(
-          session.subscription as string
+        await handleCheckoutSessionCompleted(
+          event.data.object as Stripe.Checkout.Session
         );
+        break;
 
-        const userSubscription = await db.userSubscription.findFirst({
-          where: {
-            userId: session.metadata.userId,
-          },
-        });
+      case "customer.subscription.deleted":
+        await handleSubscriptionDeleted(
+          event.data.object.id as Stripe.Subscription["id"]
+        );
+        break;
 
-        if (userSubscription) {
-          await db.userSubscription.update({
-            where: {
-              userId: session.metadata.userId,
-            },
-            data: {
-              stripeCustomerId: session.customer as string,
-              stripeSubscriptionId: subscription.id,
-              stripePriceId: subscription.items.data[0].price.id,
-              stripeCurrentPeriodEnd: new Date(
-                subscription.current_period_end * 1000
-              ),
-            },
-          });
-        } else {
-          await db.userSubscription.create({
-            data: {
-              userId: session.metadata.userId,
-              stripeCustomerId: session.customer as string,
-              stripeSubscriptionId: session.subscription as string,
-              stripePriceId: subscription.items.data[0].price.id,
-              stripeCurrentPeriodEnd: new Date(
-                subscription.current_period_end * 1000
-              ),
-            },
-          });
-        }
+      default:
+        console.warn(`Unhandled event type: ${event.type}`);
     }
 
     return new NextResponse(null, {
