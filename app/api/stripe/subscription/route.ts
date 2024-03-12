@@ -2,6 +2,7 @@ import db from "@/lib/db";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { auth, currentUser } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 const settingsUrl = absoluteUrl("/customize");
@@ -72,6 +73,7 @@ export async function POST(req: Request) {
       },
     });
 
+    revalidatePath("/");
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
     console.log(error, "Stripe error");

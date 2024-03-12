@@ -13,6 +13,7 @@ import {
 import { useModalStore } from "./ModalStore";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
 interface CancelDialogProps {}
 
@@ -20,6 +21,8 @@ const CancelDialog: React.FC<CancelDialogProps> = ({}) => {
   const { type, onClose, isOpen } = useModalStore();
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const { toast } = useToast();
 
   const isDialogOpen = type === "cancel-sub" && isOpen;
 
@@ -29,10 +32,20 @@ const CancelDialog: React.FC<CancelDialogProps> = ({}) => {
       const res = await axios.post("/api/stripe/cancel");
 
       if (res.status === 200) {
+        toast({
+          title: "Success",
+          description:
+            "Your subscription has been cancelled, you will be redirected to the settings page.",
+          duration: 5000,
+        });
         router.push(res.data.url);
       }
     } catch (error) {
-      console.error(error);
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        duration: 5000,
+      });
     } finally {
       setIsLoading(false);
       onClose();
@@ -41,7 +54,7 @@ const CancelDialog: React.FC<CancelDialogProps> = ({}) => {
 
   if (!isDialogOpen) return null;
   return (
-    <AlertDialog open={isDialogOpen} onOpenChange={onClose}>
+    <AlertDialog open={isDialogOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
