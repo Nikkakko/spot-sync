@@ -26,9 +26,14 @@ interface TabsContainerProps {
     coverImage: string | null;
     theme: Theme | null;
   };
+  isPro: boolean;
 }
 
-const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
+const TabsContainer: React.FC<TabsContainerProps> = ({
+  tab,
+  profile,
+  isPro,
+}) => {
   const { theme, setTheme } = useTheme();
   const { ref, setIsSubmitting, setIsChanged } = useRef();
   const { selectedTheme, setSelectedTheme } = useThemeChoose();
@@ -174,6 +179,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ tab, profile }) => {
             image={profile?.image as string}
             name={profile?.name as string}
             coverImage={profile?.coverImage as string}
+            isPro={isPro}
           />
         )}
       </form>

@@ -7,6 +7,7 @@ import {
   Slide6,
 } from "@/public/assets";
 import { ThemeColor } from "@prisma/client";
+import { LucideIcon, SwatchBook, Tag, Zap } from "lucide-react";
 export const stickers = [
   {
     id: 1,
@@ -447,3 +448,42 @@ export const heroCards: HeroCardProps[] = [
 
 export const apiResponseText =
   "User-contributed text is available under the Creative Commons By-SA License; additional terms may apply.";
+
+interface SubscriptionItemProps {
+  id: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+export const subItems: SubscriptionItemProps[] = [
+  {
+    id: "1",
+    title: "Access premium themes",
+    description: "Use any theme you want and access newly added themes",
+    icon: SwatchBook,
+  },
+  {
+    id: "2",
+    title: "See who your fans are",
+    description: "Get insights on who your fans are and where they are from",
+    icon: Zap,
+  },
+  {
+    id: "3",
+    title: "Remove the Noise branding",
+    description:
+      "Make your Noise truely yours by removing the Noise branding badge.",
+    icon: Tag,
+  },
+] as const;
+
+export const buttonPrices: PriceProps[] = [
+  { price: 28, interval: "Yearly" },
+  { price: 4, interval: "Monthly" },
+] as const;
+
+export type PriceProps = {
+  price: number;
+  interval: "Yearly" | "Monthly";
+};

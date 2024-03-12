@@ -31,6 +31,7 @@ module.exports = {
         primarybg: "#E2DFD5",
         secondarybg: "#D9D9D9",
         secondaryText: "#a3a3a3",
+        subIconBg: "rgba(6, 182, 212, .1)",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

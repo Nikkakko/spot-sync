@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import db from "@/lib/db";
 import { Icons } from "../icons";
 import CustomUserButton from "../modals/CustomUserButton";
+import { checkSubscription, subEndDate } from "@/lib/subscription";
 
 interface SiteHeaderProps {}
 
@@ -20,11 +21,11 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
   const title = "S-Sync";
   const user = await currentUser();
 
-  const profile = await db.userProfile.findFirst({
-    where: {
-      userId: user?.id as string,
-    },
-  });
+  const [profile, endDate, isPro] = await Promise.all([
+    db.userProfile.findFirst({ where: { userId: user?.id as string } }),
+    subEndDate(),
+    checkSubscription(),
+  ]);
 
   return (
     <header className="z-50 w-full h-16 font-clash">
@@ -76,6 +77,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = async ({}) => {
               userProfileImage={user?.imageUrl}
               userName={user?.firstName + " " + user?.lastName}
               profileUrl={profile?.profileUrl}
+              isPro={isPro}
+              subEnd={endDate}
             />
           </SignedIn>
         </div>

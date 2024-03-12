@@ -3,23 +3,20 @@ import * as React from "react";
 import DefaultTheme from "../themes/DefaultTheme";
 import PopTheme from "../themes/PopTheme";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { useThemeChoose } from "@/store/themeStore";
 import { FormField } from "../ui/form";
 import { useFormContext } from "react-hook-form";
-import { ThemeColor, ThemeType } from "@prisma/client";
-import { on } from "events";
+import { useModalStore } from "../modals/ModalStore";
 
 interface ThemesProps {
   image: string;
   name: string;
   coverImage: string;
+  isPro: boolean;
 }
 
-const Themes: React.FC<ThemesProps> = ({ image, name, coverImage }) => {
-  const { selectedTheme, setSelectedTheme } = useThemeChoose();
+const Themes: React.FC<ThemesProps> = ({ image, name, coverImage, isPro }) => {
   const { control } = useFormContext();
-  const { theme, setTheme } = useTheme();
+  const { onOpen } = useModalStore();
 
   const themeClass = cn(
     "border-2 rounded-sm cursor-pointer p-2 hover:scale-105 transition duration-300 ease-in-out"
@@ -53,21 +50,26 @@ const Themes: React.FC<ThemesProps> = ({ image, name, coverImage }) => {
           control={control}
           name="theme"
           render={({ field }) => (
-            <PopTheme
-              image={image}
-              name={name}
-              coverImage={coverImage}
-              className={cn(
-                themeClass,
-                field.value.type === "POP" ? "border-black" : "border-white"
-              )}
-              onClick={async e => {
-                e.stopPropagation();
-                e.nativeEvent.preventDefault();
+            <>
+              <PopTheme
+                image={image}
+                name={name}
+                coverImage={coverImage}
+                className={cn(
+                  themeClass,
+                  field.value.type === "POP" ? "border-black" : "border-white"
+                )}
+                onClick={async e => {
+                  if (!isPro) {
+                    return onOpen("subscription");
+                  }
+                  e.stopPropagation();
+                  e.nativeEvent.preventDefault();
 
-                field.onChange({ type: "POP", color: "DEFAULT" });
-              }}
-            />
+                  field.onChange({ type: "POP", color: "DEFAULT" });
+                }}
+              />
+            </>
           )}
         />
       </div>

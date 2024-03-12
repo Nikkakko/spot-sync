@@ -10,17 +10,21 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button, buttonVariants } from "../ui/button";
-import { FreeIcon, Icons } from "../icons";
+import { FreeIcon, Icons, ProIcon } from "../icons";
 import { SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { useModalStore } from "./ModalStore";
 
 interface CustomUserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   email: string | undefined;
   userProfileImage: string | undefined;
   userName: string | undefined;
   profileUrl: string | undefined;
+  isPro: boolean | undefined;
+  subEnd: Date | undefined | null;
 }
 
 const CustomUserButton: React.FC<CustomUserButtonProps> = ({
@@ -28,8 +32,11 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
   userProfileImage,
   userName,
   profileUrl,
-  ...props
+  isPro,
+  subEnd,
 }) => {
+  const { onOpen } = useModalStore();
+
   return (
     <Dialog>
       <DialogTrigger asChild className="">
@@ -68,14 +75,31 @@ const CustomUserButton: React.FC<CustomUserButtonProps> = ({
         </DialogHeader>
 
         <DialogFooter className="flex space-y-2">
-          <FreeIcon />
+          <div className="w-full flex items-center justify-between">
+            {isPro ? <ProIcon /> : <FreeIcon />}
+            {subEnd && (
+              <DialogDescription className="text-secondaryText font-semibold md:m-0">
+                {`${format(new Date(subEnd), "dd/MM/yyyy")}`}
+              </DialogDescription>
+            )}
+          </div>
+
           <DialogDescription className="text-secondaryText font-semibold md:m-0">
-            {`  You're on the free plan which allows you to create your Spot-Sync for
-            free, add and customize your links, show off your music and more.`}
+            {isPro
+              ? `You're on the Pro plan which allows you to select any Theme,
+            add and customize your links, show off your music and more.`
+              : `You're on the free plan which allows you to create your Spot-Sync for
+              free, add and customize your links, show off your music and more.`}
           </DialogDescription>
 
-          <Button variant="default" className="w-full capitalize">
-            Go Pro
+          <Button
+            variant="default"
+            className="w-full capitalize"
+            onClick={() => {
+              isPro ? onOpen("cancel-sub") : onOpen("subscription");
+            }}
+          >
+            {isPro ? "Cancel Subscription" : "Go Pro"}
           </Button>
           <Link
             className={cn(buttonVariants({ variant: "outline" }), "md:hidden")}

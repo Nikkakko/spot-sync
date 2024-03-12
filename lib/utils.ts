@@ -1,35 +1,39 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getSpotifyToken() {
-  return localStorage.getItem('spotifyToken');
+  return localStorage.getItem("spotifyToken");
 }
 
 export function setSpotifyToken(token: string) {
-  localStorage.setItem('spotifyToken', token);
+  localStorage.setItem("spotifyToken", token);
 }
 
 export function removeSpotifyToken() {
-  localStorage.removeItem('spotifyToken');
+  localStorage.removeItem("spotifyToken");
 }
 
 export function stringToSlug(str: string) {
   return str
     .toLowerCase()
-    .replace(/ /g, '-')
-    .replace(/[^\w-]+/g, '');
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
 }
 
 export function cleanText(text: string) {
   // Remove <a> tags
-  let cleaned = text.replace(/<a[^>]*>([^<]+)<\/a>/g, '');
+  let cleaned = text.replace(/<a[^>]*>([^<]+)<\/a>/g, "");
 
   // Remove newline characters
   // cleaned = cleaned.replace(/\n/g, '');
 
   return cleaned;
+}
+
+export function absoluteUrl(path: string) {
+  return `${process.env.NEXT_PUBLIC_APP_URL}${path}`;
 }

@@ -10,7 +10,7 @@ export default async function RootLayout({
 }) {
   return (
     <div className="bg-primarybg w-full">
-      <Shell>
+      <Shell className="px-2 lg:px-0">
         <SiteHeader />
         {children}
         <SiteFooter />

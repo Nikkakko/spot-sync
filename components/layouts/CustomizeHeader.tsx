@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { useRef } from "@/utils/store";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -25,12 +25,15 @@ const CustomizeHeader: React.FC<CustomizeHeaderProps> = ({}) => {
     <header className="sticky top-0  py-2  backdrop-filter backdrop-blur-sm z-10 font-clash ">
       <div className="flex items-center justify-between container mx-auto px-2">
         <Button
-          className="hover:no-underline flex items-center gap-1 px-0"
-          variant="link"
           onClick={() => router.back()}
-          disabled={isSubmitting}
+          className={cn("font-semibold text-base flex gap-1 group")}
+          variant="link"
         >
-          <Icons.moveLeft className="w-5 h-5" />
+          <Icons.moveLeft
+            className="w-5 h-5 text-black/50 group-hover:text-black 
+          transition-all duration-200 ease-in-out transform hover:scale-110 group-hover:animate-pulse
+          "
+          />
           Exit
         </Button>
         <h1 className="text-sm md:text-xl font-semibold text-muted-foreground flex gap-1">

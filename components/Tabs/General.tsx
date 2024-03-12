@@ -123,7 +123,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   isAvatar,
 }) => {
   const width = isAvatar ? "140px" : "340px";
-  const height = "120px";
   const placeholderText = isAvatar ? "upload image" : "add cover image";
   const { setIsChanged } = useRef();
 

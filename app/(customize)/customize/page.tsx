@@ -1,7 +1,5 @@
 import TabsSection from "@/components/Tabs/Tabs";
-import { Shell } from "@/components/layouts/Shell";
 import { currentUser } from "@clerk/nextjs";
-import { Tabs } from "@radix-ui/react-tabs";
 import db from "@/lib/db";
 import * as React from "react";
 import { redirect } from "next/navigation";

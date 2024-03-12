@@ -43,6 +43,9 @@ model UserProfile {
   socials    Social[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  
+  
 }
 
 //add stripe subscription
@@ -54,6 +57,8 @@ model UserSubscription {
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  
 }
 
 model Social {

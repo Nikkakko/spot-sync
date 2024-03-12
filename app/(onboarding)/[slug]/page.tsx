@@ -48,18 +48,19 @@ export async function generateMetadata(
   };
 }
 async function ProfilePage({ params: { slug } }: PageProps) {
-  const user = await currentUser();
-  const token = await getToken();
-
-  const profile = await db.userProfile.findFirst({
-    where: {
-      profileUrl: slug,
-    },
-    include: {
-      socials: true,
-      theme: true,
-    },
-  });
+  const [user, token, profile] = await Promise.all([
+    currentUser(),
+    getToken(),
+    db.userProfile.findFirst({
+      where: {
+        profileUrl: slug,
+      },
+      include: {
+        socials: true,
+        theme: true,
+      },
+    }),
+  ]);
 
   const [topTracks, getAlbums] = await Promise.all([
     getArtistTopTracks(
@@ -93,15 +94,12 @@ async function ProfilePage({ params: { slug } }: PageProps) {
         {(getAlbums?.items?.length ?? 0) === 0 && <AlbumLoader />}
       </React.Suspense>
 
-      {profile?.socials?.length > 0 &&
-        profile?.socials.map(social => (
-          <section
-            className="mt-4 w-full grid grid-cols1 gap-1 "
-            key={social.id}
-          >
-            <SocialCard social={social} />
-          </section>
-        ))}
+      <section className="w-full grid grid-cols-1 gap-2 pt-8 ">
+        {profile?.socials?.length > 0 &&
+          profile?.socials.map(social => (
+            <SocialCard social={social} key={social.id} />
+          ))}
+      </section>
 
       {user?.id === profile?.userId && <CommandBar />}
 

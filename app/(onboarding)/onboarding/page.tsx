@@ -10,9 +10,8 @@ import { redirect } from "next/navigation";
 interface OnBoardingProps {}
 
 const OnboardingPage: React.FC<OnBoardingProps> = async () => {
-  const token = await getToken();
+  const [token, user] = await Promise.all([getToken(), currentUser()]);
 
-  const user = await currentUser();
   const profile = await db.userProfile.findFirst({
     where: {
       userId: user?.id as string,
