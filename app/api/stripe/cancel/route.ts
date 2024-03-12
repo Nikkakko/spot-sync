@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Invalid Request", { status: 400 });
     }
 
-    revalidatePath("/");
+    revalidatePath(settingsUrl);
 
     return new NextResponse(JSON.stringify({ url: settingsUrl }), {
       status: 200,
