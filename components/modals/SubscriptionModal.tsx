@@ -65,8 +65,11 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ ...props }) => {
         <DialogHeader className="font-clash">
           <DialogTitle className="mb-2">Go Pro</DialogTitle>
           <DialogDescription>
-            Get your Noise to the next level for just $28 per year and access
-            exclusive themes, see who your fans are with analytics and more..
+            {`Get your Noise to the next level for just
+            $${selectedPlan.price}
+            per ${selectedPlan.interval === "Monthly" ? "month" : "year"}       
+            and access
+            exclusive themes, see who your fans are with analytics and more..`}
           </DialogDescription>
         </DialogHeader>
         <Separator />
