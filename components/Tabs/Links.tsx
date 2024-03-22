@@ -24,7 +24,7 @@ const Links: React.FC<LinksProps> = async ({}) => {
   });
 
   return (
-    <div className="flex flex-col space-y-4  ">
+    <div className="flex flex-col space-y-2 ">
       <SocialLinkSetup />
       {profile?.socials?.map(social => (
         <SocialCard key={social.id} social={social} basicLink />
