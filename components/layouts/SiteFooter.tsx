@@ -10,7 +10,7 @@ const SiteFooter: React.FC<SiteFooterProps> = ({}) => {
     <Shell
       as="footer"
       variant="footer"
-      className="flex flex-col-reverse lg:flex-row justify-between mx-auto  max-w-5xl px-0 py:4 pb-10 uppercase"
+      className="flex flex-col-reverse lg:flex-row justify-between mx-auto  max-w-5xl px-0 py-10 uppercase"
     >
       <p className="text-black/50 text-xs text-center w-full">
         SPOT-SYNC 2024© All Rights Reserved

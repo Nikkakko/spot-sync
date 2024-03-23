@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Shell } from "./layouts/Shell";
 import { showCaseText } from "@/app/helpers/siteData";
-import { Button, buttonVariants } from "./ui/button";
-import { useUser, redirectToSignIn, currentUser } from "@clerk/nextjs";
-import Link from "next/link";
+import { buttonVariants } from "./ui/button";
+import { currentUser } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import db from "@/lib/db";
 

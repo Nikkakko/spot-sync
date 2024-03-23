@@ -17,7 +17,7 @@ const FaqPage: React.FC<FaqPageProps> = ({}) => {
     <>
       <section className="py-14 border-t border-[#ccc]">
         <Shell
-          className="flex flex-col gap-4 text-center p-0 max-w-xs"
+          className="flex flex-col gap-4 text-center p-0  max-w-xs min-h-fit"
           as="div"
         >
           <h1 className="text-5xl tracking-tight font-bold">What?</h1>
@@ -28,7 +28,7 @@ const FaqPage: React.FC<FaqPageProps> = ({}) => {
           </p>
         </Shell>
       </section>
-      <div className="bg-section-pattern2 flex flex-col gap-4 py-10 flex-1 relative">
+      <div className="bg-section-pattern2 flex flex-col gap-4 py-10 flex-1 relative ">
         {faqCard.map((card, index) => (
           <div
             key={index}
